@@ -26,7 +26,7 @@ function WrongPage():JSX.Element {
 
       <main className="page__main page__main--offer">
         <section>
-          <div className="container">
+          <div className="container" style={{ marginTop: 100, marginBottom: 50}}>
             <h1 className="offer__name">
               404! There is no such page, sorry!
             </h1>

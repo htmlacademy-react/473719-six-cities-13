@@ -3,24 +3,10 @@ import Tabs from '../components/tabs';
 import Header from '../components/header';
 import PLacesSorting from '../components/places-sorting';
 
-type Card = {
-  id: number;
-  isPremium: boolean;
-  isFavorite: boolean;
-  imgUrl: string;
-  price: number;
-  tarification: string;
-  title: string;
-  type: string;
-  averageStars:number;
-}
 
-type CardProps = {
-  cards: Card[];
-}
+import type { Cards, Card } from '../types';
 
-
-function MainPage({cards}: CardProps): JSX.Element {
+function MainPage({cards}: Cards): JSX.Element {
   const offersCount: number = cards.length;
 
   return(

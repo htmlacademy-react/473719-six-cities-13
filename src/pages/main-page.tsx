@@ -23,7 +23,7 @@ function MainPage({cards}: Cards): JSX.Element {
               <PLacesSorting />
               <div className="cities__places-list places__list tabs__content">
                 {cards.map((card: Card) =>
-                  (<PlaceCard key= {card.id} isFavorite = {card.isFavorite} isPremium={card.isPremium} imgUrl= {card.imgUrl} price = {card.price} tarification = {card.tarification} title = {card.title} type = {card.type} averageStars={card.averageStars}/>))}
+                  (<PlaceCard key= {card.id} isFavorite = {card.isFavorite} isPremium={card.isPremium} previewImage={card.previewImage} price = {card.price} title = {card.title} type = {card.type} rating={card.rating}/>))}
               </div>
             </section>
             <div className="cities__right-section">

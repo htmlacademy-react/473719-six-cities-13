@@ -1,17 +1,38 @@
 type Card = {
-  id: number;
-  isPremium: boolean;
-  isFavorite: boolean;
-  imgUrl: string;
-  price: number;
-  tarification: string;
+  id?: string;
   title: string;
   type: string;
-  averageStars:number;
+  price: number;
+  isFavorite: boolean;
+  isPremium: boolean;
+  rating: number;
+  previewImage: string;
 }
+
+type City = {
+  name: string;
+  location: {
+    latitude: number;
+    longitude: number;
+    zoom: number;
+    };
+  }
+
+type Location = {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+};
 
 type Cards = {
   cards: Card[];
 }
 
-export type {Card, Cards};
+
+type Place = Card & {
+  city: City;
+  location: Location;
+}
+
+
+export type {Card, Cards, Place, Location, City};

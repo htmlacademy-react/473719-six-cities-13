@@ -2,7 +2,7 @@ import MainPage from '../pages/main-page';
 import Login from '../pages/login';
 import WrongPage from '../pages/wrong-page';
 
-import {Route, BrowserRouter, Routes, Link} from 'react-router-dom';
+import {Route, BrowserRouter, Routes } from 'react-router-dom';
 import Favorites from '../pages/favorites';
 import Offer from '../pages/offer';
 

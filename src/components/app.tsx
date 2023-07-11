@@ -31,4 +31,6 @@ function App({cards}: Cards) : JSX.Element {
   );
 }
 
+export {AppRoute};
+
 export default App;

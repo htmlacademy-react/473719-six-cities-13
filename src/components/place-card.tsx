@@ -1,9 +1,7 @@
 import { Card } from '../types';
 
-
 function PlaceCard(card: Card): JSX.Element {
   const cardRating: string = (Math.round((card.rating / 5) * 100)).toString();
-  console.log(cardRating);
   return (
     <article className="cities__card place-card">
       {card.isPremium && <div className="place-card__mark"><span>Premium</span></div>}

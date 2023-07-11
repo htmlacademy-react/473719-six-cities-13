@@ -2,12 +2,11 @@ import { Card } from '../types';
 
 
 function PlaceCard(card: Card): JSX.Element {
-  console.log(card);
+  const cardRating: string = (Math.round((card.rating / 5) * 100)).toString();
+  console.log(cardRating);
   return (
     <article className="cities__card place-card">
-      <div className="place-card__mark">
-        <span>{card.isPremium}</span>
-      </div>
+      {card.isPremium && <div className="place-card__mark"><span>Premium</span></div>}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
           <img className="place-card__image" src={card.previewImage} width="260" height="200" alt="Place image" />
@@ -28,7 +27,7 @@ function PlaceCard(card: Card): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: '80%'}}></span>
+            <span style={{width: `${cardRating}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

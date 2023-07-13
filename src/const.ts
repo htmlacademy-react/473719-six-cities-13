@@ -12,4 +12,6 @@ enum AppRoute {
   EverythingElse ='*',
 }
 
-export {AuthorizationStatus, AppRoute};
+enum Cities {'Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'}
+
+export {AuthorizationStatus, AppRoute, Cities};

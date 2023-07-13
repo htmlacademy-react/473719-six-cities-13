@@ -1,4 +1,4 @@
-import { AuthorizationStatus} from '../mocks';
+import { AuthorizationStatus} from '../const';
 import { AppRoute } from './app';
 import { Navigate } from 'react-router-dom';
 

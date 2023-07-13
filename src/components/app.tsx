@@ -3,21 +3,13 @@ import Login from '../pages/login';
 import WrongPage from '../pages/wrong-page';
 import Favorites from '../pages/favorites';
 import Offer from '../pages/offer';
-import { AuthorizationStatus } from '../const';
+import { AuthorizationStatus, AppRoute } from '../const';
 
 import {Route, BrowserRouter, Routes } from 'react-router-dom';
 
 import type { Cards } from '../types';
 import PrivateRoute from './private-route';
 
-
-enum AppRoute {
-  Root ='/',
-  LogIn = '/login',
-  FavoriteItems='/favorites',
-  OfferItem= '/offer/:id',
-  EverythingElse ='*',
-}
 
 function App({cards}: Cards) : JSX.Element {
   return(

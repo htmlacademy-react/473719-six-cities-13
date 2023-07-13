@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import mocks from '../const';
+import mocks from '../mocks';
 
 import { Card, Place } from '../types';
 import Header from '../components/header';

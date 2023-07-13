@@ -32,7 +32,7 @@ function PlaceCard(card: Card): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{card.title}</a>
+          <Link to={`/offer/${card.id}`}>{card.title}</Link>
         </h2>
         <p className="place-card__type">{card.type}</p>
       </div>

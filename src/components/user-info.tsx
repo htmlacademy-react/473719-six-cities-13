@@ -1,4 +1,4 @@
-function AccountInfo():JSX.Element {
+function UserInfo():JSX.Element {
   return (
     <a className="header__nav-link header__nav-link--profile" href="#">
       <div className="header__avatar-wrapper user__avatar-wrapper">
@@ -9,4 +9,4 @@ function AccountInfo():JSX.Element {
   );
 }
 
-export default AccountInfo;
+export default UserInfo;

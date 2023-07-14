@@ -9,7 +9,7 @@ function Offer() : JSX.Element {
   const params = useParams();
   const data: Array<Place> = mocks;
 
-  const {id, title, type, price, previewImage, isFavorite, isPremium, rating}: Card = data.filter((el) => el.id === params.id)[0];
+  const {title, type, price, previewImage, isFavorite, isPremium, rating}: Card = data.filter((el) => el.id === params.id)[0];
   const cardRating: string = (Math.round((rating / 5) * 100)).toString();
   return (
     <div className="page">

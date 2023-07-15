@@ -5,7 +5,7 @@ function CommentSection():JSX.Element {
   const [stars, setStars] = useState(0);
 
   function choseStar(event) {
-    const stars = parseInt(event.target.value);
+    const stars = parseInt(event.target.value, 10);
     setStars(stars);
   }
 

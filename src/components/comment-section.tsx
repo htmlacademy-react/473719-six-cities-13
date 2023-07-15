@@ -1,21 +1,21 @@
-import { useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 
 function CommentSection():JSX.Element {
   const [comment, setComment] = useState('');
-  const [stars, setStars] = useState(0);
+  const [rating, setStars] = useState(0);
 
-  function choseStar(event) {
+  function choseStar(event: SyntheticEvent) {
     const stars = parseInt(event.target.value, 10);
     setStars(stars);
   }
 
-  function changeText(event) {
-    const text = event.target.value;
+  function changeText(event: SyntheticEvent) {
+    const text: string = event.target.value;
     setComment(text);
   }
 
   console.log(comment);
-  console.log(stars);
+  console.log(rating);
 
   return(
     <form className="reviews__form form" action="#" method="post">

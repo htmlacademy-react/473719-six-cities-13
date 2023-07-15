@@ -30,9 +30,7 @@ function Offer() : JSX.Element {
           <div className="offer__gallery-container container">
             <div className="offer__gallery">
               {imagesWithKeys.map((image) =>
-                (<div className="offer__image-wrapper" key={image.id}>
-                  <img className="offer__image" src={image.item} alt="Photo studio" />
-                 </div>))}
+                (<div className="offer__image-wrapper" key={image.id}><img className="offer__image" src={image.item} alt="Photo studio" /></div>))}
             </div>
           </div>
           <div className="offer__container container">

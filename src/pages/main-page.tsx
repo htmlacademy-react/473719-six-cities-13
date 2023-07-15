@@ -25,19 +25,7 @@ function MainPage({cards}: Cards): JSX.Element {
               <PLacesSorting />
               <div className="cities__places-list places__list tabs__content">
                 {cards.map((card: Card) =>
-                  (<PlaceCard
-                    key= {card.id}
-                    id={card.id}
-                    isFavorite = {card.isFavorite}
-                    isPremium={card.isPremium}
-                    previewImage={card.previewImage}
-                    price = {card.price}
-                    title = {card.title}
-                    type = {card.type}
-                    rating={card.rating}
-                    city={card.city}
-                    location={card.location}
-                  />))}
+                  (<PlaceCard key= {card.id} id={card.id} isFavorite = {card.isFavorite} isPremium={card.isPremium} previewImage={card.previewImage} price = {card.price} title = {card.title} type = {card.type} rating={card.rating} city={card.city} location={card.location}/>))}
               </div>
             </section>
             <div className="cities__right-section">

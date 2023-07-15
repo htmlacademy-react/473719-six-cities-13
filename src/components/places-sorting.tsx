@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 import { sortTypes } from '../const';
 
 function PLacesSorting(): JSX.Element {
@@ -11,8 +11,8 @@ function PLacesSorting(): JSX.Element {
     setOpened(!isOpened);
   }
 
-  function handleClick(event){
-    const actualFilter = event.target.getAttribute('data-filter');
+  function handleClick(event: SyntheticEvent){
+    const actualFilter: string = event.target.getAttribute('data-filter');
     setFilter(actualFilter);
     toggleList();
   }

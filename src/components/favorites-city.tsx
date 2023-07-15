@@ -7,7 +7,7 @@ type City = {
 }
 
 
-function FavoritesCity(city: City, favoriteItems: Array<Card>): JSX.Element {
+function FavoritesCity(city: City): JSX.Element {
 
   const favoriteItemsInChosenCity: Array<Card> = mocks.filter((item: Card) => item.isFavorite && item.city.name === city.cityName);
   console.log(favoriteItemsInChosenCity);
@@ -22,19 +22,7 @@ function FavoritesCity(city: City, favoriteItems: Array<Card>): JSX.Element {
       </div>
       <div className="favorites__places">
         {favoriteItemsInChosenCity.map((item: Card) =>
-          (<FavoriteItem
-            id={item.id}
-            key={item.id}
-            isFavorite={item.isFavorite}
-            isPremium={item.isPremium}
-            previewImage={item.previewImage}
-            price={item.price}
-            rating={item.rating}
-            type={item.type}
-            title={item.title}
-            city={item.city}
-            location={item.location}
-          />))}
+          (<FavoriteItem id={item.id} key={item.id} isFavorite={item.isFavorite} isPremium={item.isPremium} previewImage={item.previewImage} price={item.price} rating={item.rating} type={item.type} title={item.title} city={item.city} location={item.location}/>))}
       </div>
     </li>
   );

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 
 
 const CITIES = {
@@ -13,9 +13,9 @@ const CITIES = {
 function Tabs(): JSX.Element {
   const [city, setCity] = useState('Dusseldorf');
 
-  function clickHandler(event) {
+  function clickHandler(event: SyntheticEvent) {
     event.preventDefault();
-    const chosenCity = event.target.getAttribute('data-city');
+    const chosenCity: string = event.target.getAttribute('data-city');
     setCity(chosenCity);
   }
 

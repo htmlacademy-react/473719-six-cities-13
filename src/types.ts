@@ -1,4 +1,4 @@
-type Card = {
+type Offer = {
   id: string;
   title: string;
   type: string;
@@ -6,33 +6,46 @@ type Card = {
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;
-  previewImage: string;
 }
 
-type City = {
-  name: string;
-  location: {
-    latitude: number;
-    longitude: number;
-    zoom: number;
-    };
-  }
 
-type Location = {
+type Geo = {
+  city: {
+    name: string;
+    location: {
+      latitude: number;
+      longitude: number;
+      zoom: number;
+      };
+  };
+  location: {
   latitude: number;
   longitude: number;
   zoom: number;
 };
+}
 
 type Cards = {
   cards: Card[];
 }
 
-
-type Place = Card & {
-  city: City;
-  location: Location;
+type Card = Offer & Geo & {
+  previewImage: string;
 }
 
 
-export type {Card, Cards, Place, Location, City};
+type Place = Offer & Geo & {
+  description: string;
+  goods: Array<string>;
+  images: Array<string>;
+  host: {
+    isPro: boolean;
+    name: string;
+    avatarUrl: string;
+  };
+  bedrooms: number;
+  maxAdults: number;
+}
+
+
+export type {Card, Cards, Place, Geo, Offer};

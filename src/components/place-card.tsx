@@ -1,11 +1,21 @@
 import { Card } from '../types';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 
 function PlaceCard(card: Card): JSX.Element {
   const cardRating: string = (Math.round((card.rating / 5) * 100)).toString();
+  const [chosenCard, setChosenCard] = useState('');
+
+  function handleHover() {
+    setChosenCard(card.id);
+  }
+
+  console.log(chosenCard);
+
+
   return (
-    <article className="cities__card place-card">
+    <article className="cities__card place-card" onMouseEnter={handleHover}>
       {card.isPremium && <div className="place-card__mark"><span>Premium</span></div>}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${card.id}`}>
@@ -32,7 +42,7 @@ function PlaceCard(card: Card): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{card.title}</a>
+          <Link to={`/offer/${card.id}`}>{card.title}</Link>
         </h2>
         <p className="place-card__type">{card.type}</p>
       </div>

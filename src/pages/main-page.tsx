@@ -7,6 +7,8 @@ import PLacesSorting from '../components/places-sorting';
 import type { Cards, Card } from '../types';
 
 function MainPage({cards}: Cards): JSX.Element {
+
+
   const offersCount: number = cards.length;
 
   return(
@@ -23,7 +25,19 @@ function MainPage({cards}: Cards): JSX.Element {
               <PLacesSorting />
               <div className="cities__places-list places__list tabs__content">
                 {cards.map((card: Card) =>
-                  (<PlaceCard key= {card.id} id={card.id} isFavorite = {card.isFavorite} isPremium={card.isPremium} previewImage={card.previewImage} price = {card.price} title = {card.title} type = {card.type} rating={card.rating}/>))}
+                  (<PlaceCard
+                    key= {card.id}
+                    id={card.id}
+                    isFavorite = {card.isFavorite}
+                    isPremium={card.isPremium}
+                    previewImage={card.previewImage}
+                    price = {card.price}
+                    title = {card.title}
+                    type = {card.type}
+                    rating={card.rating}
+                    city={card.city}
+                    location={card.location}
+                  />))}
               </div>
             </section>
             <div className="cities__right-section">

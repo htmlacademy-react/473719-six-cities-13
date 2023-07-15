@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import mocks from '../mocks';
+import mockOffers from '../mock-offers';
 
 import { Card, Place } from '../types';
 import Header from '../components/header';
@@ -7,9 +7,11 @@ import OfferImage from '../components/offer-image';
 
 function Offer() : JSX.Element {
   const params = useParams();
-  const data: Array<Place> = mocks;
+  const data: Array<Place> = mockOffers;
 
-  const {title, type, price, previewImage, isFavorite, isPremium, rating}: Card = data.filter((el) => el.id === params.id)[0];
+  console.log(data);
+
+  const {title, type, price, isFavorite, isPremium, rating}: Place = data.filter((el) => el.id === params.id)[0];
   const cardRating: string = (Math.round((rating / 5) * 100)).toString();
   return (
     <div className="page">
@@ -19,7 +21,7 @@ function Offer() : JSX.Element {
         <section className="offer">
           <div className="offer__gallery-container container">
             <div className="offer__gallery">
-              <OfferImage previewImage= {previewImage}/>
+              <OfferImage previewImage= {''}/>
             </div>
           </div>
           <div className="offer__container container">

@@ -1,4 +1,4 @@
-type Card = {
+type Offer = {
   id: string;
   title: string;
   type: string;
@@ -6,6 +6,10 @@ type Card = {
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;
+}
+
+
+type Card = Offer & {
   previewImage: string;
 }
 
@@ -29,10 +33,18 @@ type Cards = {
 }
 
 
-type Place = Card & {
+type Place = Offer & {
   city: City;
   location: Location;
+  goods: Array<string>;
+  host: {
+    isPro: boolean;
+    name: string;
+    avatarUrl: string;
+  };
+  bedrooms: number;
+  maxAdults: number;
 }
 
 
-export type {Card, Cards, Place, Location, City};
+export type {Card, Cards, Place, Location, City, Offer};

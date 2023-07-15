@@ -34,9 +34,11 @@ type Cards = {
 
 
 type Place = Offer & {
+  description: string;
   city: City;
   location: Location;
   goods: Array<string>;
+  images: Array<string>;
   host: {
     isPro: boolean;
     name: string;

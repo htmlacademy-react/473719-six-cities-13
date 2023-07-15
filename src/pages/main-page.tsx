@@ -7,6 +7,8 @@ import PLacesSorting from '../components/places-sorting';
 import type { Cards, Card } from '../types';
 
 function MainPage({cards}: Cards): JSX.Element {
+
+
   const offersCount: number = cards.length;
 
   return(

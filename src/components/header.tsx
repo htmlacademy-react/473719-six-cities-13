@@ -1,5 +1,6 @@
 import Logo from './logo';
 import UserInfo from './user-info';
+import { Link } from 'react-router-dom';
 
 function Header (): JSX.Element {
   return (
@@ -15,9 +16,9 @@ function Header (): JSX.Element {
                 <UserInfo />
               </li>
               <li className="header__nav-item">
-                <a className="header__nav-link" href="#">
+                <Link className="header__nav-link" href="#">
                   <span className="header__signout">Sign out</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>

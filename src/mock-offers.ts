@@ -43,7 +43,7 @@ const mockOffers = [
       'avatarUrl': 'https://13.design.pages.academy/static/host/avatar-angelina.jpg'
     },
     'isPremium': true,
-    'isFavorite': false,
+    'isFavorite': true,
     'rating': 1.2,
     'bedrooms': 1,
     'maxAdults': 8
@@ -1179,7 +1179,7 @@ const mockOffers = [
       'avatarUrl': 'https://13.design.pages.academy/static/host/avatar-angelina.jpg'
     },
     'isPremium': true,
-    'isFavorite': false,
+    'isFavorite': true,
     'rating': 1.6,
     'bedrooms': 1,
     'maxAdults': 3

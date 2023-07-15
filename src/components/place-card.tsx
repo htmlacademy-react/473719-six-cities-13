@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 function PlaceCard(card: Card): JSX.Element {
   const cardRating: string = (Math.round((card.rating / 5) * 100)).toString();
-  const [chosenCard, setChosenCard] = useState();
+  const [chosenCard, setChosenCard] = useState('');
 
   function handleHover() {
     setChosenCard(card.id);

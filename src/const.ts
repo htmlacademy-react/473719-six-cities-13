@@ -19,6 +19,6 @@ const sortTypes = {
   topRated: 'Top rated first',
 } as const;
 
-enum Cities {'Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'}
+const CITIES: Array<string> = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
-export {AuthorizationStatus, AppRoute, Cities, sortTypes};
+export {AuthorizationStatus, AppRoute, CITIES, sortTypes};

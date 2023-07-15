@@ -1,3 +1,4 @@
+
 const mocks = [{
   'id': '2f0f1823-f620-43f5-91f9-530386ab335b',
   'title': 'Beautiful & luxurious apartment at great location',
@@ -17,7 +18,7 @@ const mocks = [{
     'longitude': 2.342499,
     'zoom': 16
   },
-  'isFavorite': false,
+  'isFavorite': true,
   'isPremium': true,
   'rating': 1.2
 },
@@ -569,7 +570,7 @@ const mocks = [{
     'longitude': 6.956974,
     'zoom': 16
   },
-  'isFavorite': false,
+  'isFavorite': true,
   'isPremium': true,
   'rating': 1.6
 },

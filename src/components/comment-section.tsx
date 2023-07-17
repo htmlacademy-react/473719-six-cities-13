@@ -1,15 +1,15 @@
-import { SyntheticEvent, useState } from 'react';
+import { useState } from 'react';
 
 function CommentSection():JSX.Element {
   const [comment, setComment] = useState('');
   const [rating, setStars] = useState(0);
 
-  function choseStar(event: SyntheticEvent) {
+  function choseStar(event: React.MouseEvent<HTMLInputElement>) {
     const stars = parseInt(event.target.value, 10);
     setStars(stars);
   }
 
-  function changeText(event: SyntheticEvent) {
+  function changeText(event: React.ChangeEvent<HTMLTextAreaElement>){
     const text: string = event.target.value;
     setComment(text);
   }

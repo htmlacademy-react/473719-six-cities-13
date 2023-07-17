@@ -12,7 +12,11 @@ enum AppRoute {
   EverythingElse ='*',
 }
 
-const sortTypes = {
+interface GenericObject {
+  [key: string]: string;
+}
+
+const sortTypes: GenericObject = {
   normal: 'Popular',
   toHigh: 'Price: low to high',
   toLow: 'Price: high to low',

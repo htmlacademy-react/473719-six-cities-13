@@ -13,8 +13,7 @@ const CITIES = {
 function Tabs(): JSX.Element {
   const [city, setCity] = useState('Dusseldorf');
 
-  function clickHandler(event: SyntheticEvent) {
-    event.preventDefault();
+  function clickHandler(event: React.MouseEvent<HTMLLinkElement>) {
     const chosenCity: string = event.target.getAttribute('data-city');
     setCity(chosenCity);
   }

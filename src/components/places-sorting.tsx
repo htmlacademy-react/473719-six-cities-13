@@ -13,7 +13,7 @@ function PLacesSorting(): JSX.Element {
 
   function handleClick(event: React.MouseEvent<HTMLLIElement>){
     const settings = 'data-filter';
-    const actualFilter: string = event.target.getAttribute(settings);
+    const actualFilter = (event.target as HTMLLIElement).getAttribute(settings);
     setFilter(actualFilter);
     toggleList();
   }

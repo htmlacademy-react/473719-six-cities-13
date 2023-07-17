@@ -5,7 +5,7 @@ function CommentSection():JSX.Element {
   const [rating, setStars] = useState(0);
 
   function choseStar(event: React.MouseEvent<HTMLInputElement>) {
-    const stars = parseInt(event.target.value, 10);
+    const stars = parseInt((event.target as HTMLInputElement).value, 10);
     setStars(stars);
   }
 

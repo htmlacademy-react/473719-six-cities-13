@@ -14,9 +14,12 @@ function PLacesSorting(): JSX.Element {
   function handleClick(event: React.MouseEvent<HTMLLIElement>){
     const settings = 'data-filter';
     const actualFilter = (event.target as HTMLLIElement).getAttribute(settings);
-    setFilter(actualFilter);
-    toggleList();
+    if (actualFilter) {
+      setFilter(actualFilter);
+      toggleList();
+    }
   }
+
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>

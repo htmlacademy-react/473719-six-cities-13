@@ -1,18 +1,16 @@
 import { Card } from '../types';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { calculateCardRating } from '../utils';
 
 
 function PlaceCard(card: Card): JSX.Element {
-  const cardRating: string = (Math.round((card.rating / 5) * 100)).toString();
+
   const [chosenCard, setChosenCard] = useState('');
 
   function handleHover() {
     setChosenCard(card.id);
   }
-
-  console.log(chosenCard);
-
 
   return (
     <article className="cities__card place-card" onMouseEnter={handleHover}>
@@ -37,7 +35,7 @@ function PlaceCard(card: Card): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${cardRating}%`}}></span>
+            <span style={{width: `${calculateCardRating(card.rating)}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

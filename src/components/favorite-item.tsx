@@ -1,9 +1,9 @@
 import { Card } from '../types';
 import { Link } from 'react-router-dom';
+import { calculateCardRating } from '../utils';
 
 function FavoriteItem(favoriteCard: Card): JSX.Element {
   const {price, isFavorite, previewImage, rating, title, type, id} = favoriteCard;
-  const cardRating: string = (Math.round((rating / 5) * 100)).toString();
   return(
     <article className="favorites__card place-card">
       <div className="favorites__image-wrapper place-card__image-wrapper">
@@ -26,7 +26,7 @@ function FavoriteItem(favoriteCard: Card): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${cardRating}%`}}></span>
+            <span style={{width: `${calculateCardRating(rating)}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

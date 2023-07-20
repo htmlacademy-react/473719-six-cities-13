@@ -5,12 +5,12 @@ import { Place } from '../types';
 import Header from '../components/header';
 import CommentSection from '../components/comment-section';
 import ReviewsList from '../components/reviews-list';
+import { calculateCardRating } from '../utils';
 
 function Offer() : JSX.Element {
   const params = useParams();
   const data: Array<Place> = mockOffers;
   const {title, type, price, isFavorite, isPremium, rating, host, goods, images, bedrooms, maxAdults, description}: Place = data.filter((el) => el.id === params.id)[0];
-  const cardRating: string = (Math.round((rating / 5) * 100)).toString();
 
   function makeItemsWithKeys(item: string, key: number) {
     return {
@@ -52,7 +52,7 @@ function Offer() : JSX.Element {
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{width: `${cardRating}%`}}></span>
+                  <span style={{width: `${calculateCardRating(rating)}%`}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="offer__rating-value rating__value">{rating}</span>

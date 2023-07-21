@@ -1,8 +1,21 @@
 import { useState } from 'react';
+import React from 'react';
+import { GenericObject } from '../const';
+
 
 function CommentSection():JSX.Element {
   const [comment, setComment] = useState('');
   const [rating, setStars] = useState(0);
+
+  const ratingTypes = [5, 4, 3, 2, 1] as const;
+
+  const ratingTypesMap: GenericObject = {
+    '1': 'Terribly',
+    '2': 'Badly',
+    '3': 'Not bad',
+    '4': 'Good',
+    '5': 'Perfect'
+  };
 
   function choseStar(event: React.MouseEvent<HTMLInputElement>) {
     const stars = parseInt((event.target as HTMLInputElement).value, 10);
@@ -14,44 +27,22 @@ function CommentSection():JSX.Element {
     setComment(text);
   }
 
+
+  console.log(rating);
+  console.log(comment);
   return(
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio" onClick={choseStar} />
-        <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input className="form__rating-input visually-hidden" name="rating" value="4" id="4-stars" type="radio" onClick={choseStar} />
-        <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input className="form__rating-input visually-hidden" name="rating" value="3" id="3-stars" type="radio" onClick={choseStar} />
-        <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input className="form__rating-input visually-hidden" name="rating" value="2" id="2-stars" type="radio" onClick={choseStar} />
-        <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input className="form__rating-input visually-hidden" name="rating" value="1" id="1-star" type="radio" onClick={choseStar} />
-        <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
+        {ratingTypes.map((rate)=>(
+          <React.Fragment key = {rate}>
+            <input className="form__rating-input visually-hidden" name="rating" value={rate} id={`${rate}-stars`} type="radio" onClick={choseStar} />
+            <label htmlFor={`${rate}-stars`} className="reviews__rating-label form__rating-label" title={ratingTypesMap[rate]}>
+              <svg className="form__star-image" width="37" height="33">
+                <use xlinkHref="#icon-star"></use>
+              </svg>
+            </label>
+          </React.Fragment>))}
       </div>
       <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" value={comment} onChange={changeText}></textarea>
       <div className="reviews__button-wrapper">

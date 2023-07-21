@@ -25,4 +25,4 @@ const sortTypes: GenericObject = {
 
 const CITIES: Array<string> = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
-export {AuthorizationStatus, AppRoute, CITIES, sortTypes};
+export {AuthorizationStatus, AppRoute, CITIES, sortTypes, GenericObject};

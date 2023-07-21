@@ -1,21 +1,12 @@
 import { useState } from 'react';
 import React from 'react';
-import { GenericObject } from '../const';
+import { ratingTypes, ratingTypesMap } from '../const';
 
 
 function CommentSection():JSX.Element {
   const [comment, setComment] = useState('');
   const [rating, setStars] = useState(0);
 
-  const ratingTypes = [5, 4, 3, 2, 1] as const;
-
-  const ratingTypesMap: GenericObject = {
-    '1': 'Terribly',
-    '2': 'Badly',
-    '3': 'Not bad',
-    '4': 'Good',
-    '5': 'Perfect'
-  };
 
   function choseStar(event: React.MouseEvent<HTMLInputElement>) {
     const stars = parseInt((event.target as HTMLInputElement).value, 10);

@@ -31,8 +31,16 @@ const ratingTypesMap: GenericObject = {
   '3': 'Not bad',
   '4': 'Good',
   '5': 'Perfect'
-};
+} as const;
 
-const CITIES: Array<string> = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
+
+const CITIES: GenericObject = {
+  paris: 'Paris',
+  cologne: 'Cologne',
+  brussels: 'Brussels',
+  amsterdam: 'Amsterdam',
+  hamburg: 'Hamburg',
+  dusseldorf: 'Dusseldorf'
+} as const;
 
 export {AuthorizationStatus, AppRoute, CITIES, sortTypes, ratingTypes, ratingTypesMap};

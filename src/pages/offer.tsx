@@ -7,6 +7,8 @@ import CommentSection from '../components/comment-section';
 import ReviewsList from '../components/reviews-list';
 import { calculateCardRating } from '../utils';
 
+import classNames from 'classnames';
+
 function Offer() : JSX.Element {
   const params = useParams();
   const data: Array<Place> = mockOffers;
@@ -43,7 +45,7 @@ function Offer() : JSX.Element {
                 <h1 className="offer__name">
                   {title}
                 </h1>
-                <button className={`offer__bookmark-button button ${ isFavorite ? 'offer__bookmark-button--active' : ''}`} type="button">
+                <button className={classNames('offer__bookmark-button button',{'offer__bookmark-button--active': isFavorite})} type="button">
                   <svg className="offer__bookmark-icon" width="31" height="33">
                     <use xlinkHref="#icon-bookmark"></use>
                   </svg>
@@ -103,7 +105,7 @@ function Offer() : JSX.Element {
         </section>
         <div className="container">
           <section className="near-places places">
-            <h2 className="near-places__title">Other places in the neighbourhood</h2>
+            <h2 className="near-places__title">Other places in the neighborhood</h2>
             <div className="near-places__list places__list">
               <article className="near-places__card place-card">
                 <div className="near-places__image-wrapper place-card__image-wrapper">

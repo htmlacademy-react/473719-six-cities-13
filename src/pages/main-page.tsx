@@ -2,12 +2,18 @@ import PlaceCard from '../components/place-card';
 import Tabs from '../components/tabs';
 import Header from '../components/header';
 import PLacesSorting from '../components/places-sorting';
+import { useState } from 'react';
 
 
-import type { Cards, Card } from '../types';
+import type { Cards } from '../types';
 
 function MainPage({cards}: Cards): JSX.Element {
   const offersCount: number = cards.length;
+
+
+  const [chosenCard, setChosenCard] = useState('');
+
+  console.log(chosenCard);
 
   return(
     <div className="page page--gray page--main">
@@ -22,8 +28,9 @@ function MainPage({cards}: Cards): JSX.Element {
               <b className="places__found">{offersCount} places to stay in Amsterdam</b>
               <PLacesSorting />
               <div className="cities__places-list places__list tabs__content">
-                {cards.map((card: Card) =>
-                  (<PlaceCard key= {card.id} {...card}/>))}
+                {cards.map((card) =>
+                  <PlaceCard key= {card.id} {...card} handleHover= {() => setChosenCard(card.id)} />
+                )}
               </div>
             </section>
             <div className="cities__right-section">

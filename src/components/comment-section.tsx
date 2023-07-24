@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import React from 'react';
-import { ratingTypes, ratingTypesMap } from '../const';
+import { ratingTypes } from '../const';
+import Star from './star';
 
 
 function CommentSection():JSX.Element {
@@ -18,22 +19,14 @@ function CommentSection():JSX.Element {
     setComment(text);
   }
 
-
   console.log(rating);
-  console.log(comment);
   return(
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        {ratingTypes.map((rate)=>(
-          <React.Fragment key = {rate}>
-            <input className="form__rating-input visually-hidden" name="rating" value={rate} id={`${rate}-stars`} type="radio" onClick={choseStar} />
-            <label htmlFor={`${rate}-stars`} className="reviews__rating-label form__rating-label" title={ratingTypesMap[rate]}>
-              <svg className="form__star-image" width="37" height="33">
-                <use xlinkHref="#icon-star"></use>
-              </svg>
-            </label>
-          </React.Fragment>))}
+        {ratingTypes.map((rate)=>
+          <Star key={rate} rate={rate} choseStar ={choseStar}></Star>
+        )}
       </div>
       <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" value={comment} onChange={changeText}></textarea>
       <div className="reviews__button-wrapper">

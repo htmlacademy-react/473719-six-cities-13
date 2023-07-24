@@ -25,14 +25,18 @@ type Geo = {
 };
 }
 
-type Cards = {
-  cards: Card[];
-}
-
 type Card = Offer & Geo & {
   previewImage: string;
 }
 
+
+type MainPageCardProps = Card & {
+  handleHover: () => void;
+}
+
+type Cards = {
+  cards: MainPageCardProps[];
+}
 
 type Place = Offer & Geo & {
   description: string;
@@ -47,5 +51,10 @@ type Place = Offer & Geo & {
   maxAdults: number;
 }
 
+type StarProps = {
+  rate: number;
+   choseStar: () => void;
+}
 
-export type {Card, Cards, Place, Geo, Offer};
+
+export type {Card, Cards, Place, Geo, Offer, MainPageCardProps, StarProps};

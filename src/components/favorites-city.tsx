@@ -6,7 +6,6 @@ type City = {
   cityName: string;
 }
 
-
 function FavoritesCity(city: City): JSX.Element {
 
   const favoriteItemsInChosenCity: Array<Card> = mocks.filter((item: Card) => item.isFavorite && item.city.name === city.cityName);

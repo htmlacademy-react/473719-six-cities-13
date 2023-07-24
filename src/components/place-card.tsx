@@ -1,25 +1,17 @@
-import { Card } from '../types';
+import { MainPageCardProps } from '../types';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import { calculateCardRating } from '../utils';
 import classNames from 'classnames';
 
-function PlaceCard(card: Card): JSX.Element {
-
-  const [chosenCard, setChosenCard] = useState('');
-
-  function handleHover() {
-    setChosenCard(card.id);
-  }
-
-  const {isPremium, price, isFavorite, rating, id, title, type} = card;
+function PlaceCard(cardProps: MainPageCardProps): JSX.Element {
+  const {isPremium, price, isFavorite, rating, id, title, type, previewImage, handleHover} = cardProps;
 
   return (
     <article className="cities__card place-card" onMouseEnter={handleHover}>
       {isPremium && <div className="place-card__mark"><span>Premium</span></div>}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${id}`}>
-          <img className="place-card__image" src={card.previewImage} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
         </Link>
       </div>
       <div className="place-card__info">

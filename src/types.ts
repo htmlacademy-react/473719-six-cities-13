@@ -8,8 +8,7 @@ type Offer = {
   rating: number;
 }
 
-
-type Geo = {
+type City = {
   city: {
     name: string;
     location: {
@@ -18,11 +17,14 @@ type Geo = {
       zoom: number;
       };
   };
-  location: {
-  latitude: number;
-  longitude: number;
-  zoom: number;
-};
+}
+
+type Geo = City & {
+    location: {
+    latitude: number;
+    longitude: number;
+    zoom: number;
+  };
 }
 
 type Card = Offer & Geo & {
@@ -31,7 +33,7 @@ type Card = Offer & Geo & {
 
 
 type MainPageCardProps = Card & {
-  handleHover: () => void;
+  handleHover?: () => void;
 }
 
 type Cards = {
@@ -57,4 +59,4 @@ type StarProps = {
 }
 
 
-export type {Card, Cards, Place, Geo, Offer, MainPageCardProps, StarProps};
+export type {Card, Cards, Place, City, Geo, Offer, MainPageCardProps, StarProps};

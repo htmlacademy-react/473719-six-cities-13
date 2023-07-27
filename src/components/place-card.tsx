@@ -4,10 +4,10 @@ import { calculateCardRating } from '../utils';
 import classNames from 'classnames';
 
 function PlaceCard(cardProps: MainPageCardProps): JSX.Element {
-  const {isPremium, price, isFavorite, rating, id, title, type, previewImage, handleHover} = cardProps;
+  const {isPremium, price, isFavorite, rating, id, title, type, previewImage, handleHover, handleLeave} = cardProps;
 
   return (
-    <article className="cities__card place-card" onMouseEnter={handleHover}>
+    <article className="cities__card place-card" onMouseEnter={handleHover} onMouseLeave={handleLeave}>
       {isPremium && <div className="place-card__mark"><span>Premium</span></div>}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${id}`}>

@@ -16,14 +16,16 @@ function MainPage({cards}: Cards): JSX.Element {
     id: card.id,
     location: card.location}));
 
-  const [chosenCard, setChosenCard] = useState('');
+  const [chosenCard, setChosenCard] = useState(null);
+
+  console.log(chosenCard);
 
   return(
     <div className="page page--gray page--main">
       <Header />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <Tabs />
+        <Tabs {...chosenCity}/>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
@@ -32,13 +34,13 @@ function MainPage({cards}: Cards): JSX.Element {
               <PLacesSorting />
               <div className="cities__places-list places__list tabs__content">
                 {chosenCityCards.map((card) =>
-                  <PlaceCard key= {card.id} {...card} handleHover= {() => setChosenCard(card.id)} />
+                  <PlaceCard key= {card.id} {...card} handleHover= {() => setChosenCard(card.id)} handleLeave= {()=> setChosenCard(null)}/>
                 )}
               </div>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map city={chosenCity} locations={locations}/>
+                <Map city={chosenCity} locations={locations} activeId={chosenCard}/>
               </section>
             </div>
           </div>

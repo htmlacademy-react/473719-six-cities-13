@@ -5,7 +5,7 @@ import leaflet from 'leaflet';
 import { CityWithLocations } from '../types';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../const';
 
-function Map({city, locations}: CityWithLocations) {
+function Map({city, locations, activeId}: CityWithLocations) {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -29,7 +29,9 @@ function Map({city, locations}: CityWithLocations) {
             lat: point.location.latitude,
             lng: point.location.longitude,
           }, {
-            icon: defaultCustomIcon,
+            icon: (point.id === activeId)
+              ? currentCustomIcon
+              : defaultCustomIcon,
           })
           .addTo(map);
       });

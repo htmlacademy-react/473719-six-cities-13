@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { CITIES } from '../const';
+import { City } from '../types';
 import classNames from 'classnames';
 
-function Tabs(): JSX.Element {
-  const [city, setCity] = useState('Dusseldorf');
+function Tabs(chosenCity: City): JSX.Element {
+  const [city, setCity] = useState(chosenCity.name);
 
   const citiesKeys = Object.keys(CITIES);
 
   function clickHandler(event: React.MouseEvent<HTMLAnchorElement>) {
-    const chosenCity = (event.target as HTMLAnchorElement).getAttribute('data-city');
+    const сity = (event.target as HTMLAnchorElement).getAttribute('data-city');
     if (chosenCity) {
-      setCity(chosenCity);
+      setCity(сity);
     }
   }
 

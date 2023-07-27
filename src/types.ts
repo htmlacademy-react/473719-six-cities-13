@@ -28,6 +28,7 @@ type CityPoint = {
 
 type CityWithLocations = {
   city: City;
+  activeId: string | null;
   locations: Array<CityPoint>;
 }
 
@@ -48,6 +49,7 @@ type Card = Offer & Geo & {
 
 type MainPageCardProps = Card & {
   handleHover?: () => void;
+  handleLeave?: () => void;
 }
 
 type Cards = {

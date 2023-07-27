@@ -1,7 +1,9 @@
 import { useEffect, useState, useRef } from 'react';
+import 'leaflet/dist/leaflet.css';
 import leaflet from 'leaflet';
+import { City } from '../types';
 
-function useMap(mapRef, city: string) {
+function useMap(mapRef: any, city: City) {
   const [map, setMap] = useState(null);
   const isRenderedRef = useRef(false);
 
@@ -9,10 +11,10 @@ function useMap(mapRef, city: string) {
     if (mapRef.current !== null && !isRenderedRef.current) {
       const instance = leaflet.map(mapRef.current, {
         center: {
-          lat: city.lat,
-          lng: city.lng,
+          lat: city.location.latitude,
+          lng: city.location.longitude,
         },
-        zoom: city.zoom,
+        zoom: city.location.zoom,
       });
 
       leaflet

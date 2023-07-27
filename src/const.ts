@@ -43,4 +43,8 @@ const CITIES: GenericObject = {
   dusseldorf: 'Dusseldorf'
 } as const;
 
-export {AuthorizationStatus, AppRoute, CITIES, sortTypes, ratingTypes, ratingTypesMap};
+const URL_MARKER_DEFAULT = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
+
+const URL_MARKER_CURRENT = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
+
+export {AuthorizationStatus, AppRoute, CITIES, sortTypes, ratingTypes, ratingTypesMap, URL_MARKER_DEFAULT, URL_MARKER_CURRENT};

@@ -5,12 +5,16 @@ import PLacesSorting from '../components/places-sorting';
 import { useState } from 'react';
 import Map from '../components/map';
 
-import type { Cards } from '../types';
+import type { Card, Cards, City, CityPoint } from '../types';
 
 function MainPage({cards}: Cards): JSX.Element {
-  console.log(cards);
-  const chosenCity = cards[0].city;
-  console.log(chosenCity);
+  const chosenCity: City = cards[0].city;
+  const chosenCityCards = cards.filter((card: Card) => card.city.name === chosenCity.name);
+  const locations: Array<CityPoint> = [];
+
+  chosenCityCards.map((card) => locations.push({
+    id: card.id,
+    location: card.location}));
 
   const [chosenCard, setChosenCard] = useState('');
 
@@ -24,17 +28,17 @@ function MainPage({cards}: Cards): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{cards.length} places to stay in Amsterdam</b>
+              <b className="places__found">{chosenCityCards.length} places to stay in {chosenCity.name}</b>
               <PLacesSorting />
               <div className="cities__places-list places__list tabs__content">
-                {cards.map((card) =>
+                {chosenCityCards.map((card) =>
                   <PlaceCard key= {card.id} {...card} handleHover= {() => setChosenCard(card.id)} />
                 )}
               </div>
             </section>
             <div className="cities__right-section">
-              <section className="map">
-                <Map city={chosenCity}/>
+              <section className="cities__map map">
+                <Map city={chosenCity} locations={locations}/>
               </section>
             </div>
           </div>

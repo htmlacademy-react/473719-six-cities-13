@@ -9,17 +9,30 @@ type Offer = {
 }
 
 type City = {
-  city: {
-    name: string;
-    location: {
-      latitude: number;
-      longitude: number;
-      zoom: number;
-      };
+  name: string;
+  location: {
+    latitude: number;
+    longitude: number;
+    zoom: number;
+    };
+}
+
+type CityPoint = {
+  id: string;
+  location: {
+    latitude: number;
+    longitude: number;
+    zoom: number;
   };
 }
 
-type Geo = City & {
+type CityWithLocations = {
+  city: City;
+  locations: Array<CityPoint>;
+}
+
+
+type Geo = {
     location: {
     latitude: number;
     longitude: number;
@@ -28,6 +41,7 @@ type Geo = City & {
 }
 
 type Card = Offer & Geo & {
+  city: City;
   previewImage: string;
 }
 
@@ -59,4 +73,4 @@ type StarProps = {
 }
 
 
-export type {Card, Cards, Place, City, Geo, Offer, MainPageCardProps, StarProps};
+export type {Card, Cards, Place, City, Geo, Offer, MainPageCardProps, StarProps, CityWithLocations, CityPoint};

@@ -8,31 +8,53 @@ type Offer = {
   rating: number;
 }
 
-
-type Geo = {
-  city: {
-    name: string;
-    location: {
-      latitude: number;
-      longitude: number;
-      zoom: number;
-      };
-  };
+type City = {
+  name: string;
   location: {
-  latitude: number;
-  longitude: number;
-  zoom: number;
-};
+    latitude: number;
+    longitude: number;
+    zoom: number;
+    };
 }
 
-type Cards = {
-  cards: Card[];
+type CityPoint = {
+  id: string;
+  location: {
+    latitude: number;
+    longitude: number;
+    zoom: number;
+  };
+}
+
+type CityWithLocations = {
+  city: City;
+  activeId: string | null;
+  locations: Array<CityPoint>;
+}
+
+
+type Geo = {
+    location: {
+    latitude: number;
+    longitude: number;
+    zoom: number;
+  };
 }
 
 type Card = Offer & Geo & {
+  city: City;
   previewImage: string;
 }
 
+
+type MainPageCardProps = Card & {
+  handleHover?: () => void;
+  handleLeave?: () => void;
+}
+
+type Cards = {
+  cards: MainPageCardProps[];
+}
 
 type Place = Offer & Geo & {
   description: string;
@@ -47,5 +69,10 @@ type Place = Offer & Geo & {
   maxAdults: number;
 }
 
+type StarProps = {
+  rate: number;
+   choseStar: () => void;
+}
 
-export type {Card, Cards, Place, Geo, Offer};
+
+export type {Card, Cards, Place, City, Geo, Offer, MainPageCardProps, StarProps, CityWithLocations, CityPoint};

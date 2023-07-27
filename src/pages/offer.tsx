@@ -5,12 +5,14 @@ import { Place } from '../types';
 import Header from '../components/header';
 import CommentSection from '../components/comment-section';
 import ReviewsList from '../components/reviews-list';
+import { calculateCardRating } from '../utils';
+
+import classNames from 'classnames';
 
 function Offer() : JSX.Element {
   const params = useParams();
   const data: Array<Place> = mockOffers;
   const {title, type, price, isFavorite, isPremium, rating, host, goods, images, bedrooms, maxAdults, description}: Place = data.filter((el) => el.id === params.id)[0];
-  const cardRating: string = (Math.round((rating / 5) * 100)).toString();
 
   function makeItemsWithKeys(item: string, key: number) {
     return {
@@ -30,9 +32,7 @@ function Offer() : JSX.Element {
           <div className="offer__gallery-container container">
             <div className="offer__gallery">
               {imagesWithKeys.map((image) =>
-                (<div className="offer__image-wrapper" key={image.id}>
-                  <img className="offer__image" src={image.item} alt="Photo studio" />
-                 </div>))}
+                (<div className="offer__image-wrapper" key={image.id}><img className="offer__image" src={image.item} alt="Photo studio" /></div>))}
             </div>
           </div>
           <div className="offer__container container">
@@ -45,7 +45,7 @@ function Offer() : JSX.Element {
                 <h1 className="offer__name">
                   {title}
                 </h1>
-                <button className={`offer__bookmark-button button ${ isFavorite ? 'offer__bookmark-button--active' : ''}`} type="button">
+                <button className={classNames('offer__bookmark-button button',{'offer__bookmark-button--active': isFavorite})} type="button">
                   <svg className="offer__bookmark-icon" width="31" height="33">
                     <use xlinkHref="#icon-bookmark"></use>
                   </svg>
@@ -54,7 +54,7 @@ function Offer() : JSX.Element {
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{width: `${cardRating}%`}}></span>
+                  <span style={{width: `${calculateCardRating(rating)}%`}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="offer__rating-value rating__value">{rating}</span>
@@ -105,7 +105,7 @@ function Offer() : JSX.Element {
         </section>
         <div className="container">
           <section className="near-places places">
-            <h2 className="near-places__title">Other places in the neighbourhood</h2>
+            <h2 className="near-places__title">Other places in the neighborhood</h2>
             <div className="near-places__list places__list">
               <article className="near-places__card place-card">
                 <div className="near-places__image-wrapper place-card__image-wrapper">

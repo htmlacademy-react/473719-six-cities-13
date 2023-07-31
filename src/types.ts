@@ -69,10 +69,20 @@ type Place = Offer & Geo & {
   maxAdults: number;
 }
 
+type ReviewItemProps = {
+  id: string;
+  userId: string;
+  userName: string;
+  rating: number;
+  imgUrl: string;
+  reviewText: string;
+  date: string;
+}
+
 type StarProps = {
   rate: number;
    choseStar: () => void;
 }
 
 
-export type {Card, Cards, Place, City, Geo, Offer, MainPageCardProps, StarProps, CityWithLocations, CityPoint};
+export type {Card, Cards, Place, City, Geo, Offer, MainPageCardProps, StarProps, CityWithLocations, CityPoint, ReviewItemProps};

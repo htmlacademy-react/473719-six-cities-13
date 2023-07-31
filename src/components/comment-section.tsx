@@ -5,18 +5,26 @@ import Star from './star';
 
 
 function CommentSection():JSX.Element {
-  const [comment, setComment] = useState('');
-  const [rating, setStars] = useState(0);
+  const [review, setReview] = useState({
+    comment: '',
+    rating: 0,
+  });
 
 
   function choseStar(event: React.MouseEvent<HTMLInputElement>) {
     const stars = parseInt((event.target as HTMLInputElement).value, 10);
-    setStars(stars);
+    setReview({
+      ...review,
+      rating: stars,
+    });
   }
 
   function changeText(event: React.ChangeEvent<HTMLTextAreaElement>){
     const text: string = event.target.value;
-    setComment(text);
+    setReview({
+      ...review,
+      comment: text,
+    });
   }
 
 
@@ -25,10 +33,10 @@ function CommentSection():JSX.Element {
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {ratingTypes.map((rate)=>
-          <Star key={rate} rate={rate} choseStar ={choseStar}></Star>
+          <Star key={rate} rate={rate} setReview ={choseStar}></Star>
         )}
       </div>
-      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" value={comment} onChange={changeText}></textarea>
+      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" value={review.comment} onChange={changeText}></textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
       To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
@@ -37,6 +45,5 @@ function CommentSection():JSX.Element {
       </div>
     </form>);
 }
-
 
 export default CommentSection;

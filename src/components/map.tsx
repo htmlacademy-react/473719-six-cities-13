@@ -2,10 +2,10 @@ import { useRef, useEffect } from 'react';
 import useMap from '../custom-hooks/use-map';
 import 'leaflet/dist/leaflet.css';
 import leaflet from 'leaflet';
-import { CityWithLocations } from '../types';
+import { MapProps } from '../types';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../const';
 
-function Map({city, locations, activeId}: CityWithLocations) {
+function Map({city, locations, activeId, widthParam}: MapProps) {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -41,7 +41,7 @@ function Map({city, locations, activeId}: CityWithLocations) {
 
   return (
     <div
-      style={{height: '714px'}}
+      style={{height: widthParam}}
       ref={mapRef}
     >
     </div>

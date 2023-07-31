@@ -1,15 +1,18 @@
-function NearPlaceItem():JSX.Element {
+import { MapCard } from '../types';
+
+function NearPlaceItem(nearPlaceItemProps: MapCard):JSX.Element {
+  const { price, title, previewImage, rating, isFavorite, isPremium, type, handleHover, handleLeave} = nearPlaceItemProps;
   return(
     <article className="near-places__card place-card">
       <div className="near-places__image-wrapper place-card__image-wrapper">
-        <a href="#">
-          <img className="place-card__image" src="img/room.jpg" width="260" height="200" alt="Place image" />
+        <a href="#" handleHover={handleHover} handleLeave={handleLeave}>
+          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
         </a>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;80</b>
+            <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
@@ -26,9 +29,9 @@ function NearPlaceItem():JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">Wood and stone place</a>
+          <a href="#" handleHover={handleHover} handleLeave={handleLeave}>{title}</a>
         </h2>
-        <p className="place-card__type">Private room</p>
+        <p className="place-card__type">{type}</p>
       </div>
     </article>
   );

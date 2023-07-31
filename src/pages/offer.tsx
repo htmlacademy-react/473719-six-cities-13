@@ -1,7 +1,9 @@
 import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 import mockOffers from '../mock-offers';
+import mocks from '../mocks';
 
-import { Place } from '../types';
+import { Place, CityPoint, City } from '../types';
 import Header from '../components/header';
 import CommentSection from '../components/comment-section';
 import ReviewsList from '../components/reviews-list';
@@ -9,6 +11,10 @@ import { calculateCardRating } from '../utils';
 
 import classNames from 'classnames';
 import NearPlaces from '../components/near-places';
+import Map from '../components/map';
+
+
+const mapWidth = '580px';
 
 function Offer() : JSX.Element {
   const params = useParams();
@@ -22,8 +28,34 @@ function Offer() : JSX.Element {
     };
   }
 
+  const chosenCity: City = mocks[0].city;
+
+  const locations: Array<CityPoint> = [];
+
+  locations.push({
+    id: mocks[0].id,
+    location: mocks[0].location});
+
+  locations.push({
+    id: mocks[1].id,
+    location: mocks[1].location});
+
+  locations.push({
+    id: mocks[2].id,
+    location: mocks[2].location});
+
+  const chosenCityCards = [];
+
+  chosenCityCards.push(mocks[0]);
+  chosenCityCards.push(mocks[1]);
+  chosenCityCards.push(mocks[2]);
+
+
+  const [chosenCard, setChosenCard] = useState(null);
+
   const imagesWithKeys = images.map((image, key) => makeItemsWithKeys(image, key));
   const goodsWithKeys = goods.map((good, key) => makeItemsWithKeys(good, key));
+
   return (
     <div className="page">
       <Header />
@@ -102,10 +134,12 @@ function Offer() : JSX.Element {
               </section>
             </div>
           </div>
-          <section className="offer__map map"></section>
+          <section className="offer__map map">
+            <Map city={chosenCity} locations={locations} activeId={chosenCard} widthParam={mapWidth}/>
+          </section>
         </section>
         <div className="container">
-          <NearPlaces />
+          <NearPlaces places={chosenCityCards} chosenCard={chosenCard} setChosenCard={setChosenCard}/>
         </div>
       </main>
     </div>

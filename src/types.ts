@@ -89,8 +89,12 @@ type StarProps = {
 
 type NearPlacesProps = {
   places: Array<Card>;
-  chosenCard: Card;
   setChosenCard: React.SetStateAction<string>;
 }
 
-export type {Card, Cards, Place, City, Geo, Offer, MapCard, StarProps, MapProps, CityPoint, ReviewItemProps, NearPlacesProps};
+type NearPlaceItemProps = Card & {
+  handleHover?: React.SetStateAction<string | null>;
+  handleLeave?: React.SetStateAction<string | null>;
+}
+
+export type {Card, Cards, Place, City, Geo, Offer, MapCard, StarProps, MapProps, CityPoint, ReviewItemProps, NearPlacesProps, NearPlaceItemProps};

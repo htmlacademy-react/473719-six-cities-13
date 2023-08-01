@@ -1,4 +1,4 @@
-import { MainPageCardProps, MapCard } from '../types';
+import { MapCard } from '../types';
 import { Link } from 'react-router-dom';
 import { calculateCardRating } from '../utils';
 import classNames from 'classnames';

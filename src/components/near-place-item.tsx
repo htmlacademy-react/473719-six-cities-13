@@ -1,11 +1,11 @@
-import { MapCard } from '../types';
+import { NearPlaceItemProps } from '../types';
 
-function NearPlaceItem(nearPlaceItemProps: MapCard):JSX.Element {
+function NearPlaceItem(nearPlaceItemProps: NearPlaceItemProps):JSX.Element {
   const { price, title, previewImage, rating, isFavorite, isPremium, type, handleHover, handleLeave} = nearPlaceItemProps;
   return(
     <article className="near-places__card place-card">
       <div className="near-places__image-wrapper place-card__image-wrapper">
-        <a href="#" handleHover={handleHover} handleLeave={handleLeave}>
+        <a href="#" onMouseEnter={handleHover} onMouseLeave={handleLeave}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
         </a>
       </div>
@@ -29,7 +29,7 @@ function NearPlaceItem(nearPlaceItemProps: MapCard):JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#" handleHover={handleHover} handleLeave={handleLeave}>{title}</a>
+          <a href="#" onMouseEnter={handleHover} onMouseLeave={handleLeave}>{title}</a>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

@@ -19,7 +19,8 @@ const mapWidth = '580px';
 function Offer() : JSX.Element {
   const params = useParams();
   const data: Array<Place> = mockOffers;
-  const {title, type, price, isFavorite, isPremium, rating, host, goods, images, bedrooms, maxAdults, description}: Place = data.filter((el) => el.id === params.id)[0];
+  const currentOffer = data.filter((el) => el.id === params.id)[0];
+  const {title, type, price, isFavorite, isPremium, rating, host, goods, images, bedrooms, maxAdults, description}: Place = currentOffer;
 
   function makeItemsWithKeys(item: string, key: number) {
     return {
@@ -33,25 +34,33 @@ function Offer() : JSX.Element {
   const locations: Array<CityPoint> = [];
 
   locations.push({
-    id: mocks[0].id,
-    location: mocks[0].location});
+    id: currentOffer.id,
+    location: currentOffer.location,
+  });
 
   locations.push({
-    id: mocks[1].id,
-    location: mocks[1].location});
+    id: mocks[3].id,
+    location: mocks[3].location});
 
   locations.push({
-    id: mocks[2].id,
-    location: mocks[2].location});
+    id: mocks[4].id,
+    location: mocks[4].location});
+
+  locations.push({
+    id: mocks[5].id,
+    location: mocks[5].location});
+
+  console.log(locations);
 
   const chosenCityCards = [];
 
-  chosenCityCards.push(mocks[0]);
-  chosenCityCards.push(mocks[1]);
-  chosenCityCards.push(mocks[2]);
+  chosenCityCards.push(mocks[3]);
+  chosenCityCards.push(mocks[4]);
+  chosenCityCards.push(mocks[5]);
 
 
   const [chosenCard, setChosenCard] = useState(null);
+  console.log(chosenCard);
 
   const imagesWithKeys = images.map((image, key) => makeItemsWithKeys(image, key));
   const goodsWithKeys = goods.map((good, key) => makeItemsWithKeys(good, key));
@@ -139,7 +148,7 @@ function Offer() : JSX.Element {
           </section>
         </section>
         <div className="container">
-          <NearPlaces places={chosenCityCards} chosenCard={chosenCard} setChosenCard={setChosenCard}/>
+          <NearPlaces places={chosenCityCards} setChosenCard={setChosenCard}/>
         </div>
       </main>
     </div>

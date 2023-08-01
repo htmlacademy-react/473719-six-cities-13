@@ -1,3 +1,5 @@
+import React from 'react';
+
 type Offer = {
   id: string;
   title: string;
@@ -26,10 +28,12 @@ type CityPoint = {
   };
 }
 
-type CityWithLocations = {
+type MapProps = {
   city: City;
   activeId: string | null;
+  offerId?: string | null;
   locations: Array<CityPoint>;
+  widthParam: 'string';
 }
 
 
@@ -47,13 +51,13 @@ type Card = Offer & Geo & {
 }
 
 
-type MainPageCardProps = Card & {
-  handleHover?: () => void;
-  handleLeave?: () => void;
+type MapCard = Card & {
+  handleHover?: React.SetStateAction<string | null>;
+  handleLeave?: React.SetStateAction<string | null>;
 }
 
 type Cards = {
-  cards: MainPageCardProps[];
+  cards: MapCard[];
 }
 
 type Place = Offer & Geo & {
@@ -69,10 +73,29 @@ type Place = Offer & Geo & {
   maxAdults: number;
 }
 
+type ReviewItemProps = {
+  id: string;
+  userId: string;
+  userName: string;
+  rating: number;
+  imgUrl: string;
+  reviewText: string;
+  date: string;
+}
+
 type StarProps = {
   rate: number;
    choseStar: () => void;
 }
 
+type NearPlacesProps = {
+  places: Array<Card>;
+  setChosenCard: React.SetStateAction<string>;
+}
 
-export type {Card, Cards, Place, City, Geo, Offer, MainPageCardProps, StarProps, CityWithLocations, CityPoint};
+type NearPlaceItemProps = Card & {
+  handleHover?: React.SetStateAction<string | null>;
+  handleLeave?: React.SetStateAction<string | null>;
+}
+
+export type {Card, Cards, Place, City, Geo, Offer, MapCard, StarProps, MapProps, CityPoint, ReviewItemProps, NearPlacesProps, NearPlaceItemProps};

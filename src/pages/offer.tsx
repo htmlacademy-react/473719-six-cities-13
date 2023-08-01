@@ -1,18 +1,26 @@
 import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 import mockOffers from '../mock-offers';
+import mocks from '../mocks';
 
-import { Place } from '../types';
+import { Place, CityPoint, City } from '../types';
 import Header from '../components/header';
 import CommentSection from '../components/comment-section';
 import ReviewsList from '../components/reviews-list';
 import { calculateCardRating } from '../utils';
 
 import classNames from 'classnames';
+import NearPlaces from '../components/near-places';
+import Map from '../components/map';
+
+
+const mapWidth = '580px';
 
 function Offer() : JSX.Element {
   const params = useParams();
   const data: Array<Place> = mockOffers;
-  const {title, type, price, isFavorite, isPremium, rating, host, goods, images, bedrooms, maxAdults, description}: Place = data.filter((el) => el.id === params.id)[0];
+  const currentOffer = data.filter((el) => el.id === params.id)[0];
+  const {title, type, price, isFavorite, isPremium, rating, host, goods, images, bedrooms, maxAdults, description}: Place = currentOffer;
 
   function makeItemsWithKeys(item: string, key: number) {
     return {
@@ -21,8 +29,42 @@ function Offer() : JSX.Element {
     };
   }
 
+  const chosenCity: City = mocks[0].city;
+
+  const locations: Array<CityPoint> = [];
+
+  locations.push({
+    id: currentOffer.id,
+    location: currentOffer.location,
+  });
+
+  locations.push({
+    id: mocks[3].id,
+    location: mocks[3].location});
+
+  locations.push({
+    id: mocks[4].id,
+    location: mocks[4].location});
+
+  locations.push({
+    id: mocks[5].id,
+    location: mocks[5].location});
+
+  console.log(locations);
+
+  const chosenCityCards = [];
+
+  chosenCityCards.push(mocks[3]);
+  chosenCityCards.push(mocks[4]);
+  chosenCityCards.push(mocks[5]);
+
+
+  const [chosenCard, setChosenCard] = useState(null);
+  console.log(chosenCard);
+
   const imagesWithKeys = images.map((image, key) => makeItemsWithKeys(image, key));
   const goodsWithKeys = goods.map((good, key) => makeItemsWithKeys(good, key));
+
   return (
     <div className="page">
       <Header />
@@ -101,112 +143,12 @@ function Offer() : JSX.Element {
               </section>
             </div>
           </div>
-          <section className="offer__map map"></section>
+          <section className="offer__map map">
+            <Map city={chosenCity} locations={locations} activeId={chosenCard} offerId={currentOffer.id} widthParam={mapWidth}/>
+          </section>
         </section>
         <div className="container">
-          <section className="near-places places">
-            <h2 className="near-places__title">Other places in the neighborhood</h2>
-            <div className="near-places__list places__list">
-              <article className="near-places__card place-card">
-                <div className="near-places__image-wrapper place-card__image-wrapper">
-                  <a href="#">
-                    <img className="place-card__image" src="img/room.jpg" width="260" height="200" alt="Place image" />
-                  </a>
-                </div>
-                <div className="place-card__info">
-                  <div className="place-card__price-wrapper">
-                    <div className="place-card__price">
-                      <b className="place-card__price-value">&euro;80</b>
-                      <span className="place-card__price-text">&#47;&nbsp;night</span>
-                    </div>
-                    <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
-                      <svg className="place-card__bookmark-icon" width="18" height="19">
-                        <use xlinkHref="#icon-bookmark"></use>
-                      </svg>
-                      <span className="visually-hidden">In bookmarks</span>
-                    </button>
-                  </div>
-                  <div className="place-card__rating rating">
-                    <div className="place-card__stars rating__stars">
-                      <span style={{width: '80%'}}></span>
-                      <span className="visually-hidden">Rating</span>
-                    </div>
-                  </div>
-                  <h2 className="place-card__name">
-                    <a href="#">Wood and stone place</a>
-                  </h2>
-                  <p className="place-card__type">Private room</p>
-                </div>
-              </article>
-
-              <article className="near-places__card place-card">
-                <div className="near-places__image-wrapper place-card__image-wrapper">
-                  <a href="#">
-                    <img className="place-card__image" src="img/apartment-02.jpg" width="260" height="200" alt="Place image" />
-                  </a>
-                </div>
-                <div className="place-card__info">
-                  <div className="place-card__price-wrapper">
-                    <div className="place-card__price">
-                      <b className="place-card__price-value">&euro;132</b>
-                      <span className="place-card__price-text">&#47;&nbsp;night</span>
-                    </div>
-                    <button className="place-card__bookmark-button button" type="button">
-                      <svg className="place-card__bookmark-icon" width="18" height="19">
-                        <use xlinkHref="#icon-bookmark"></use>
-                      </svg>
-                      <span className="visually-hidden">To bookmarks</span>
-                    </button>
-                  </div>
-                  <div className="place-card__rating rating">
-                    <div className="place-card__stars rating__stars">
-                      <span style={{width: '80%'}}></span>
-                      <span className="visually-hidden">Rating</span>
-                    </div>
-                  </div>
-                  <h2 className="place-card__name">
-                    <a href="#">Canal View Prinsengracht</a>
-                  </h2>
-                  <p className="place-card__type">Apartment</p>
-                </div>
-              </article>
-
-              <article className="near-places__card place-card">
-                <div className="place-card__mark">
-                  <span>Premium</span>
-                </div>
-                <div className="near-places__image-wrapper place-card__image-wrapper">
-                  <a href="#">
-                    <img className="place-card__image" src="img/apartment-03.jpg" width="260" height="200" alt="Place image" />
-                  </a>
-                </div>
-                <div className="place-card__info">
-                  <div className="place-card__price-wrapper">
-                    <div className="place-card__price">
-                      <b className="place-card__price-value">&euro;180</b>
-                      <span className="place-card__price-text">&#47;&nbsp;night</span>
-                    </div>
-                    <button className="place-card__bookmark-button button" type="button">
-                      <svg className="place-card__bookmark-icon" width="18" height="19">
-                        <use xlinkHref="#icon-bookmark"></use>
-                      </svg>
-                      <span className="visually-hidden">To bookmarks</span>
-                    </button>
-                  </div>
-                  <div className="place-card__rating rating">
-                    <div className="place-card__stars rating__stars">
-                      <span style={{width: '100%'}}></span>
-                      <span className="visually-hidden">Rating</span>
-                    </div>
-                  </div>
-                  <h2 className="place-card__name">
-                    <a href="#">Nice, cozy, warm big bed apartment</a>
-                  </h2>
-                  <p className="place-card__type">Apartment</p>
-                </div>
-              </article>
-            </div>
-          </section>
+          <NearPlaces places={chosenCityCards} setChosenCard={setChosenCard}/>
         </div>
       </main>
     </div>

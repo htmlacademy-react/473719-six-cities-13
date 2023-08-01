@@ -7,6 +7,8 @@ import Map from '../components/map';
 
 import type { Card, Cards, City, CityPoint } from '../types';
 
+const mapWidth = '714px';
+
 function MainPage({cards}: Cards): JSX.Element {
   const chosenCity: City = cards[0].city;
   const chosenCityCards = cards.filter((card: Card) => card.city.name === chosenCity.name);
@@ -17,8 +19,6 @@ function MainPage({cards}: Cards): JSX.Element {
     location: card.location}));
 
   const [chosenCard, setChosenCard] = useState(null);
-
-  console.log(chosenCard);
 
   return(
     <div className="page page--gray page--main">
@@ -40,7 +40,7 @@ function MainPage({cards}: Cards): JSX.Element {
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map city={chosenCity} locations={locations} activeId={chosenCard}/>
+                <Map city={chosenCity} locations={locations} activeId={chosenCard} widthParam={mapWidth} />
               </section>
             </div>
           </div>

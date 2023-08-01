@@ -43,8 +43,8 @@ const CITIES: GenericObject = {
   dusseldorf: 'Dusseldorf'
 } as const;
 
-const URL_MARKER_DEFAULT = './icons/pin.svg';
+const URL_MARKER_DEFAULT = '../public/img/pin.svg';
 
-const URL_MARKER_CURRENT = './icons/pin-active.svg';
+const URL_MARKER_CURRENT = '../public/img/pin-active.svg';
 
 export {AuthorizationStatus, AppRoute, CITIES, sortTypes, ratingTypes, ratingTypesMap, URL_MARKER_DEFAULT, URL_MARKER_CURRENT};

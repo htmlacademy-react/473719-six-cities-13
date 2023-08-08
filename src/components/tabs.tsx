@@ -1,35 +1,39 @@
 import { CITIES } from '../const';
+import { City } from '../types';
 import classNames from 'classnames';
 import { useAppDispatch } from '../redux-hooks';
+import { changeCity } from '../store/actions';
 
-import { useAppSelector } from '../redux-hooks';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-function Tabs(): JSX.Element {
-  const chosenCity = useAppSelector((state) => state.choseCity);
-  const dispatch = useAppDispatch();
+type TabsProps = {
+  chosenCity : string;
+}
+
+function Tabs(props: TabsProps): JSX.Element {
+  const {chosenCity} = props;
+  const dispatch = useDispatch();
   const citiesKeys = Object.keys(CITIES);
-
-  function clickHandler(event: React.MouseEvent<HTMLAnchorElement>) {
-    const city = (event.target as HTMLAnchorElement).getAttribute('data-city');
-    if (city === 'Cologne') {
-      dispatch(choseCologne());
-    }
-  }
 
   return (
     <div className="tabs">
       <section className="locations container">
         <ul className="locations__list tabs__list">
-          {citiesKeys.map((item) => (
-            <li key={item} className="locations__item">
-              <a className={classNames(
+          {citiesKeys.map((city) => (
+            <li key={city} className="locations__item"
+              onClick={(event) => {
+                event.preventDefault();
+                dispatch(changeCity(city));
+              }}
+            >
+              <Link className={classNames(
                 'locations__item-link', 'tabs__item',
-                {'tabs__item--active': chosenCity.name === CITIES[item]})}
-              href="#" data-city={CITIES[item]}
-              onClick={clickHandler}
+                {'tabs__item--active': CITIES[city] === chosenCity})}
+              href="#"
               >
-                {CITIES[item]}
-              </a>
+                <span>{CITIES[city]}</span>
+              </Link>
             </li>))}
 
         </ul>

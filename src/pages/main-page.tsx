@@ -4,18 +4,18 @@ import Header from '../components/header';
 import PLacesSorting from '../components/places-sorting';
 import { useState } from 'react';
 import Map from '../components/map';
-import { useAppDispatch, useAppSelector } from '../redux-hooks';
-import { useDispatch } from 'react-redux';
 
 import type { Card, Cards, City, CityPoint } from '../types';
+import { useAppDispatch, useAppSelector } from '../redux-hooks';
 
 const mapWidth = '714px';
 
-function MainPage({cards}: Cards): JSX.Element {
-  const chosenCity = useAppSelector((state) => state.choseCity);
+function MainPage(): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const chosenCityCards = cards.filter((card: Card) => card.city.name === chosenCity.name);
+  const chosenCity = useAppSelector((state) => state.city);
+  const offers = useAppSelector((state) => state.offers);
+  const chosenCityCards = offers.filter((offer: Card) => offer.city.name === chosenCity);
   const locations: Array<CityPoint> = [];
 
   chosenCityCards.map((card) => locations.push({
@@ -29,12 +29,12 @@ function MainPage({cards}: Cards): JSX.Element {
       <Header />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <Tabs {...chosenCity}/>
+        <Tabs chosenCity={chosenCity}/>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{chosenCityCards.length} places to stay in {chosenCity.name}</b>
+              <b className="places__found">{chosenCityCards.length} places to stay in {chosenCity}</b>
               <PLacesSorting />
               <div className="cities__places-list places__list tabs__content">
                 {chosenCityCards.map((card) =>

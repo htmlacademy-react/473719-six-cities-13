@@ -1,29 +1,27 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { loadOffers, changeCity, choseParis, choseCologne} from './actions';
-import { Cards, City } from '../types';
-import { AllCities } from '../const';
+import { loadOffers, changeCity,} from './actions';
+import { CITIES } from '../const';
 import mocks from '../mocks';
+import { Cards } from '../types';
+
+function getStartPlaces(offers: Cards, city: string) {
+  return offers.filter((offer) => offer.city.name === city);
+}
 
 const initialState = {
-  choseCity: {
-    name: 'Paris',
-    location: {
-      latitude: 48.85661,
-      longitude: 2.351499,
-      zoom: 13
-    }
-  },
-  offers: mocks,
+  offers: getStartPlaces(mocks, CITIES.paris),
+  city: CITIES.paris,
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(loadOffers,
-      (state, actions) => {
-        state.offers = actions.payload;
-      })
+    // .addCase(loadOffers,
+    //   (state, actions) => {
+    //     state.offers = actions.payload;
+    //   })
     .addCase(changeCity, (state, actions)=> {
-      state.choseCity = actions.payload;
+      state.city = actions.payload;
+      state.offers = getStartPlaces(mocks, state.city);
     });
 });
 

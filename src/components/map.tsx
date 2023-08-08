@@ -4,10 +4,14 @@ import 'leaflet/dist/leaflet.css';
 import leaflet from 'leaflet';
 import { MapProps } from '../types';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../const';
+import { AllCities } from '../const';
 
 function Map({city, locations, activeId, offerId, widthParam}: MapProps) {
+  const filteredCity = AllCities.filter((item)=> item.name === city);
+  const chosenCity = filteredCity[0];
+
   const mapRef = useRef(null);
-  const map = useMap(mapRef, city);
+  const map = useMap(mapRef,chosenCity);
 
   const defaultCustomIcon = leaflet.icon({
     iconUrl: URL_MARKER_DEFAULT,

@@ -4,13 +4,17 @@ import Header from '../components/header';
 import PLacesSorting from '../components/places-sorting';
 import { useState } from 'react';
 import Map from '../components/map';
+import { useAppDispatch, useAppSelector } from '../redux-hooks';
+import { useDispatch } from 'react-redux';
 
 import type { Card, Cards, City, CityPoint } from '../types';
 
 const mapWidth = '714px';
 
 function MainPage({cards}: Cards): JSX.Element {
-  const chosenCity: City = cards[0].city;
+  const chosenCity = useAppSelector((state) => state.choseCity);
+  const dispatch = useAppDispatch();
+
   const chosenCityCards = cards.filter((card: Card) => card.city.name === chosenCity.name);
   const locations: Array<CityPoint> = [];
 

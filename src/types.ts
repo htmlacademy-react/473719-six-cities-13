@@ -1,4 +1,5 @@
 import React from 'react';
+import { store } from './store';
 
 type Offer = {
   id: string;
@@ -97,5 +98,7 @@ type NearPlaceItemProps = Card & {
   handleHover?: React.SetStateAction<string | null>;
   handleLeave?: React.SetStateAction<string | null>;
 }
+type State = ReturnType<typeof store.getState>;
+type AppDispatch = typeof store.dispatch;
 
-export type {Card, Cards, Place, City, Geo, Offer, MapCard, StarProps, MapProps, CityPoint, ReviewItemProps, NearPlacesProps, NearPlaceItemProps};
+export type {Card, Cards, Place, City, Geo, Offer, MapCard, StarProps, MapProps, CityPoint, ReviewItemProps, NearPlacesProps, NearPlaceItemProps, State, AppDispatch};

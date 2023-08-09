@@ -21,12 +21,12 @@ function PLacesSorting(): JSX.Element {
       toggleList();
     }
   }
+
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
       <span className="places__sorting-type" tabIndex={0} onClick={toggleList}>
-        {sortTypes[filter]}
-        {/* здесь баг, не обновляется состояние */}
+        {filter}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>

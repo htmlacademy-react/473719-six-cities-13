@@ -16,8 +16,16 @@ function MainPage(): JSX.Element {
   const chosenCity = useAppSelector((state) => state.city);
   const offers = useAppSelector((state) => state.offers);
 
-  function getStartPlaces(places: Cards, city: string) {
+  function getStartPlaces (places: Card[], city: string): Card[] {
     return places.filter((offer) => offer.city.name === city);
+  }
+
+  function handleHover() {
+    setChosenCard(card.id);
+  }
+
+  function handleLeave() {
+    setChosenCard(null);
   }
 
   const filteredOffers: Cards = getStartPlaces(offers, chosenCity);
@@ -48,8 +56,8 @@ function MainPage(): JSX.Element {
                 {filteredOffers.map((card: Card) =>
                   (<PlaceCard
                     key= {card.id} {...card}
-                    handleHover= {() => setChosenCard(card.id)}
-                    handleLeave= {()=> setChosenCard(null)}
+                    handleHover= {handleHover}
+                    handleLeave= {handleLeave}
                   />)
                 )}
               </div>

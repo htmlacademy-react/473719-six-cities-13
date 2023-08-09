@@ -53,8 +53,8 @@ type Card = Offer & Geo & {
 
 
 type MapCard = Card & {
-  handleHover?: React.SetStateAction<string | null>;
-  handleLeave?: React.SetStateAction<string | null>;
+  handleHover?: React.SetStateAction<string | null> | undefined;
+  handleLeave?: React.SetStateAction<string | null> | undefined;
 }
 
 type Cards = {

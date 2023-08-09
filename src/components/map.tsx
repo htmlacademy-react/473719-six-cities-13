@@ -16,8 +16,6 @@ function Map({activeId, offerId, widthParam}: MapProps) {
   const mapRef = useRef(null);
   const map = useMap(mapRef, chosenCity);
 
-  console.log(chosenCity);
-
   const defaultCustomIcon = leaflet.icon({
     iconUrl: URL_MARKER_DEFAULT,
     iconSize: [40, 40],

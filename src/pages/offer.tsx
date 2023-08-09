@@ -49,8 +49,6 @@ function Offer() : JSX.Element {
     id: mocks[5].id,
     location: mocks[5].location});
 
-  console.log(locations);
-
   const chosenCityCards = [];
 
   chosenCityCards.push(mocks[3]);
@@ -59,7 +57,6 @@ function Offer() : JSX.Element {
 
 
   const [chosenCard, setChosenCard] = useState(null);
-  console.log(chosenCard);
 
   const imagesWithKeys = images.map((image, key) => makeItemsWithKeys(image, key));
   const goodsWithKeys = goods.map((good, key) => makeItemsWithKeys(good, key));

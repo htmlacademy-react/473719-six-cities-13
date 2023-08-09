@@ -1,4 +1,5 @@
 import React from 'react';
+import { store } from './store';
 
 type Offer = {
   id: string;
@@ -29,11 +30,12 @@ type CityPoint = {
 }
 
 type MapProps = {
-  city: City;
+  city: string;
+  filteredOffers?: Card[];
   activeId: string | null;
   offerId?: string | null;
-  locations: Array<CityPoint>;
-  widthParam: 'string';
+  locations?: Array<CityPoint>;
+  widthParam: string;
 }
 
 
@@ -52,8 +54,8 @@ type Card = Offer & Geo & {
 
 
 type MapCard = Card & {
-  handleHover?: React.SetStateAction<string | null>;
-  handleLeave?: React.SetStateAction<string | null>;
+  handleHover?: React.SetStateAction<string | null> | undefined;
+  handleLeave?: React.SetStateAction<string | null> | undefined;
 }
 
 type Cards = {
@@ -98,4 +100,8 @@ type NearPlaceItemProps = Card & {
   handleLeave?: React.SetStateAction<string | null>;
 }
 
-export type {Card, Cards, Place, City, Geo, Offer, MapCard, StarProps, MapProps, CityPoint, ReviewItemProps, NearPlacesProps, NearPlaceItemProps};
+export type State = ReturnType<typeof store.getState>;
+
+export type AppDispatch = typeof store.dispatch;
+
+export type {Card, Cards, Place, City, Geo, Offer, MapCard, StarProps, MapProps, CityPoint, ReviewItemProps, NearPlacesProps, NearPlaceItemProps, State, AppDispatch};

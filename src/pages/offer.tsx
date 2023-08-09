@@ -13,7 +13,6 @@ import classNames from 'classnames';
 import NearPlaces from '../components/near-places';
 import Map from '../components/map';
 
-
 const mapWidth = '580px';
 
 function Offer() : JSX.Element {

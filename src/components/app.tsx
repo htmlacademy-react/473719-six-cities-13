@@ -26,7 +26,6 @@ function App({cards}: Cards) : JSX.Element {
         <Route path={AppRoute.EverythingElse} element= {<WrongPage />} />
       </Routes>
     </BrowserRouter>
-
   );
 }
 

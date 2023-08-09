@@ -6,20 +6,31 @@ import { useState } from 'react';
 import Map from '../components/map';
 
 import type { Card, Cards, City, CityPoint } from '../types';
-import { useAppDispatch, useAppSelector } from '../redux-hooks';
+import { useAppDispatch, useAppSelector, } from '../redux-hooks';
 import { CITIES } from '../const';
+import { useDispatch } from 'react-redux';
 
 const mapWidth = '714px';
 
 function MainPage(): JSX.Element {
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 
   const chosenCity = useAppSelector((state) => state.city);
   const offers = useAppSelector((state) => state.offers);
-  const chosenCityCards = offers.filter((offer: Card) => offer.city.name === chosenCity);
+
+  function getStartPlaces(offers: Cards, city: string) {
+    return offers.filter((offer) => offer.city.name === city);
+  }
+
+  const filteredOffers = getStartPlaces(offers, chosenCity);
+
+  // const chosenCityCards = offers.filter((offer: Card) => offer.city.name === chosenCity);
+
+  console.log(filteredOffers);
+
   const locations: Array<CityPoint> = [];
 
-  chosenCityCards.map((card) => locations.push({
+  offers.map((card) => locations.push({
     id: card.id,
     location: card.location}));
 
@@ -35,11 +46,15 @@ function MainPage(): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{chosenCityCards.length} places to stay in {CITIES[chosenCity]}</b>
+              <b className="places__found">{filteredOffers.length} places to stay in {chosenCity}</b>
               <PLacesSorting />
               <div className="cities__places-list places__list tabs__content">
-                {chosenCityCards.map((card) =>
-                  <PlaceCard key= {card.id} {...card} handleHover= {() => setChosenCard(card.id)} handleLeave= {()=> setChosenCard(null)}/>
+                {filteredOffers.map((card: Card) =>
+                  (<PlaceCard
+                    key= {card.id} {...card}
+                    handleHover= {() => setChosenCard(card.id)}
+                    handleLeave= {()=> setChosenCard(null)}
+                  />)
                 )}
               </div>
             </section>

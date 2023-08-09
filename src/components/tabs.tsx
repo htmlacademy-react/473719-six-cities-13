@@ -1,11 +1,10 @@
 import { CITIES } from '../const';
 import { City } from '../types';
 import classNames from 'classnames';
-import { useAppDispatch } from '../redux-hooks';
 import { changeCity } from '../store/actions';
 
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../redux-hooks';
 
 type TabsProps = {
   chosenCity : string;
@@ -13,7 +12,7 @@ type TabsProps = {
 
 function Tabs(props: TabsProps): JSX.Element {
   const {chosenCity} = props;
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const citiesKeys = Object.keys(CITIES);
 
   return (
@@ -24,13 +23,13 @@ function Tabs(props: TabsProps): JSX.Element {
             <li key={city} className="locations__item"
               onClick={(event) => {
                 event.preventDefault();
-                dispatch(changeCity(city));
+                dispatch(changeCity(CITIES[city]));
               }}
             >
               <Link className={classNames(
                 'locations__item-link', 'tabs__item',
-                {'tabs__item--active': CITIES[city] === chosenCity})}
-              href="#"
+                {'tabs__item--active': chosenCity === CITIES[city]})}
+              to={`#${city}`}
               >
                 <span>{CITIES[city]}</span>
               </Link>

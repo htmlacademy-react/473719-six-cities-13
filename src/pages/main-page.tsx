@@ -7,24 +7,20 @@ import Map from '../components/map';
 
 import type { Card, Cards, City, CityPoint } from '../types';
 import { useAppDispatch, useAppSelector, } from '../redux-hooks';
-import { CITIES } from '../const';
-import { useDispatch } from 'react-redux';
 
 const mapWidth = '714px';
 
 function MainPage(): JSX.Element {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const chosenCity = useAppSelector((state) => state.city);
   const offers = useAppSelector((state) => state.offers);
 
-  function getStartPlaces(offers: Cards, city: string) {
-    return offers.filter((offer) => offer.city.name === city);
+  function getStartPlaces(places: Cards, city: string) {
+    return places.filter((offer) => offer.city.name === city);
   }
 
-  const filteredOffers = getStartPlaces(offers, chosenCity);
-
-  // const chosenCityCards = offers.filter((offer: Card) => offer.city.name === chosenCity);
+  const filteredOffers: Cards = getStartPlaces(offers, chosenCity);
 
   console.log(filteredOffers);
 

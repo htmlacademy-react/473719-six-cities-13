@@ -19,14 +19,12 @@ function MainPage(): JSX.Element {
   }
 
   const [chosenCard, setChosenCard] = useState<string | null>(null);
-
-  const filteredOffers: Cards = getStartPlaces(offers, chosenCity);
+  const filteredOffers: Card[] = getStartPlaces(offers, chosenCity);
   const locations: Array<CityPoint> = [];
 
-  offers.map((card) => locations.push({
+  filteredOffers.map((card) => locations.push({
     id: card.id,
     location: card.location}));
-
 
   return(
     <div className="page page--gray page--main">
@@ -52,7 +50,7 @@ function MainPage(): JSX.Element {
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map city={chosenCity} locations={locations} activeId={chosenCard} widthParam={mapWidth} />
+                <Map city={chosenCity} filteredOffers={filteredOffers} locations={locations} activeId={chosenCard} widthParam={mapWidth} />
               </section>
             </div>
           </div>

@@ -29,7 +29,7 @@ function useMap(mapRef: any, city: City) {
       setMap(instance);
       isRenderedRef.current = true;
     }
-  },[]);
+  },[city]);
 
   return map;
 }

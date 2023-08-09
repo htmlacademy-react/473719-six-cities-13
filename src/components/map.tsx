@@ -4,14 +4,19 @@ import 'leaflet/dist/leaflet.css';
 import leaflet from 'leaflet';
 import { MapProps } from '../types';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../const';
-import { AllCities } from '../const';
+import { useAppSelector } from '../redux-hooks';
 
-function Map({city, locations, activeId, offerId, widthParam}: MapProps) {
-  const filteredCity = AllCities.filter((item)=> item.name === city);
-  const chosenCity = filteredCity[0];
+function Map({locations, activeId, offerId, widthParam}: MapProps) {
+  const offers = useAppSelector((state) => state.offers);
+
+  const city = useAppSelector((state) => state.city);
+  const filteredOffers = offers.filter((offer) => offer.city.name === city);
+  const chosenCity = filteredOffers[0];
+
+  console.log(chosenCity);
 
   const mapRef = useRef(null);
-  const map = useMap(mapRef,chosenCity);
+  const map = useMap(mapRef, chosenCity);
 
   const defaultCustomIcon = leaflet.icon({
     iconUrl: URL_MARKER_DEFAULT,
@@ -27,7 +32,9 @@ function Map({city, locations, activeId, offerId, widthParam}: MapProps) {
 
   useEffect(() => {
     if (map) {
-      locations.forEach((point) => {
+      map.setView([chosenCity.location.latitude, chosenCity.location.longitude], chosenCity.location.zoom);
+
+      filteredOffers.forEach((point) => {
         leaflet
           .marker({
             lat: point.location.latitude,

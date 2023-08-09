@@ -11,8 +11,6 @@ import { useAppDispatch, useAppSelector, } from '../redux-hooks';
 const mapWidth = '714px';
 
 function MainPage(): JSX.Element {
-  const dispatch = useAppDispatch();
-
   const chosenCity = useAppSelector((state) => state.city);
   const offers = useAppSelector((state) => state.offers);
 
@@ -20,25 +18,15 @@ function MainPage(): JSX.Element {
     return places.filter((offer) => offer.city.name === city);
   }
 
-  function handleHover() {
-    setChosenCard(card.id);
-  }
-
-  function handleLeave() {
-    setChosenCard(null);
-  }
+  const [chosenCard, setChosenCard] = useState<string | null>(null);
 
   const filteredOffers: Cards = getStartPlaces(offers, chosenCity);
-
-  console.log(filteredOffers);
-
   const locations: Array<CityPoint> = [];
 
   offers.map((card) => locations.push({
     id: card.id,
     location: card.location}));
 
-  const [chosenCard, setChosenCard] = useState(null);
 
   return(
     <div className="page page--gray page--main">
@@ -56,8 +44,8 @@ function MainPage(): JSX.Element {
                 {filteredOffers.map((card: Card) =>
                   (<PlaceCard
                     key= {card.id} {...card}
-                    handleHover= {handleHover}
-                    handleLeave= {handleLeave}
+                    handleHover= {()=> setChosenCard(card.id)}
+                    handleLeave= {()=> setChosenCard(null)}
                   />)
                 )}
               </div>

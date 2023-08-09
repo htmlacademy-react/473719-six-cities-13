@@ -4,6 +4,7 @@ import Header from '../components/header';
 import PLacesSorting from '../components/places-sorting';
 import { useState } from 'react';
 import Map from '../components/map';
+import { sortOffersByType } from '../utils';
 
 import type { Card } from '../types';
 import { useAppSelector, } from '../redux-hooks';
@@ -13,6 +14,7 @@ const mapWidth = '714px';
 function MainPage(): JSX.Element {
   const chosenCity = useAppSelector((state) => state.city);
   const offers = useAppSelector((state) => state.offers);
+  const filter = useAppSelector((state) => state.filter);
 
   function getStartPlaces (places: Card[], city: string): Card[] {
     return places.filter((offer) => offer.city.name === city);
@@ -20,6 +22,8 @@ function MainPage(): JSX.Element {
 
   const [chosenCard, setChosenCard] = useState<string | null>(null);
   const filteredOffers: Card[] = getStartPlaces(offers, chosenCity);
+
+  const sortedOffers: Card[] = sortOffersByType(filteredOffers, filter);
 
   return(
     <div className="page page--gray page--main">
@@ -34,7 +38,7 @@ function MainPage(): JSX.Element {
               <b className="places__found">{filteredOffers.length} places to stay in {chosenCity}</b>
               <PLacesSorting />
               <div className="cities__places-list places__list tabs__content">
-                {filteredOffers.map((card: Card) =>
+                {sortedOffers.map((card: Card) =>
                   (<PlaceCard
                     key= {card.id} {...card}
                     handleHover= {()=> setChosenCard(card.id)}

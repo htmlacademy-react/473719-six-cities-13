@@ -5,8 +5,8 @@ import PLacesSorting from '../components/places-sorting';
 import { useState } from 'react';
 import Map from '../components/map';
 
-import type { Card, Cards, City, CityPoint } from '../types';
-import { useAppDispatch, useAppSelector, } from '../redux-hooks';
+import type { Card } from '../types';
+import { useAppSelector, } from '../redux-hooks';
 
 const mapWidth = '714px';
 
@@ -20,11 +20,6 @@ function MainPage(): JSX.Element {
 
   const [chosenCard, setChosenCard] = useState<string | null>(null);
   const filteredOffers: Card[] = getStartPlaces(offers, chosenCity);
-  const locations: Array<CityPoint> = [];
-
-  filteredOffers.map((card) => locations.push({
-    id: card.id,
-    location: card.location}));
 
   return(
     <div className="page page--gray page--main">
@@ -50,7 +45,7 @@ function MainPage(): JSX.Element {
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map city={chosenCity} filteredOffers={filteredOffers} locations={locations} activeId={chosenCard} widthParam={mapWidth} />
+                <Map city={chosenCity} activeId={chosenCard} widthParam={mapWidth} />
               </section>
             </div>
           </div>

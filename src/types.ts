@@ -31,10 +31,10 @@ type CityPoint = {
 
 type MapProps = {
   city: string;
-  filteredOffers: Card[];
+  filteredOffers?: Card[];
   activeId: string | null;
   offerId?: string | null;
-  locations: Array<CityPoint>;
+  locations?: Array<CityPoint>;
   widthParam: string;
 }
 

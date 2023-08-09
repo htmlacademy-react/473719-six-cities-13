@@ -6,17 +6,17 @@ import { MapProps } from '../types';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../const';
 import { useAppSelector } from '../redux-hooks';
 
-function Map({locations, activeId, offerId, widthParam}: MapProps) {
+function Map({activeId, offerId, widthParam}: MapProps) {
   const offers = useAppSelector((state) => state.offers);
 
   const city = useAppSelector((state) => state.city);
   const filteredOffers = offers.filter((offer) => offer.city.name === city);
-  const chosenCity = filteredOffers[0];
-
-  console.log(chosenCity);
+  const chosenCity = filteredOffers[0].city;
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, chosenCity);
+
+  console.log(chosenCity);
 
   const defaultCustomIcon = leaflet.icon({
     iconUrl: URL_MARKER_DEFAULT,
@@ -33,7 +33,6 @@ function Map({locations, activeId, offerId, widthParam}: MapProps) {
   useEffect(() => {
     if (map) {
       map.setView([chosenCity.location.latitude, chosenCity.location.longitude], chosenCity.location.zoom);
-
       filteredOffers.forEach((point) => {
         leaflet
           .marker({
@@ -47,7 +46,7 @@ function Map({locations, activeId, offerId, widthParam}: MapProps) {
           .addTo(map);
       });
     }
-  }, [map, locations]);
+  }, [map, filteredOffers, activeId, chosenCity]);
 
 
   return (

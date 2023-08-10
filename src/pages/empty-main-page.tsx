@@ -1,7 +1,5 @@
 function EmptyMainPage(): JSX.Element {
   return (
-
-    //добавляется внутри главной страницы, если ничего нет
     <div className="cities">
       <div className="cities__places-container cities__places-container--empty container">
         <section className="cities__no-places">

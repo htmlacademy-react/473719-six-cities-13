@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 
-import { Place, CityPoint, City } from '../types';
+import { Place, CityPoint} from '../types';
 import Header from '../components/header';
 import CommentSection from '../components/comment-section';
 import ReviewsList from '../components/reviews-list';
@@ -27,8 +27,6 @@ function Offer() : JSX.Element {
       item: item,
     };
   }
-
-  const chosenCity: City = offers[0].city;
 
   const locations: Array<CityPoint> = [];
 
@@ -140,7 +138,7 @@ function Offer() : JSX.Element {
             </div>
           </div>
           <section className="offer__map map">
-            <Map city={chosenCity} locations={locations} activeId={chosenCard} offerId={currentOffer.id} widthParam={mapWidth}/>
+            <Map activeId={chosenCard} offerId={currentOffer.id} widthParam={mapWidth}/>
           </section>
         </section>
         <div className="container">

@@ -1,7 +1,7 @@
 import { NearPlaceItemProps } from '../types';
 
 function NearPlaceItem(nearPlaceItemProps: NearPlaceItemProps):JSX.Element {
-  const { price, title, images, rating, isFavorite, isPremium, type, handleHover, handleLeave} = nearPlaceItemProps;
+  const { price, title, images, type, handleHover, handleLeave} = nearPlaceItemProps;
   return(
     <article className="near-places__card place-card">
       <div className="near-places__image-wrapper place-card__image-wrapper">

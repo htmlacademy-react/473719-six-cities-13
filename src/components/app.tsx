@@ -7,10 +7,9 @@ import { AuthorizationStatus, AppRoute } from '../const';
 
 import {Route, BrowserRouter, Routes } from 'react-router-dom';
 
-import type { Cards } from '../types';
 import PrivateRoute from './private-route';
 
-function App({cards}: Cards) : JSX.Element {
+function App() : JSX.Element {
   return(
     <BrowserRouter>
       <Routes>

@@ -1,11 +1,11 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { choseFilter, changeCity,} from './actions';
+import { choseFilter, changeCity, loadOffers,} from './actions';
 import { CITIES } from '../const';
-import mocks from '../mocks';
+import mockOffers from '../mock-offers';
 
 
 const initialState = {
-  offers: mocks,
+  offers: mockOffers,
   city: CITIES.paris,
   filter: 'normal',
 };
@@ -17,6 +17,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(choseFilter, (state, actions) => {
       state.filter = actions.payload;
+    })
+    .addCase(loadOffers, (state) => {
+      state.offers = mockOffers;
     });
 });
 

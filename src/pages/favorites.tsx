@@ -1,16 +1,15 @@
 import FavoritesCity from '../components/favorites-city';
 import Header from '../components/header';
+import { useAppSelector } from '../redux-hooks';
 import { Card } from '../types';
-import mocks from '../mocks';
-
-const favoriteItems: Array<Card> = mocks.filter((item: Card) => item.isFavorite);
-const favoriteCities: Array<string> = [...new Set(favoriteItems.map((item: Card) => item.city.name))];
 
 function Favorites() {
+  const offers = useAppSelector((state) => state.offers);
+  const favoriteItems: Array<Card> = offers.filter((item: Card) => item.isFavorite);
+  const favoriteCities: Array<string> = [...new Set(favoriteItems.map((item: Card) => item.city.name))];
   return(
     <div className="page">
       <Header />
-
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           <section className="favorites">

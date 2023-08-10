@@ -49,7 +49,7 @@ type Geo = {
 
 type Card = Offer & Geo & {
   city: City;
-  previewImage: string;
+  images: string[];
 }
 
 

@@ -5,3 +5,5 @@ export const changeCity = createAction('app/changeCity',
 
 export const choseFilter = createAction('app/choseFilter',
   (sortType: string) => ({payload: sortType}));
+
+export const loadOffers = createAction('app/loadOffers');

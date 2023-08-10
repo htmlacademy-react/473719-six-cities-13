@@ -1,7 +1,5 @@
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-import mockOffers from '../mock-offers';
-import mocks from '../mocks';
 
 import { Place, CityPoint, City } from '../types';
 import Header from '../components/header';
@@ -12,13 +10,15 @@ import { calculateCardRating } from '../utils';
 import classNames from 'classnames';
 import NearPlaces from '../components/near-places';
 import Map from '../components/map';
+import { useAppSelector } from '../redux-hooks';
 
 const mapWidth = '580px';
 
 function Offer() : JSX.Element {
   const params = useParams();
-  const data: Array<Place> = mockOffers;
-  const currentOffer = data.filter((el) => el.id === params.id)[0];
+  const offers = useAppSelector((state) => state.offers);
+
+  const currentOffer = offers.filter((el) => el.id === params.id)[0];
   const {title, type, price, isFavorite, isPremium, rating, host, goods, images, bedrooms, maxAdults, description}: Place = currentOffer;
 
   function makeItemsWithKeys(item: string, key: number) {
@@ -28,7 +28,7 @@ function Offer() : JSX.Element {
     };
   }
 
-  const chosenCity: City = mocks[0].city;
+  const chosenCity: City = offers[0].city;
 
   const locations: Array<CityPoint> = [];
 
@@ -38,22 +38,22 @@ function Offer() : JSX.Element {
   });
 
   locations.push({
-    id: mocks[3].id,
-    location: mocks[3].location});
+    id: offers[3].id,
+    location: offers[3].location});
 
   locations.push({
-    id: mocks[4].id,
-    location: mocks[4].location});
+    id: offers[4].id,
+    location: offers[4].location});
 
   locations.push({
-    id: mocks[5].id,
-    location: mocks[5].location});
+    id: offers[5].id,
+    location: offers[5].location});
 
   const chosenCityCards = [];
 
-  chosenCityCards.push(mocks[3]);
-  chosenCityCards.push(mocks[4]);
-  chosenCityCards.push(mocks[5]);
+  chosenCityCards.push(offers[3]);
+  chosenCityCards.push(offers[4]);
+  chosenCityCards.push(offers[5]);
 
 
   const [chosenCard, setChosenCard] = useState(null);

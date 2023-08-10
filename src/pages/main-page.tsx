@@ -22,7 +22,6 @@ function MainPage(): JSX.Element {
 
   const [chosenCard, setChosenCard] = useState<string | null>(null);
   const filteredOffers: Card[] = getStartPlaces(offers, chosenCity);
-
   const sortedOffers: Card[] = sortOffersByType(filteredOffers, filter);
 
   return(

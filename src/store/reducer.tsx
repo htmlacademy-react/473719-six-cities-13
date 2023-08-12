@@ -1,13 +1,14 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { choseFilter, changeCity, loadOffers,} from './actions';
-import { CITIES } from '../const';
-import mockOffers from '../mock-offers';
+import { AuthorizationStatus, CITIES } from '../const';
+import { requireAuthorisation } from './actions';
 
 
 const initialState = {
-  offers: mockOffers,
+  offers: [],
   city: CITIES.paris,
   filter: 'normal',
+  authorisationStatus: AuthorizationStatus.Unknown,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -19,7 +20,10 @@ const reducer = createReducer(initialState, (builder) => {
       state.filter = actions.payload;
     })
     .addCase(loadOffers, (state) => {
-      state.offers = mockOffers;
+      state.offers = actions.payload;
+    })
+    .addCase(requireAuthorisation, (state) => {
+      state.authorisationStatus = actions.payload;
     });
 });
 

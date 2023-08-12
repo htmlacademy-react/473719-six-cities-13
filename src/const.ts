@@ -86,9 +86,15 @@ const AllCities: Array<City> = [
       'zoom':13}},
 ];
 
+const enum APIroute {
+  Offers = '/Offers',
+  Login = '/login',
+  Logout = '/logout',
+}
+
 
 const URL_MARKER_DEFAULT = '../public/img/pin.svg';
 
 const URL_MARKER_CURRENT = '../public/img/pin-active.svg';
 
-export {AuthorizationStatus, AppRoute, CITIES, sortTypes, ratingTypes, ratingTypesMap, URL_MARKER_DEFAULT, URL_MARKER_CURRENT, AllCities};
+export {AuthorizationStatus, AppRoute, CITIES, sortTypes, ratingTypes, ratingTypesMap, URL_MARKER_DEFAULT, URL_MARKER_CURRENT, AllCities, APIroute};

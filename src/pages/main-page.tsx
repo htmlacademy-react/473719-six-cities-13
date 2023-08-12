@@ -42,7 +42,10 @@ function MainPage(): JSX.Element {
               <PLacesSorting />
               <div className="cities__places-list places__list tabs__content">
                 {sortedOffers.map((card: Card) =>
-                  (<PlaceCard key= {card.id} {...card} handleHover= {()=> setChosenCard(card.id)} handleLeave= {()=> setChosenCard(null)} />)
+                  (<PlaceCard key= {card.id} {...card}
+                    handleHover= {()=> setChosenCard(card.id)}
+                    handleLeave= {()=> setChosenCard(null)}
+                  />)
                 )}
               </div>
             </section>

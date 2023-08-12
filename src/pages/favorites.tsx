@@ -2,6 +2,7 @@ import FavoritesCity from '../components/favorites-city';
 import Header from '../components/header';
 import { useAppSelector } from '../redux-hooks';
 import { Card } from '../types';
+import EmptyFavorite from './empty-favorites';
 
 function Favorites() {
   const offers = useAppSelector((state) => state.offers);
@@ -12,6 +13,8 @@ function Favorites() {
       <Header />
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
+          {favoriteItems.length === 0 && <EmptyFavorite />}
+          {favoriteItems.length !== 0 &&
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
@@ -19,7 +22,8 @@ function Favorites() {
                 <FavoritesCity key={city} cityName={city} />
               )}
             </ul>
-          </section>
+          </section>}
+
         </div>
       </main>
       <footer className="footer container">

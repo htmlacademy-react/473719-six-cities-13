@@ -138,7 +138,7 @@ function Offer() : JSX.Element {
             </div>
           </div>
           <section className="offer__map map">
-            <Map activeId={chosenCard} offerId={currentOffer.id} widthParam={mapWidth}/>
+            <Map places={chosenCityCards} activeId={chosenCard} offerId={currentOffer.id} widthParam={mapWidth}/>
           </section>
         </section>
         <div className="container">

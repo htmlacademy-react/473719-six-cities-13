@@ -30,6 +30,7 @@ type CityPoint = {
 }
 
 type MapProps = {
+  places?: Card[];
   activeId: string | null;
   offerId?: string | null;
   widthParam: string;

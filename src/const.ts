@@ -1,3 +1,5 @@
+import { City } from './types';
+
 enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',

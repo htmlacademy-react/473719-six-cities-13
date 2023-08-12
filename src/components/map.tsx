@@ -11,6 +11,7 @@ function Map({activeId, offerId, widthParam, places}: MapProps) {
   const city = useAppSelector((state) => state.city);
 
   const currentOffer = offers.filter((item) => item.id === offerId);
+  const currentCity = AllCities.filter((item) => item.name === city).at(0);
 
   function chooseOffers () {
     if (places) {
@@ -19,8 +20,6 @@ function Map({activeId, offerId, widthParam, places}: MapProps) {
     return offers.filter((offer) => offer.city.name === city);
   }
   const filteredOffers = chooseOffers();
-
-  const currentCity = AllCities.filter((item) => item.name === city).at(0);
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, currentCity);

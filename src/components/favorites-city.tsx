@@ -1,14 +1,15 @@
 import FavoriteItem from './favorite-item';
 import { Card } from '../types';
-import mocks from '../mocks';
+import { useAppSelector } from '../redux-hooks';
 
 type City = {
   cityName: string;
 }
 
 function FavoritesCity(city: City): JSX.Element {
+  const offers = useAppSelector((state) => state.offers);
 
-  const favoriteItemsInChosenCity: Array<Card> = mocks.filter((item: Card) => item.isFavorite && item.city.name === city.cityName);
+  const favoriteItemsInChosenCity: Array<Card> = offers.filter((item: Card) => item.isFavorite && item.city.name === city.cityName);
   return(
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">

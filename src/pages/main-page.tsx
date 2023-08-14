@@ -8,6 +8,7 @@ import { sortOffersByType } from '../utils';
 
 import type { Card } from '../types';
 import { useAppSelector, } from '../redux-hooks';
+import EmptyMainPage from './empty-main-page';
 
 const mapWidth = '714px';
 
@@ -22,7 +23,6 @@ function MainPage(): JSX.Element {
 
   const [chosenCard, setChosenCard] = useState<string | null>(null);
   const filteredOffers: Card[] = getStartPlaces(offers, chosenCity);
-
   const sortedOffers: Card[] = sortOffersByType(filteredOffers, filter);
 
   return(
@@ -31,6 +31,9 @@ function MainPage(): JSX.Element {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <Tabs chosenCity={chosenCity}/>
+
+        {filteredOffers.length === 0 && <EmptyMainPage/ >}
+        {filteredOffers.length !== 0 &&
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
@@ -39,8 +42,7 @@ function MainPage(): JSX.Element {
               <PLacesSorting />
               <div className="cities__places-list places__list tabs__content">
                 {sortedOffers.map((card: Card) =>
-                  (<PlaceCard
-                    key= {card.id} {...card}
+                  (<PlaceCard key= {card.id} {...card}
                     handleHover= {()=> setChosenCard(card.id)}
                     handleLeave= {()=> setChosenCard(null)}
                   />)
@@ -53,7 +55,8 @@ function MainPage(): JSX.Element {
               </section>
             </div>
           </div>
-        </div>
+        </div>}
+
       </main>
     </div>
   );

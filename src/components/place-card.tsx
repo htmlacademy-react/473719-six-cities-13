@@ -4,7 +4,7 @@ import { calculateCardRating } from '../utils';
 import classNames from 'classnames';
 
 function PlaceCard(cardProps: MapCard): JSX.Element {
-  const {isPremium, price, isFavorite, rating, id, title, type, previewImage, handleHover, handleLeave} = cardProps;
+  const {isPremium, price, isFavorite, rating, id, title, type, handleHover, handleLeave, previewImage} = cardProps;
 
   return (
     <article

@@ -1,12 +1,12 @@
 import { NearPlaceItemProps } from '../types';
 
 function NearPlaceItem(nearPlaceItemProps: NearPlaceItemProps):JSX.Element {
-  const { price, title, previewImage, rating, isFavorite, isPremium, type, handleHover, handleLeave} = nearPlaceItemProps;
+  const { price, title, images, type, handleHover, handleLeave} = nearPlaceItemProps;
   return(
     <article className="near-places__card place-card">
       <div className="near-places__image-wrapper place-card__image-wrapper">
         <a href="#" onMouseEnter={handleHover} onMouseLeave={handleLeave}>
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={images[0]} width="260" height="200" alt="Place image" />
         </a>
       </div>
       <div className="place-card__info">

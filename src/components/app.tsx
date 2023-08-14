@@ -7,14 +7,19 @@ import { AuthorizationStatus, AppRoute } from '../const';
 
 import {Route, BrowserRouter, Routes } from 'react-router-dom';
 
-import type { Cards } from '../types';
 import PrivateRoute from './private-route';
+import { useAppSelector } from '../redux-hooks';
 
-function App({cards}: Cards) : JSX.Element {
+function App() : JSX.Element {
+  const authorisationStatus = useAppSelector((state) => state.authorisationStatus);
+  const offers = useAppSelector((state) => state.offers);
+  console.log(authorisationStatus);
+  console.log(offers);
+
   return(
     <BrowserRouter>
       <Routes>
-        <Route path= {AppRoute.Root} element = { <MainPage cards = {cards} />}/>
+        <Route path= {AppRoute.Root} element = { <MainPage />}/>
         <Route path= {AppRoute.LogIn} element= {<Login />}/>
         <Route path= {AppRoute.FavoriteItems} element= {
           <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>

@@ -30,11 +30,9 @@ type CityPoint = {
 }
 
 type MapProps = {
-  city: string;
-  filteredOffers?: Card[];
+  places?: Card[];
   activeId: string | null;
   offerId?: string | null;
-  locations?: Array<CityPoint>;
   widthParam: string;
 }
 
@@ -62,7 +60,7 @@ type Cards = {
   cards: MapCard[];
 }
 
-type Place = Offer & Geo & {
+type Place = Card & Geo & {
   description: string;
   goods: Array<string>;
   images: Array<string>;
@@ -100,8 +98,8 @@ type NearPlaceItemProps = Card & {
   handleLeave?: React.SetStateAction<string | null>;
 }
 
-export type State = ReturnType<typeof store.getState>;
+type State = ReturnType<typeof store.getState>;
 
-export type AppDispatch = typeof store.dispatch;
+type AppDispatch = typeof store.dispatch;
 
 export type {Card, Cards, Place, City, Geo, Offer, MapCard, StarProps, MapProps, CityPoint, ReviewItemProps, NearPlacesProps, NearPlaceItemProps, State, AppDispatch};

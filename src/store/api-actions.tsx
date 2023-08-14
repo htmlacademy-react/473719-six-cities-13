@@ -1,8 +1,8 @@
 import axios, {AxiosInstance} from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, State } from '../types';
-import { Cards } from '../types';
-import { loadOffers, requireAuthorisation, setError, setOffersDataLoadingStatus} from './actions';
+import { Cards, Offer } from '../types';
+import { loadOffers, requireAuthorisation, setError, setOffersDataLoadingStatus, loadSpecificOffer} from './actions';
 import { store } from '.';
 
 import { saveToken, dropToken } from '../services/tokens';
@@ -40,6 +40,26 @@ export const fetchOffers = createAsyncThunk<void, undefined, {
     const {data} = await api.get<Cards>(APIroute.Offers);
     dispatch(setOffersDataLoadingStatus(false));
     dispatch(loadOffers(data));
+  }
+);
+
+export const fetchSpecificOffer = createAsyncThunk<void, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'offer/fetch',
+  async(id, {dispatch, extra: api}) => {
+    try {
+      dispatch(setOffersDataLoadingStatus(true));
+      const {data} = await api.get<Offer>(`${APIroute.Offers}/${id}`);
+      dispatch(setOffersDataLoadingStatus(false));
+      dispatch(loadSpecificOffer(data));
+    } catch {
+      dispatch(setOffersDataLoadingStatus(true));
+      //redirect to route
+      dispatch(setOffersDataLoadingStatus(false));
+    }
   }
 );
 

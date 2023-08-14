@@ -4,7 +4,7 @@ import { calculateCardRating } from '../utils';
 import classNames from 'classnames';
 
 function PlaceCard(cardProps: MapCard): JSX.Element {
-  const {isPremium, price, isFavorite, rating, id, title, type, handleHover, handleLeave, images} = cardProps;
+  const {isPremium, price, isFavorite, rating, id, title, type, handleHover, handleLeave, previewImage} = cardProps;
 
   return (
     <article
@@ -15,7 +15,7 @@ function PlaceCard(cardProps: MapCard): JSX.Element {
       {isPremium && <div className="place-card__mark"><span>Premium</span></div>}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${id}`}>
-          <img className="place-card__image" src={images[0]} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
         </Link>
       </div>
       <div className="place-card__info">

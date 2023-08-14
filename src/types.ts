@@ -47,7 +47,7 @@ type Geo = {
 
 type Card = Offer & Geo & {
   city: City;
-  images: string[];
+  previewImage: string;
 }
 
 
@@ -60,7 +60,7 @@ type Cards = {
   cards: MapCard[];
 }
 
-type Place = Offer & Geo & {
+type Place = Card & Geo & {
   description: string;
   goods: Array<string>;
   images: Array<string>;

@@ -17,9 +17,9 @@ const mapWidth = '580px';
 function Offer() : JSX.Element {
   const params = useParams();
   const offers = useAppSelector((state) => state.offers);
-
   const currentOffer = offers.filter((el) => el.id === params.id)[0];
-  const {title, type, price, isFavorite, isPremium, rating, host, goods, images, bedrooms, maxAdults, description}: Place = currentOffer;
+
+  const {title, type, price, isFavorite, isPremium, rating, host, goods, bedrooms, maxAdults, description}: Place = currentOffer;
 
   function makeItemsWithKeys(item: string, key: number) {
     return {

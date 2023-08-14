@@ -8,8 +8,14 @@ import { AuthorizationStatus, AppRoute } from '../const';
 import {Route, BrowserRouter, Routes } from 'react-router-dom';
 
 import PrivateRoute from './private-route';
+import { useAppSelector } from '../redux-hooks';
 
 function App() : JSX.Element {
+  const authorisationStatus = useAppSelector((state) => state.authorisationStatus);
+  const offers = useAppSelector((state) => state.offers);
+  console.log(authorisationStatus);
+  console.log(offers);
+
   return(
     <BrowserRouter>
       <Routes>

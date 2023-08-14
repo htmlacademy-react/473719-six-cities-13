@@ -6,6 +6,8 @@ enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+const TIMEOUT_SHOW_ERROR = 2000;
+
 enum AppRoute {
   Root ='/',
   LogIn = '/login',
@@ -87,7 +89,8 @@ const AllCities: Array<City> = [
 ];
 
 const enum APIroute {
-  Offers = '/Offers',
+  Offers = '/offers',
+  Comments = '/comments',
   Login = '/login',
   Logout = '/logout',
 }
@@ -97,4 +100,4 @@ const URL_MARKER_DEFAULT = '../public/img/pin.svg';
 
 const URL_MARKER_CURRENT = '../public/img/pin-active.svg';
 
-export {AuthorizationStatus, AppRoute, CITIES, sortTypes, ratingTypes, ratingTypesMap, URL_MARKER_DEFAULT, URL_MARKER_CURRENT, AllCities, APIroute};
+export {AuthorizationStatus, AppRoute, CITIES, sortTypes, ratingTypes, ratingTypesMap, URL_MARKER_DEFAULT, URL_MARKER_CURRENT, AllCities, APIroute, TIMEOUT_SHOW_ERROR};

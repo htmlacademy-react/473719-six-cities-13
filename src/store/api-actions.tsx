@@ -1,8 +1,8 @@
 import axios, {AxiosInstance} from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AppDispatch, State } from '../types';
+import { AppDispatch, NearPlacesProps, ReviewItemProps, State } from '../types';
 import { Cards, Offer } from '../types';
-import { loadOffers, requireAuthorisation, setError, setOffersDataLoadingStatus, loadSpecificOffer, loadComments} from './actions';
+import { loadOffers, requireAuthorisation, setError, setOffersDataLoadingStatus, loadSpecificOffer, loadComments, loadNearPlaces} from './actions';
 import { store } from '.';
 
 import { saveToken, dropToken } from '../services/tokens';
@@ -63,7 +63,7 @@ export const fetchSpecificOffer = createAsyncThunk<void, string, {
   }
 );
 
-export const fetchComments = createAsyncThunk<void, any, {
+export const fetchComments = createAsyncThunk<void, ReviewItemProps[], {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -75,6 +75,26 @@ export const fetchComments = createAsyncThunk<void, any, {
       const {data} = await api.get<Offer>(`${APIroute.Comments}/${id}`);
       dispatch(setOffersDataLoadingStatus(false));
       dispatch(loadComments(data));
+    } catch {
+      dispatch(setOffersDataLoadingStatus(true));
+      //redirect to route
+      dispatch(setOffersDataLoadingStatus(false));
+    }
+  }
+);
+
+export const fetchNearPlaces = createAsyncThunk<void, NearPlacesProps, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'nearPlaces/fetch',
+  async(id, {dispatch, extra: api}) => {
+    try {
+      dispatch(setOffersDataLoadingStatus(true));
+      const {data} = await api.get<Offer>(`${APIroute.Offers}/${id}/nearby`);
+      dispatch(setOffersDataLoadingStatus(false));
+      dispatch(loadNearPlaces(data));
     } catch {
       dispatch(setOffersDataLoadingStatus(true));
       //redirect to route

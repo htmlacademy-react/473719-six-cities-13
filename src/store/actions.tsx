@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
-import { Cards, Offer } from '../types';
+import { Cards, NearPlacesProps, Offer, ReviewItemProps } from '../types';
 import { AuthorizationStatus } from '../const';
 
 export const changeCity = createAction('app/changeCity',
@@ -16,11 +16,16 @@ export const loadOffers = createAction<Cards>('loading/loadOffers');
 
 export const loadSpecificOffer = createAction<Offer>('data/loadSpecificOffer');
 export const getSpecificOffer = createAction<Offer>('offer/fetch',
-  (offer: offer) => ({payload: offer}));
+  (offer: Offer) => ({payload: offer}));
 
 export const loadComments = createAction('data/loadComments');
 export const getComments = createAction('comments/fetch',
-  (comments: any | null) => ({payload: comments}));
+  (comments: ReviewItemProps[]| null) => ({payload: comments}));
+
+
+export const loadNearPlaces = createAction('data/loadNearPlaces');
+export const getNearPlaces = createAction('nearPlaces/fetch',
+  (nearPlaces: NearPlacesProps | null) => ({payload: nearPlaces}));
 
 export const requireAuthorisation = createAction<AuthorizationStatus>('user/requireAuthorisation');
 export const setError = createAction<string | null>('app/setError');

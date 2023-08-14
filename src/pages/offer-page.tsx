@@ -10,7 +10,7 @@ import classNames from 'classnames';
 import NearPlaces from '../components/near-places';
 import Map from '../components/map';
 import { useAppSelector } from '../redux-hooks';
-import { fetchComments, fetchSpecificOffer } from '../store/api-actions';
+import { fetchComments, fetchNearPlaces, fetchSpecificOffer } from '../store/api-actions';
 import { useAppDispatch } from '../redux-hooks';
 import { dropOffer } from '../store/actions';
 import Header from '../components/header';
@@ -19,15 +19,18 @@ const mapWidth = '580px';
 
 function OfferPage() : JSX.Element {
   const dispatch = useAppDispatch();
+  const [chosenCard, setChosenCard] = useState(null);
 
   const offerId = useParams().id;
   const loadedOffer = useAppSelector((state) => state.loadedOffer);
   const loadedComments = useAppSelector((state) => state.loadedComments);
+  const nearPlaces = useAppSelector((state)=> state.nearPlaces);
 
   useEffect(() => {
     if(offerId) {
       dispatch(fetchSpecificOffer(offerId));
       dispatch(fetchComments(offerId));
+      dispatch(fetchNearPlaces(offerId));
     }
 
     return () => {
@@ -41,6 +44,10 @@ function OfferPage() : JSX.Element {
       <p>123</p>
     );
   }
+
+  const selectedNearPlaces = nearPlaces?.slice(0, 3);
+  const selectedNearPlacesWithCurrent = selectedNearPlaces?.concat(loadedOffer);
+
   const {bedrooms, city, description, goods, host, id, images, isFavorite, isPremium, location, maxAdults, price, rating, title, type, } = loadedOffer;
 
   return (
@@ -121,11 +128,11 @@ function OfferPage() : JSX.Element {
             </div>
           </div>
           <section className="offer__map map">
-            {/* <Map places={chosenCityCards} activeId={chosenCard} offerId={currentOffer.id} widthParam={mapWidth}/> */}
+            <Map places={selectedNearPlacesWithCurrent} activeId={chosenCard} offerId={offerId} widthParam={mapWidth}/>
           </section>
         </section>
         <div className="container">
-          {/* <NearPlaces places={chosenCityCards} setChosenCard={setChosenCard}/> */}
+          <NearPlaces places={selectedNearPlaces} setChosenCard={setChosenCard}/>
         </div>
       </main>
     </div>

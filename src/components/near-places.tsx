@@ -2,6 +2,7 @@ import { NearPlacesProps } from '../types';
 import NearPlaceItem from './near-place-item';
 
 function NearPlaces(nearPlacesProps: NearPlacesProps): JSX.Element {
+
   const {places, setChosenCard} = nearPlacesProps;
   return(
     <section className="near-places places">

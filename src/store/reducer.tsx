@@ -1,8 +1,8 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { choseFilter, changeCity, loadOffers, setError, getOffers, setOffersDataLoadingStatus, loadSpecificOffer, dropOffer, loadComments} from './actions';
+import { choseFilter, changeCity, loadOffers, setError, getOffers, setOffersDataLoadingStatus, loadSpecificOffer, dropOffer, loadComments, loadNearPlaces} from './actions';
 import { AuthorizationStatus, CITIES } from '../const';
 import { requireAuthorisation } from './actions';
-import { Card, Offer } from '../types';
+import { Card, NearPlacesProps, Offer, ReviewItemProps } from '../types';
 
 
 type InitialState = {
@@ -13,7 +13,8 @@ type InitialState = {
   error: string | null;
   isOffersDataLoading: boolean;
   loadedOffer: Offer | null;
-  loadedComments: any;
+  loadedComments: ReviewItemProps[] | undefined;
+  nearPlaces: NearPlacesProps[] | undefined;
 }
 
 const initialState: InitialState = {
@@ -25,6 +26,7 @@ const initialState: InitialState = {
   isOffersDataLoading: false,
   loadedOffer: null,
   loadedComments: [],
+  nearPlaces: [],
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -58,6 +60,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadComments, (state, actions) => {
       state.loadedComments = actions.payload;
+    })
+    .addCase(loadNearPlaces, (state, actions) => {
+      state.nearPlaces = actions.payload;
     });
 });
 

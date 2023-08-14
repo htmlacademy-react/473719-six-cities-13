@@ -13,13 +13,14 @@ export const getOffers = createAction('data/getOffers',
 
 export const loadOffers = createAction<Cards>('loading/loadOffers');
 
-export const getComments = createAction('data/getComments',
-  (comments: any | null) => ({payload: comments}));
-
 
 export const loadSpecificOffer = createAction<Offer>('data/loadSpecificOffer');
 export const getSpecificOffer = createAction<Offer>('offer/fetch',
   (offer: offer) => ({payload: offer}));
+
+export const loadComments = createAction('data/loadComments');
+export const getComments = createAction('comments/fetch',
+  (comments: any | null) => ({payload: comments}));
 
 export const requireAuthorisation = createAction<AuthorizationStatus>('user/requireAuthorisation');
 export const setError = createAction<string | null>('app/setError');

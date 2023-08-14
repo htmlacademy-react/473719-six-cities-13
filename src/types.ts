@@ -75,11 +75,13 @@ type Place = Card & Geo & {
 
 type ReviewItemProps = {
   id: string;
-  userId: string;
-  userName: string;
   rating: number;
-  imgUrl: string;
-  reviewText: string;
+  user: {
+    name: string;
+    avatarUrl: string;
+    isPro: boolean;
+  };
+  comment: string;
   date: string;
 }
 

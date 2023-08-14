@@ -10,7 +10,7 @@ import classNames from 'classnames';
 import NearPlaces from '../components/near-places';
 import Map from '../components/map';
 import { useAppSelector } from '../redux-hooks';
-import { fetchSpecificOffer } from '../store/api-actions';
+import { fetchComments, fetchSpecificOffer } from '../store/api-actions';
 import { useAppDispatch } from '../redux-hooks';
 import { dropOffer } from '../store/actions';
 import Header from '../components/header';
@@ -22,10 +22,12 @@ function OfferPage() : JSX.Element {
 
   const offerId = useParams().id;
   const loadedOffer = useAppSelector((state) => state.loadedOffer);
+  const loadedComments = useAppSelector((state) => state.loadedComments);
 
   useEffect(() => {
     if(offerId) {
       dispatch(fetchSpecificOffer(offerId));
+      dispatch(fetchComments(offerId));
     }
 
     return () => {
@@ -39,9 +41,6 @@ function OfferPage() : JSX.Element {
       <p>123</p>
     );
   }
-
-  console.log(loadedOffer);
-
   const {bedrooms, city, description, goods, host, id, images, isFavorite, isPremium, location, maxAdults, price, rating, title, type, } = loadedOffer;
 
   return (
@@ -116,7 +115,7 @@ function OfferPage() : JSX.Element {
                 </div>
               </div>
               <section className="offer__reviews reviews">
-                <ReviewsList />
+                <ReviewsList comments={loadedComments}/>
                 <CommentSection />
               </section>
             </div>

@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { choseFilter, changeCity, loadOffers, setError, getOffers, setOffersDataLoadingStatus, loadSpecificOffer, dropOffer} from './actions';
+import { choseFilter, changeCity, loadOffers, setError, getOffers, setOffersDataLoadingStatus, loadSpecificOffer, dropOffer, loadComments} from './actions';
 import { AuthorizationStatus, CITIES } from '../const';
 import { requireAuthorisation } from './actions';
 import { Card, Offer } from '../types';
@@ -13,6 +13,7 @@ type InitialState = {
   error: string | null;
   isOffersDataLoading: boolean;
   loadedOffer: Offer | null;
+  loadedComments: any;
 }
 
 const initialState: InitialState = {
@@ -23,6 +24,7 @@ const initialState: InitialState = {
   error: null,
   isOffersDataLoading: false,
   loadedOffer: null,
+  loadedComments: [],
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -53,6 +55,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(dropOffer, (state) => {
       state.loadedOffer = null;
+    })
+    .addCase(loadComments, (state, actions) => {
+      state.loadedComments = actions.payload;
     });
 });
 

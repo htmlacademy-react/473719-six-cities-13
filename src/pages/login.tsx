@@ -2,36 +2,38 @@ import { useNavigate } from 'react-router-dom';
 import Logo from '../components/logo';
 import { useAppDispatch, useAppSelector } from '../redux-hooks';
 import { useRef } from 'react';
-
-
-type AuthData = {
-  email: string;
-  password: string;
-}
+import { loginAction } from '../store/api-actions';
+import { AuthData } from '../types';
+import { FormEvent } from 'react';
+import { AppRoute } from '../const';
+import { AuthorizationStatus } from '../const';
+import { Navigate } from 'react-router-dom';
 
 function Login(): JSX.Element {
-  const currentCity: string = useAppSelector((state)=> state.city);
-
-
-  const emailRef = userRef<HTMLInputElement | null>(null);
-  const passwordRef = useRef<HTMLInputElement | null>(null);
-
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+
+  const currentCity: string = useAppSelector((state)=> state.city);
+  const authorisationStatus = useAppSelector((state)=> state.authorisationStatus);
+  if (authorisationStatus === AuthorizationStatus.Auth) {
+    return <Navigate to={AppRoute.Root}/>;
+  }
+
+  const emailRef = useRef<HTMLInputElement | null>(null);
+  const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const onSubmit = (authData: AuthData)=> {
     dispatch(loginAction(authData));
-  }
+  };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.prevent.default();
-
+    event.preventDefault();
     if (emailRef.current !== null && passwordRef.current !== null) {
       onSubmit({
-        email: emailRef.current.value,
+        login: emailRef.current.value,
         password: passwordRef.current.value,
       });
-    }
+
+
     }
   };
 
@@ -50,7 +52,7 @@ function Login(): JSX.Element {
         <div className="page__login-container container">
           <section className="login">
             <h1 className="login__title">Sign in</h1>
-            <form className="login__form form" action="#" method="post">
+            <form className="login__form form" action="#" method="post" onSubmit={handleSubmit}>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">E-mail</label>
                 <input
@@ -60,7 +62,8 @@ function Login(): JSX.Element {
                   id="email"
                   ref={emailRef}
                   placeholder="Email"
-                  required />
+                  required
+                />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">Password</label>
@@ -71,12 +74,14 @@ function Login(): JSX.Element {
                   name="password"
                   placeholder="Password"
                   ref={passwordRef}
-                  required />
+                  required
+                />
               </div>
               <button
                 className="login__submit form__submit button"
                 type="submit"
-                onClick={handleSubmit}>Sign in</button>
+              >Sign in
+              </button>
             </form>
           </section>
           <section className="locations locations--login locations--current">

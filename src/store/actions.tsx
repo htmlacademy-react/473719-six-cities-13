@@ -1,6 +1,8 @@
 import { createAction } from '@reduxjs/toolkit';
 import { Cards, NearPlacesProps, Offer, ReviewItemProps } from '../types';
 import { AuthorizationStatus } from '../const';
+import { UserData } from '../types';
+import { AppRoute } from '../const';
 
 export const changeCity = createAction('app/changeCity',
   (city: string) => ({payload: city}));
@@ -34,3 +36,5 @@ export const setOffersDataLoadingStatus = createAction<boolean>('data/setOffersD
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 export const dropOffer = createAction('data/drop');
 
+export const setUserInfo = createAction('user/setUserInfo', (userInfo: UserData | null) => ({payload: userInfo}));
+export const redirectToRoute = createAction<AppRoute>('app/redirectToRoute');

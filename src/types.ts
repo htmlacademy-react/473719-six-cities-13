@@ -100,4 +100,15 @@ type State = ReturnType<typeof store.getState>;
 
 type AppDispatch = typeof store.dispatch;
 
-export type {Cards, BasicOffer, City, Geo, Offer, MapCard, StarProps, MapProps, CityPoint, ReviewItemProps, NearPlacesProps, NearPlaceItemProps, State, AppDispatch};
+type UserData = {
+  id: number;
+  email: string;
+  token: string;
+}
+
+type AuthData = {
+  login: string;
+  password: string;
+}
+
+export type {Cards, BasicOffer, City, Geo, Offer, MapCard, StarProps, MapProps, CityPoint, ReviewItemProps, NearPlacesProps, NearPlaceItemProps, State, AppDispatch, AuthData, UserData};

@@ -1,10 +1,20 @@
-import Header from '../components/header';
+import Logo from '../components/logo';
+import { useAppSelector } from '../redux-hooks';
 
 function Login(): JSX.Element {
+  const currentCity = useAppSelector((state)=> state.city);
+
   return(
     <div className="page page--gray page--login">
-      <Header />
-
+      <header className="header">
+        <div className="container">
+          <div className="header__wrapper">
+            <div className="header__left">
+              <Logo />
+            </div>
+          </div>
+        </div>
+      </header>
       <main className="page__main page__main--login">
         <div className="page__login-container container">
           <section className="login">
@@ -24,7 +34,7 @@ function Login(): JSX.Element {
           <section className="locations locations--login locations--current">
             <div className="locations__item">
               <a className="locations__item-link" href="#">
-                <span>Amsterdam</span>
+                <span>{currentCity}</span>
               </a>
             </div>
           </section>

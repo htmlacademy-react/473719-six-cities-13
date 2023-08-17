@@ -1,5 +1,4 @@
 import { CITIES } from '../const';
-import { City } from '../types';
 import classNames from 'classnames';
 import { changeCity } from '../store/actions';
 

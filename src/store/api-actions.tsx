@@ -1,6 +1,6 @@
-import axios, {AxiosInstance} from 'axios';
+import {AxiosInstance} from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AppDispatch, NearPlacesProps, ReviewItemProps, State } from '../types';
+import { AppDispatch, State } from '../types';
 import { Cards, Offer } from '../types';
 import { loadOffers, requireAuthorisation, setError, setOffersDataLoadingStatus, loadSpecificOffer, loadComments, loadNearPlaces} from './actions';
 import { store } from '.';
@@ -63,7 +63,7 @@ export const fetchSpecificOffer = createAsyncThunk<void, string, {
   }
 );
 
-export const fetchComments = createAsyncThunk<void, ReviewItemProps[], {
+export const fetchComments = createAsyncThunk<void, string, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -83,7 +83,7 @@ export const fetchComments = createAsyncThunk<void, ReviewItemProps[], {
   }
 );
 
-export const fetchNearPlaces = createAsyncThunk<void, NearPlacesProps, {
+export const fetchNearPlaces = createAsyncThunk<void, string, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;

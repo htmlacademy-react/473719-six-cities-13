@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-import { Place, CityPoint, Offer} from '../types';
 import CommentSection from '../components/comment-section';
 import ReviewsList from '../components/reviews-list';
 import { calculateCardRating } from '../utils';
@@ -48,7 +47,7 @@ function OfferPage() : JSX.Element {
   const selectedNearPlaces = nearPlaces?.slice(0, 3);
   const selectedNearPlacesWithCurrent = selectedNearPlaces?.concat(loadedOffer);
 
-  const {bedrooms, city, description, goods, host, id, images, isFavorite, isPremium, location, maxAdults, price, rating, title, type, } = loadedOffer;
+  const {bedrooms, description, goods, host, images, isFavorite, isPremium, maxAdults, price, rating, title, type, } = loadedOffer;
 
   return (
     <div className="page">
@@ -57,7 +56,7 @@ function OfferPage() : JSX.Element {
         <section className="offer">
           <div className="offer__gallery-container container">
             <div className="offer__gallery">
-              {images.map((image) =>
+              {(images as string[]).map((image) =>
                 (<div className="offer__image-wrapper" key={image}><img className="offer__image" src={image} alt="Photo studio" /></div>))}
             </div>
           </div>

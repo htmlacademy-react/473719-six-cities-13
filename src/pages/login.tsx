@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import Logo from '../components/logo';
 import { useAppDispatch, useAppSelector } from '../redux-hooks';
 import { useRef } from 'react';
@@ -14,6 +13,7 @@ function Login(): JSX.Element {
 
   const currentCity: string = useAppSelector((state)=> state.city);
   const authorisationStatus = useAppSelector((state)=> state.authorisationStatus);
+
   if (authorisationStatus === AuthorizationStatus.Auth) {
     return <Navigate to={AppRoute.Root}/>;
   }
@@ -32,8 +32,6 @@ function Login(): JSX.Element {
         login: emailRef.current.value,
         password: passwordRef.current.value,
       });
-
-
     }
   };
 

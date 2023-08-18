@@ -51,7 +51,6 @@ export const fetchSpecificOffer = createAsyncThunk<void, string, {
       dispatch(loadSpecificOffer(data));
     } catch {
       dispatch(setOffersDataLoadingStatus(true));
-      //redirect to route
       dispatch(setOffersDataLoadingStatus(false));
     }
   }
@@ -71,7 +70,7 @@ export const fetchComments = createAsyncThunk<void, string, {
       dispatch(loadComments(data));
     } catch {
       dispatch(setOffersDataLoadingStatus(true));
-      //redirect to route
+      dispatch(redirectToRoute(AppRoute.Root));
       dispatch(setOffersDataLoadingStatus(false));
     }
   }
@@ -91,7 +90,7 @@ export const fetchNearPlaces = createAsyncThunk<void, string, {
       dispatch(loadNearPlaces(data));
     } catch {
       dispatch(setOffersDataLoadingStatus(true));
-      //redirect to route
+      dispatch(redirectToRoute(AppRoute.Root));
       dispatch(setOffersDataLoadingStatus(false));
     }
   }
@@ -125,6 +124,7 @@ export const loginAction = createAsyncThunk<void, AuthData, {
     const { data } = await api.post<UserData>(APIroute.Login, {email, password});
     saveToken(data.token);
     dispatch(setUserInfo(data));
+    dispatch(redirectToRoute(AppRoute.Root));
     dispatch(requireAuthorisation(AuthorizationStatus.Auth));
   },
 );

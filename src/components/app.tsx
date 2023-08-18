@@ -6,7 +6,6 @@ import OfferPage from '../pages/offer-page';
 import { AuthorizationStatus, AppRoute } from '../const';
 
 import {Route, BrowserRouter, Routes } from 'react-router-dom';
-
 import PrivateRoute from './private-route';
 
 function App() : JSX.Element {

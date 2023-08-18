@@ -23,7 +23,6 @@ function OfferPage() : JSX.Element {
   const offerId = useParams().id;
   const authorizationStatus = useAppSelector((state)=> state.authorizationStatus);
   const loadedOffer = useAppSelector((state) => state.loadedOffer);
-  const loadedComments = useAppSelector((state) => state.loadedComments);
   const nearPlaces = useAppSelector((state)=> state.nearPlaces);
 
   useEffect(() => {
@@ -122,7 +121,7 @@ function OfferPage() : JSX.Element {
                 </div>
               </div>
               <section className="offer__reviews reviews">
-                <ReviewsList comments={loadedComments}/>
+                <ReviewsList />
                 {authorizationStatus === AuthorizationStatus.Auth && <CommentSection />}
               </section>
             </div>

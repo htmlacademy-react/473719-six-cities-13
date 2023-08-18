@@ -80,7 +80,7 @@ type ReviewItemProps = CommentData & {
 }
 
 type CommentData = {
-  offerId: string | undefined;
+  offerId: string;
   rating: number;
   comment: string;
 };
@@ -115,4 +115,4 @@ type AuthData = {
   password: string;
 }
 
-export type {Cards, BasicOffer, City, Geo, Offer, MapCard, StarProps, MapProps, CityPoint, ReviewItemProps, NearPlacesProps, NearPlaceItemProps, State, AppDispatch, AuthData, UserData, CommentData};
+export type {Cards, BasicOffer, City, Geo, Offer, MapCard, StarProps, MapProps, CityPoint, ReviewItemProps, NearPlacesProps, NearPlaceItemProps, State, AppDispatch, AuthData, UserData, CommentData,};

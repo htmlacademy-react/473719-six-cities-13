@@ -2,18 +2,18 @@ import { createReducer } from '@reduxjs/toolkit';
 import { choseFilter, changeCity, loadOffers, setError, getOffers, setOffersDataLoadingStatus, loadSpecificOffer, dropOffer, loadComments, loadNearPlaces, setComment} from './actions';
 import { AuthorizationStatus, CITIES } from '../const';
 import { requireAuthorization } from './actions';
-import { Card, NearPlacesProps, Offer, ReviewItemProps, CommentData } from '../types';
+import { NearPlacesProps, Offer, ReviewItemProps, CommentData } from '../types';
 
 
 type InitialState = {
   offers: Card[];
   city: string;
   filter: string;
-  authorizationStatus: string;
+  authorizationStatus: AuthorizationStatus;
   error: string | null;
   isOffersDataLoading: boolean;
   loadedOffer: Offer | null;
-  loadedComments: ReviewItemProps[] | undefined;
+  loadedComments: ReviewItemProps[];
   nearPlaces: NearPlacesProps[] | undefined;
   review: CommentData | null;
 }

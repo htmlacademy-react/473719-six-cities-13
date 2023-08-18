@@ -12,12 +12,12 @@ function Login(): JSX.Element {
   const currentCity: string = useAppSelector((state)=> state.city);
   const authorizationStatus = useAppSelector((state)=> state.authorizationStatus);
 
+  const emailRef = useRef<HTMLInputElement | null>(null);
+  const passwordRef = useRef<HTMLInputElement | null>(null);
+
   if (authorizationStatus === AuthorizationStatus.Auth) {
     return <Navigate to={AppRoute.Root}/>;
   }
-
-  const emailRef = useRef<HTMLInputElement | null>(null);
-  const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const onSubmit = (authData: AuthData)=> {
     dispatch(loginAction(authData));

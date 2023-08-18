@@ -1,6 +1,6 @@
 import {AxiosInstance} from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AppDispatch, CommentData, ReviewItemProps, State } from '../types';
+import { AppDispatch, CommentData, State } from '../types';
 import { Cards, Offer } from '../types';
 import { loadOffers, requireAuthorization, setError, setOffersDataLoadingStatus, loadSpecificOffer, loadComments, loadNearPlaces} from './actions';
 import { store } from '.';

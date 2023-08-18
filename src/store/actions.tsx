@@ -29,7 +29,6 @@ export const loadNearPlaces = createAction('data/loadNearPlaces');
 export const getNearPlaces = createAction('nearPlaces/fetch',
   (nearPlaces: NearPlacesProps | null) => ({payload: nearPlaces}));
 
-export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 export const setError = createAction<string | null>('app/setError');
 export const setOffersDataLoadingStatus = createAction<boolean>('data/setOffersDataLoadingStatus');
 

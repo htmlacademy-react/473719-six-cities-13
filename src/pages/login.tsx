@@ -15,10 +15,6 @@ function Login(): JSX.Element {
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
-  if (authorizationStatus === AuthorizationStatus.Auth) {
-    return <Navigate to={AppRoute.Root}/>;
-  }
-
   const onSubmit = (authData: AuthData)=> {
     dispatch(loginAction(authData));
   };

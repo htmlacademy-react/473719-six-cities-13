@@ -1,10 +1,17 @@
 import Logo from './logo';
 import UserInfo from './user-info';
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../redux-hooks';
+import { useAppDispatch, useAppSelector } from '../redux-hooks';
+import { logoutAction } from '../store/api-actions';
 
 function Header (): JSX.Element {
   const authorisationStatus = useAppSelector((state) => state.authorisationStatus);
+  const dispatch = useAppDispatch();
+
+  const logoutHandler = () => {
+    dispatch(logoutAction());
+  };
+
   return (
     <header className="header">
       <div className="container">
@@ -19,19 +26,19 @@ function Header (): JSX.Element {
                   <UserInfo />
                 </li>
                 <li className="header__nav-item">
-                  <Link className="header__nav-link" href="#">
+                  <a className="header__nav-link" href="#" onClick={logoutHandler}>
                     <span className="header__signout">Sign out</span>
-                  </Link>
+                  </a>
                 </li>
               </ul>}
             {authorisationStatus === 'NO_AUTH' &&
                 <ul className="header__nav-list">
                   <li className="header__nav-item user">
-                    <a className="header__nav-link header__nav-link--profile" href="#">
+                    <Link className="header__nav-link header__nav-link--profile" to="/login">
                       <div className="header__avatar-wrapper user__avatar-wrapper">
                       </div>
                       <span className="header__login">Sign in</span>
-                    </a>
+                    </Link>
                   </li>
                 </ul>}
           </nav>

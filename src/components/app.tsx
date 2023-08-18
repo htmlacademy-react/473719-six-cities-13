@@ -2,19 +2,13 @@ import MainPage from '../pages/main-page';
 import Login from '../pages/login';
 import WrongPage from '../pages/wrong-page';
 import Favorites from '../pages/favorites';
-import Offer from '../pages/offer';
+import OfferPage from '../pages/offer-page';
 import { AuthorizationStatus, AppRoute } from '../const';
 
 import {Route, BrowserRouter, Routes } from 'react-router-dom';
-
 import PrivateRoute from './private-route';
-import { useAppSelector } from '../redux-hooks';
 
 function App() : JSX.Element {
-  const authorisationStatus = useAppSelector((state) => state.authorisationStatus);
-  const offers = useAppSelector((state) => state.offers);
-  console.log(authorisationStatus);
-  console.log(offers);
 
   return(
     <BrowserRouter>
@@ -27,7 +21,7 @@ function App() : JSX.Element {
           </PrivateRoute>
         }
         />
-        <Route path= {AppRoute.OfferItem} element= {<Offer />}/>
+        <Route path= {AppRoute.OfferItem} element= {<OfferPage />}/>
         <Route path={AppRoute.EverythingElse} element= {<WrongPage />} />
       </Routes>
     </BrowserRouter>

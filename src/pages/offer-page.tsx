@@ -1,8 +1,6 @@
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { Place, CityPoint} from '../types';
-import Header from '../components/header';
 import CommentSection from '../components/comment-section';
 import ReviewsList from '../components/reviews-list';
 import { calculateCardRating } from '../utils';
@@ -11,62 +9,55 @@ import classNames from 'classnames';
 import NearPlaces from '../components/near-places';
 import Map from '../components/map';
 import { useAppSelector } from '../redux-hooks';
+import { fetchComments, fetchNearPlaces, fetchSpecificOffer } from '../store/api-actions';
+import { useAppDispatch } from '../redux-hooks';
+import { dropOffer } from '../store/actions';
+import Header from '../components/header';
 
 const mapWidth = '580px';
 
-function Offer() : JSX.Element {
-  const params = useParams();
-  const offers = useAppSelector((state) => state.offers);
-  const currentOffer = offers.filter((el) => el.id === params.id)[0];
-
-  const {title, type, price, isFavorite, isPremium, rating, host, goods, bedrooms, maxAdults, description}: Place = currentOffer;
-
-  function makeItemsWithKeys(item: string, key: number) {
-    return {
-      id: key,
-      item: item,
-    };
-  }
-
-  const locations: Array<CityPoint> = [];
-
-  locations.push({
-    id: currentOffer.id,
-    location: currentOffer.location,
-  });
-
-  locations.push({
-    id: offers[3].id,
-    location: offers[3].location});
-
-  locations.push({
-    id: offers[4].id,
-    location: offers[4].location});
-
-  locations.push({
-    id: offers[5].id,
-    location: offers[5].location});
-
-  const chosenCityCards = [];
-
-  chosenCityCards.push(offers[3]);
-  chosenCityCards.push(offers[4]);
-  chosenCityCards.push(offers[5]);
-
-
+function OfferPage() : JSX.Element {
+  const dispatch = useAppDispatch();
   const [chosenCard, setChosenCard] = useState(null);
 
-  const imagesWithKeys = images.map((image, key) => makeItemsWithKeys(image, key));
-  const goodsWithKeys = goods.map((good, key) => makeItemsWithKeys(good, key));
+  const offerId = useParams().id;
+  const loadedOffer = useAppSelector((state) => state.loadedOffer);
+  const loadedComments = useAppSelector((state) => state.loadedComments);
+  const nearPlaces = useAppSelector((state)=> state.nearPlaces);
+
+  useEffect(() => {
+    if(offerId) {
+      dispatch(fetchSpecificOffer(offerId));
+      dispatch(fetchComments(offerId));
+      dispatch(fetchNearPlaces(offerId));
+    }
+
+    return () => {
+      dispatch(dropOffer());
+    };
+
+  }, [offerId, dispatch]);
+
+  if (loadedOffer === null) {
+    return (
+      <p>123</p>
+    );
+  }
+
+  const selectedNearPlaces = nearPlaces?.slice(0, 3);
+  const selectedNearPlacesWithCurrent = selectedNearPlaces?.concat(loadedOffer);
+
+  const {bedrooms, description, goods, host, images, isFavorite, isPremium, maxAdults, price, rating, title, type, } = loadedOffer;
 
   return (
     <div className="page">
+      <Header />
       <main className="page__main page__main--offer">
         <section className="offer">
           <div className="offer__gallery-container container">
             <div className="offer__gallery">
-              {imagesWithKeys.map((image) =>
-                (<div className="offer__image-wrapper" key={image.id}><img className="offer__image" src={image.item} alt="Photo studio" /></div>))}
+              {(images).map((image) =>
+                (<div className="offer__image-wrapper" key={image}><img className="offer__image" src={image} alt="Photo studio" /></div>))}
             </div>
           </div>
           <div className="offer__container container">
@@ -111,7 +102,7 @@ function Offer() : JSX.Element {
               <div className="offer__inside">
                 <h2 className="offer__inside-title">What&apos;s inside</h2>
                 <ul className="offer__inside-list">
-                  {goodsWithKeys.map((item) => (<li className="offer__inside-item" key={item.id}>{item.item}</li>))}
+                  {goods.map((item) => (<li className="offer__inside-item" key={item}>{item}</li>))}
                 </ul>
               </div>
               <div className="offer__host">
@@ -130,21 +121,21 @@ function Offer() : JSX.Element {
                 </div>
               </div>
               <section className="offer__reviews reviews">
-                <ReviewsList />
+                <ReviewsList comments={loadedComments}/>
                 <CommentSection />
               </section>
             </div>
           </div>
           <section className="offer__map map">
-            <Map places={chosenCityCards} activeId={chosenCard} offerId={currentOffer.id} widthParam={mapWidth}/>
+            <Map places={selectedNearPlacesWithCurrent} activeId={chosenCard} offerId={offerId} widthParam={mapWidth}/>
           </section>
         </section>
         <div className="container">
-          <NearPlaces places={chosenCityCards} setChosenCard={setChosenCard}/>
+          <NearPlaces places={selectedNearPlaces} setChosenCard={setChosenCard}/>
         </div>
       </main>
     </div>
   );
 }
 
-export default Offer;
+export default OfferPage;

@@ -4,8 +4,7 @@ import { useRef } from 'react';
 import { loginAction } from '../store/api-actions';
 import { AuthData } from '../types';
 import { FormEvent } from 'react';
-import { AppRoute } from '../const';
-import { AuthorizationStatus } from '../const';
+import { AppRoute, AuthorizationStatus } from '../const';
 import { Navigate } from 'react-router-dom';
 
 function Login(): JSX.Element {

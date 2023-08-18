@@ -69,17 +69,21 @@ type Offer = BasicOffer & Geo & {
   maxAdults: number;
 }
 
-type ReviewItemProps = {
+type ReviewItemProps = CommentData & {
   id: string;
-  rating: number;
   user: {
     name: string;
     avatarUrl: string;
     isPro: boolean;
   };
-  comment: string;
   date: string;
 }
+
+type CommentData = {
+  offerId: string | undefined;
+  rating: number;
+  comment: string;
+};
 
 type StarProps = {
   rate: number;
@@ -111,4 +115,4 @@ type AuthData = {
   password: string;
 }
 
-export type {Cards, BasicOffer, City, Geo, Offer, MapCard, StarProps, MapProps, CityPoint, ReviewItemProps, NearPlacesProps, NearPlaceItemProps, State, AppDispatch, AuthData, UserData};
+export type {Cards, BasicOffer, City, Geo, Offer, MapCard, StarProps, MapProps, CityPoint, ReviewItemProps, NearPlacesProps, NearPlaceItemProps, State, AppDispatch, AuthData, UserData, CommentData};

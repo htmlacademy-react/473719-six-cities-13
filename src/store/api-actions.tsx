@@ -1,11 +1,11 @@
 import {AxiosInstance} from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AppDispatch, State } from '../types';
+import { AppDispatch, CommentData, ReviewItemProps, State } from '../types';
 import { Cards, Offer } from '../types';
 import { loadOffers, requireAuthorisation, setError, setOffersDataLoadingStatus, loadSpecificOffer, loadComments, loadNearPlaces} from './actions';
 import { store } from '.';
 import { setUserInfo } from './actions';
-import { redirectToRoute } from './actions';
+import { redirectToRoute, setComment } from './actions';
 
 
 import { saveToken, dropToken } from '../services/tokens';
@@ -94,6 +94,18 @@ export const fetchNearPlaces = createAsyncThunk<void, string, {
       dispatch(setOffersDataLoadingStatus(false));
     }
   }
+);
+
+export const sendComments = createAsyncThunk<void, CommentData, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'comments/send',
+  async ({offerId, comment, rating}, {dispatch, extra: api}) => {
+    const { data } = await api.post<CommentData>(`${APIroute.Comments}/${offerId}`, {comment, rating});
+    dispatch(setComment(data));
+  },
 );
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {

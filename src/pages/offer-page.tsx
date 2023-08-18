@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { AuthorizationStatus } from '../const';
 
 import CommentSection from '../components/comment-section';
 import ReviewsList from '../components/reviews-list';
@@ -21,6 +22,7 @@ function OfferPage() : JSX.Element {
   const [chosenCard, setChosenCard] = useState(null);
 
   const offerId = useParams().id;
+  const authorisationStatus = useAppSelector((state)=> state.authorisationStatus);
   const loadedOffer = useAppSelector((state) => state.loadedOffer);
   const loadedComments = useAppSelector((state) => state.loadedComments);
   const nearPlaces = useAppSelector((state)=> state.nearPlaces);
@@ -122,7 +124,7 @@ function OfferPage() : JSX.Element {
               </div>
               <section className="offer__reviews reviews">
                 <ReviewsList comments={loadedComments}/>
-                <CommentSection />
+                {authorisationStatus === AuthorizationStatus.Auth && <CommentSection />}
               </section>
             </div>
           </div>

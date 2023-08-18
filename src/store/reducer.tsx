@@ -6,7 +6,7 @@ import { NearPlacesProps, Offer, ReviewItemProps, CommentData } from '../types';
 
 
 type InitialState = {
-  offers: Card[];
+  offers: Offer[];
   city: string;
   filter: string;
   authorizationStatus: AuthorizationStatus;

@@ -24,7 +24,6 @@ export const loadComments = createAction('data/loadComments');
 export const getComments = createAction('comments/fetch',
   (comments: ReviewItemProps[]| null) => ({payload: comments}));
 
-
 export const loadNearPlaces = createAction('data/loadNearPlaces');
 export const getNearPlaces = createAction('nearPlaces/fetch',
   (nearPlaces: NearPlacesProps | null) => ({payload: nearPlaces}));

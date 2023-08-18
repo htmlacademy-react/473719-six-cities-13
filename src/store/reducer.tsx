@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { choseFilter, changeCity, loadOffers, setError, getOffers, setOffersDataLoadingStatus, loadSpecificOffer, dropOffer, loadComments, loadNearPlaces, setComment} from './actions';
 import { AuthorizationStatus, CITIES } from '../const';
-import { requireAuthorisation } from './actions';
+import { requireAuthorization } from './actions';
 import { Card, NearPlacesProps, Offer, ReviewItemProps, CommentData } from '../types';
 
 
@@ -9,7 +9,7 @@ type InitialState = {
   offers: Card[];
   city: string;
   filter: string;
-  authorisationStatus: string;
+  authorizationStatus: string;
   error: string | null;
   isOffersDataLoading: boolean;
   loadedOffer: Offer | null;
@@ -22,7 +22,7 @@ const initialState: InitialState = {
   offers: [],
   city: CITIES.paris,
   filter: 'normal',
-  authorisationStatus: AuthorizationStatus.Unknown,
+  authorizationStatus: AuthorizationStatus.Unknown,
   error: null,
   isOffersDataLoading: false,
   loadedOffer: null,
@@ -42,8 +42,8 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(loadOffers, (state, actions) => {
       state.offers = actions.payload;
     })
-    .addCase(requireAuthorisation, (state, actions) => {
-      state.authorisationStatus = actions.payload;
+    .addCase(requireAuthorization, (state, actions) => {
+      state.authorizationStatus = actions.payload;
     })
     .addCase(setError,(state, actions) => {
       state.error = actions.payload;

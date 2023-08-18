@@ -1,9 +1,8 @@
 import Logo from '../components/logo';
 import { useAppDispatch, useAppSelector } from '../redux-hooks';
-import { useRef } from 'react';
+import { useRef, FormEvent } from 'react';
 import { loginAction } from '../store/api-actions';
 import { AuthData } from '../types';
-import { FormEvent } from 'react';
 import { AppRoute, AuthorizationStatus } from '../const';
 import { Navigate } from 'react-router-dom';
 
@@ -11,9 +10,9 @@ function Login(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const currentCity: string = useAppSelector((state)=> state.city);
-  const authorisationStatus = useAppSelector((state)=> state.authorisationStatus);
+  const authorizationStatus = useAppSelector((state)=> state.authorizationStatus);
 
-  if (authorisationStatus === AuthorizationStatus.Auth) {
+  if (authorizationStatus === AuthorizationStatus.Auth) {
     return <Navigate to={AppRoute.Root}/>;
   }
 

@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../redux-hooks';
 import { logoutAction } from '../store/api-actions';
 
 function Header (): JSX.Element {
-  const authorisationStatus = useAppSelector((state) => state.authorisationStatus);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const dispatch = useAppDispatch();
 
   const logoutHandler = () => {
@@ -20,7 +20,7 @@ function Header (): JSX.Element {
             <Logo />
           </div>
           <nav className="header__nav">
-            {authorisationStatus === 'AUTH' &&
+            {authorizationStatus === 'AUTH' &&
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
                   <UserInfo />
@@ -31,7 +31,7 @@ function Header (): JSX.Element {
                   </a>
                 </li>
               </ul>}
-            {authorisationStatus === 'NO_AUTH' &&
+            {authorizationStatus === 'NO_AUTH' &&
                 <ul className="header__nav-list">
                   <li className="header__nav-item user">
                     <Link className="header__nav-link header__nav-link--profile" to="/login">

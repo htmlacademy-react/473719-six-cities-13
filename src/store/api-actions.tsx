@@ -2,7 +2,7 @@ import {AxiosInstance} from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, CommentData, ReviewItemProps, State } from '../types';
 import { Cards, Offer } from '../types';
-import { loadOffers, requireAuthorisation, setError, setOffersDataLoadingStatus, loadSpecificOffer, loadComments, loadNearPlaces} from './actions';
+import { loadOffers, requireAuthorization, setError, setOffersDataLoadingStatus, loadSpecificOffer, loadComments, loadNearPlaces} from './actions';
 import { store } from '.';
 import { setUserInfo } from './actions';
 import { redirectToRoute, setComment } from './actions';
@@ -117,11 +117,11 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   async (_arg, {dispatch, extra: api}) => {
     try {
       const { data } = await api.get<UserData>(APIroute.Login);
-      dispatch(requireAuthorisation(AuthorizationStatus.Auth));
+      dispatch(requireAuthorization(AuthorizationStatus.Auth));
       dispatch(redirectToRoute(AppRoute.Root));
       dispatch(setUserInfo(data));
     } catch {
-      dispatch(requireAuthorisation(AuthorizationStatus.NoAuth));
+      dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     }
   },
 );
@@ -137,7 +137,7 @@ export const loginAction = createAsyncThunk<void, AuthData, {
     saveToken(data.token);
     dispatch(setUserInfo(data));
     dispatch(redirectToRoute(AppRoute.Root));
-    dispatch(requireAuthorisation(AuthorizationStatus.Auth));
+    dispatch(requireAuthorization(AuthorizationStatus.Auth));
   },
 );
 
@@ -151,6 +151,6 @@ export const logoutAction = createAsyncThunk<void, undefined, {
     await api.delete(APIroute.Logout);
     dropToken();
     dispatch(setUserInfo(null));
-    dispatch(requireAuthorisation(AuthorizationStatus.NoAuth));
+    dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
   },
 );

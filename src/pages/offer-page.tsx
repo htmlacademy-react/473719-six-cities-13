@@ -9,9 +9,8 @@ import { calculateCardRating } from '../utils';
 import classNames from 'classnames';
 import NearPlaces from '../components/near-places';
 import Map from '../components/map';
-import { useAppSelector } from '../redux-hooks';
+import { useAppSelector, useAppDispatch } from '../redux-hooks';
 import { fetchComments, fetchNearPlaces, fetchSpecificOffer } from '../store/api-actions';
-import { useAppDispatch } from '../redux-hooks';
 import { dropOffer } from '../store/actions';
 import Header from '../components/header';
 
@@ -22,7 +21,7 @@ function OfferPage() : JSX.Element {
   const [chosenCard, setChosenCard] = useState(null);
 
   const offerId = useParams().id;
-  const authorisationStatus = useAppSelector((state)=> state.authorisationStatus);
+  const authorizationStatus = useAppSelector((state)=> state.authorizationStatus);
   const loadedOffer = useAppSelector((state) => state.loadedOffer);
   const loadedComments = useAppSelector((state) => state.loadedComments);
   const nearPlaces = useAppSelector((state)=> state.nearPlaces);
@@ -124,7 +123,7 @@ function OfferPage() : JSX.Element {
               </div>
               <section className="offer__reviews reviews">
                 <ReviewsList comments={loadedComments}/>
-                {authorisationStatus === AuthorizationStatus.Auth && <CommentSection />}
+                {authorizationStatus === AuthorizationStatus.Auth && <CommentSection />}
               </section>
             </div>
           </div>

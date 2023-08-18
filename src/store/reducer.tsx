@@ -9,7 +9,7 @@ type InitialState = {
   offers: Offer[];
   city: string;
   filter: string;
-  authorizationStatus: AuthorizationStatus;
+  authorizationStatus: string;
   error: string | null;
   isOffersDataLoading: boolean;
   loadedOffer: Offer | null;

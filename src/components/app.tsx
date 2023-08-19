@@ -5,7 +5,7 @@ import Favorites from '../pages/favorites';
 import OfferPage from '../pages/offer-page';
 import { AuthorizationStatus, AppRoute } from '../const';
 
-import {Route, BrowserRouter, Routes } from 'react-router-dom';
+import {Route, Routes } from 'react-router-dom';
 import PrivateRoute from './private-route';
 import HistoryRouter from './browser-history';
 import browserHistory from '../browser-history';

@@ -4,16 +4,15 @@ import WrongPage from '../pages/wrong-page';
 import Favorites from '../pages/favorites';
 import OfferPage from '../pages/offer-page';
 import { AuthorizationStatus, AppRoute } from '../const';
-import { createBrowserHistory } from 'history';
 
 import {Route, BrowserRouter, Routes } from 'react-router-dom';
 import PrivateRoute from './private-route';
-
-export const browserHistory = createBrowserHistory();
+import HistoryRouter from './browser-history';
+import browserHistory from '../browser-history';
 
 function App() : JSX.Element {
   return(
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route path= {AppRoute.Root} element = { <MainPage />}/>
         <Route path= {AppRoute.LogIn} element= {<Login />}/>
@@ -26,7 +25,7 @@ function App() : JSX.Element {
         <Route path= {AppRoute.OfferItem} element= {<OfferPage />}/>
         <Route path={AppRoute.EverythingElse} element= {<WrongPage />} />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }
 

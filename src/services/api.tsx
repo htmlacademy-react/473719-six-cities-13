@@ -2,7 +2,8 @@ import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError} fro
 import { getToken } from './tokens';
 import { StatusCodes } from 'http-status-codes';
 import { processErrorHandle } from './processes-error-handle';
-import { AppRoute, browserHistory } from '../components/app';
+import { AppRoute, } from '../components/app';
+import browserHistory from '../browser-history';
 
 const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.BAD_REQUEST]: true,

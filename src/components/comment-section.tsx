@@ -7,6 +7,7 @@ import { sendComments } from '../store/api-actions';
 import { FormEvent } from 'react';
 import { useAppDispatch } from '../redux-hooks';
 import { useParams } from 'react-router-dom';
+import { EMPTY_LINE, EMPTY_RATING, MIN_LINE } from '../const';
 
 
 function CommentSection():JSX.Element {
@@ -16,11 +17,11 @@ function CommentSection():JSX.Element {
   const [isSending, setIsSending] = useState(false);
 
   const [review, setReview] = useState({
-    comment: '',
-    rating: 0,
+    comment: EMPTY_LINE,
+    rating: EMPTY_RATING,
   });
   const dispatch = useAppDispatch();
-  const isValid = (review.comment !== '' && review.rating !== 0 && review.comment.length > 49);
+  const isValid = (review.comment !== EMPTY_LINE && review.rating !== EMPTY_RATING && review.comment.length > MIN_LINE);
 
   function choseStar(event: React.MouseEvent<HTMLInputElement>) {
     const stars = parseInt((event.target as HTMLInputElement).value, 10);
@@ -41,8 +42,8 @@ function CommentSection():JSX.Element {
   function resetData (event: FormEvent<HTMLFormElement>) {
     setReview({
       ...review,
-      comment: '',
-      rating: 0,
+      comment: EMPTY_LINE,
+      rating: EMPTY_RATING,
     });
     event.currentTarget.reset();
   }

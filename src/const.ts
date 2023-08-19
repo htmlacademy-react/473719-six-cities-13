@@ -1,5 +1,9 @@
 import { City } from './types';
 
+const EMPTY_LINE = '';
+const EMPTY_RATING = 0;
+const MIN_LINE = 49;
+
 enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
@@ -100,4 +104,4 @@ const URL_MARKER_DEFAULT = '../public/img/pin.svg';
 
 const URL_MARKER_CURRENT = '../public/img/pin-active.svg';
 
-export {AuthorizationStatus, AppRoute, CITIES, sortTypes, ratingTypes, ratingTypesMap, URL_MARKER_DEFAULT, URL_MARKER_CURRENT, AllCities, APIroute, TIMEOUT_SHOW_ERROR};
+export {AuthorizationStatus, AppRoute, CITIES, sortTypes, ratingTypes, ratingTypesMap, URL_MARKER_DEFAULT, URL_MARKER_CURRENT, AllCities, APIroute, TIMEOUT_SHOW_ERROR, EMPTY_LINE, EMPTY_RATING, MIN_LINE};

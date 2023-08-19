@@ -105,6 +105,7 @@ export const sendComments = createAsyncThunk<void, CommentData, {
   async ({offerId, comment, rating}, {dispatch, extra: api}) => {
     const { data } = await api.post<CommentData>(`${APIroute.Comments}/${offerId}`, {comment, rating});
     dispatch(setComment(data));
+    dispatch(fetchComments(offerId));
   },
 );
 

@@ -2,6 +2,7 @@ import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError} fro
 import { getToken } from './tokens';
 import { StatusCodes } from 'http-status-codes';
 import { processErrorHandle } from './processes-error-handle';
+import { AppRoute, browserHistory } from '../components/app';
 
 const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.BAD_REQUEST]: true,
@@ -40,9 +41,11 @@ export const createAPI = (): AxiosInstance => {
   api.interceptors.response.use(
     (response) => response,
     (error: AxiosError<DetailMessageType>) => {
+      if (error.response?.status === StatusCodes.NOT_FOUND) {
+        browserHistory.push(AppRoute.EverythingElse);
+      }
       if (error.response && shouldDisplayError(error.response)) {
         const detailMessage = (error.response.data);
-
         processErrorHandle(detailMessage.message);
       }
 

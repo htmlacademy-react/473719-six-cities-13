@@ -4,12 +4,14 @@ import WrongPage from '../pages/wrong-page';
 import Favorites from '../pages/favorites';
 import OfferPage from '../pages/offer-page';
 import { AuthorizationStatus, AppRoute } from '../const';
+import { createBrowserHistory } from 'history';
 
 import {Route, BrowserRouter, Routes } from 'react-router-dom';
 import PrivateRoute from './private-route';
 
-function App() : JSX.Element {
+export const browserHistory = createBrowserHistory();
 
+function App() : JSX.Element {
   return(
     <BrowserRouter>
       <Routes>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import React from 'react';
 import { ratingTypes } from '../const';
 import Star from './star';
@@ -12,11 +12,15 @@ import { useParams } from 'react-router-dom';
 function CommentSection():JSX.Element {
 
   const offerId = useParams().id;
+  const [isSubmintDisabled, setIsSubmitDisabled] = useState(true);
+  const [isSending, setIsSending] = useState(false);
 
   const [review, setReview] = useState({
     comment: '',
     rating: 0,
   });
+  const dispatch = useAppDispatch();
+  const isValid = (review.comment !== '' && review.rating !== 0 && review.comment.length > 49);
 
   function choseStar(event: React.MouseEvent<HTMLInputElement>) {
     const stars = parseInt((event.target as HTMLInputElement).value, 10);
@@ -34,21 +38,38 @@ function CommentSection():JSX.Element {
     });
   }
 
-  const dispatch = useAppDispatch();
+  function resetData (event: FormEvent<HTMLFormElement>) {
+    setReview({
+      ...review,
+      comment: '',
+      rating: 0,
+    });
+    event.currentTarget.reset();
+  }
 
-  const onSubmit = (commentData: CommentData) => {
-    dispatch(sendComments(commentData));
-  };
+  const onSubmit = async (commentData: CommentData) => await dispatch(sendComments(commentData));
+
+  useEffect(()=> {
+    if (isValid) {
+      setIsSubmitDisabled(false);
+    } else {
+      setIsSubmitDisabled(true);
+    }
+  }, [isValid]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (review.comment !== '' && review.rating !== 0) {
+    setIsSending(true);
+    if (isValid) {
       onSubmit({
         offerId: offerId,
         comment: review.comment,
         rating: review.rating,
+      }).then(()=> {
+        setIsSending(false);
       });
     }
+    resetData(event);
   };
 
   return(
@@ -56,10 +77,10 @@ function CommentSection():JSX.Element {
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {ratingTypes.map((rate)=>
-          <Star key={rate} rate={rate} choseStar ={choseStar}></Star>
+          <Star key={rate} rate={rate} choseStar ={choseStar} disabled={isSending}></Star>
         )}
       </div>
-      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" value={review.comment} onChange={changeText}></textarea>
+      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" value={review.comment} onChange={changeText} disabled={isSending}></textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
       To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
@@ -67,7 +88,7 @@ function CommentSection():JSX.Element {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={review.comment === '' || review.rating === 0}
+          disabled={isSubmintDisabled}
         >Submit
         </button>
       </div>

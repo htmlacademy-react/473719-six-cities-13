@@ -127,3 +127,7 @@ export type PrivateRouteProps = {
   authorizationStatus: AuthorizationStatus;
   children: JSX.Element;
 }
+
+export type TabsProps = {
+  chosenCity : string;
+}

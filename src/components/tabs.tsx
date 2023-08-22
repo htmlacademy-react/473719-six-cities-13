@@ -4,10 +4,7 @@ import { changeCity } from '../store/actions';
 
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../redux-hooks';
-
-type TabsProps = {
-  chosenCity : string;
-}
+import { TabsProps } from '../types';
 
 function Tabs(props: TabsProps): JSX.Element {
   const {chosenCity} = props;

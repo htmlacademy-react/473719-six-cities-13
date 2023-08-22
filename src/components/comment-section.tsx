@@ -3,8 +3,8 @@ import { EMPTY_LINE, EMPTY_RATING } from '../const';
 import React from 'react';
 import { ratingTypes } from '../const';
 import Star from './star';
-import { FormEvent } from 'react';
 import { useParams } from 'react-router-dom';
+import useReviewChanges from '../custom-hooks/use-review-changes';
 
 import usePostingComments from '../custom-hooks/use-posting-comments';
 
@@ -12,37 +12,7 @@ import usePostingComments from '../custom-hooks/use-posting-comments';
 function CommentSection():JSX.Element {
 
   const offerId = useParams().id;
-
-  const [review, setReview] = useState({
-    comment: EMPTY_LINE,
-    rating: EMPTY_RATING,
-  });
-
-  function choseStar(event: React.MouseEvent<HTMLInputElement>) {
-    const stars = parseInt((event.target as HTMLInputElement).value, 10);
-    setReview({
-      ...review,
-      rating: stars,
-    });
-  }
-
-  function changeText(event: React.ChangeEvent<HTMLTextAreaElement>){
-    const text: string = event.target.value;
-    setReview({
-      ...review,
-      comment: text,
-    });
-  }
-
-  function resetData (event: FormEvent<HTMLFormElement>) {
-    setReview({
-      ...review,
-      comment: EMPTY_LINE,
-      rating: EMPTY_RATING,
-    });
-    event.currentTarget.reset();
-  }
-
+  const [changeText, resetData, choseStar, review] = useReviewChanges();
   const [handleSubmit, isSending, isSubmitDisabled] = usePostingComments(review, offerId, resetData);
 
   return(

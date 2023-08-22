@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { AuthorizationStatus } from '../const';
 import NotFoundScreen from './not-found-screen';
 
@@ -10,9 +10,7 @@ import { calculateCardRating } from '../utils';
 import classNames from 'classnames';
 import NearPlaces from '../components/near-places';
 import Map from '../components/map';
-import { useAppSelector, useAppDispatch } from '../redux-hooks';
-import { fetchComments, fetchNearPlaces, fetchSpecificOffer } from '../store/api-actions';
-import { dropOffer } from '../store/actions';
+import { useAppSelector} from '../redux-hooks';
 import Header from '../components/header';
 import LoadingScreen from '../components/loading-block';
 import useFetchingOffer from '../custom-hooks/use-fetching-offer';

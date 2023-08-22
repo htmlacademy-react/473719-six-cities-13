@@ -1,15 +1,10 @@
-// import { useEffect} from 'react';
 import { useState } from 'react';
 import { EMPTY_LINE, EMPTY_RATING } from '../const';
 import React from 'react';
 import { ratingTypes } from '../const';
 import Star from './star';
-// import { CommentData } from '../types';
-// import { sendComments } from '../store/api-actions';
-// import { FormEvent } from 'react';
-// import { useAppDispatch } from '../redux-hooks';
+import { FormEvent } from 'react';
 import { useParams } from 'react-router-dom';
-// import { EMPTY_LINE, EMPTY_RATING, MIN_LINE } from '../const';
 
 import usePostingComments from '../custom-hooks/use-posting-comments';
 

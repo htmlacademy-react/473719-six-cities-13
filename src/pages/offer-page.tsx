@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { AuthorizationStatus } from '../const';
+import NotFoundScreen from './not-found-screen';
 
 import CommentSection from '../components/comment-section';
 import ReviewsList from '../components/reviews-list';
@@ -25,6 +26,7 @@ function OfferPage() : JSX.Element {
   const authorizationStatus = useAppSelector((state)=> state.authorizationStatus);
   const loadedOffer = useAppSelector((state) => state.loadedOffer);
   const nearPlaces = useAppSelector((state)=> state.nearPlaces);
+  const selectedNearPlaces = nearPlaces?.slice(0, 3);
 
   useEffect(() => {
     if(offerId) {
@@ -32,14 +34,14 @@ function OfferPage() : JSX.Element {
       dispatch(fetchComments(offerId));
       dispatch(fetchNearPlaces(offerId));
     }
-
     return () => {
       dispatch(dropOffer());
     };
 
   }, [offerId, dispatch]);
 
-  if (AuthorizationStatus.Unknown) {
+
+  if (authorizationStatus === AuthorizationStatus.Unknown) {
     return <LoadingScreen />;
   }
 
@@ -47,9 +49,7 @@ function OfferPage() : JSX.Element {
     return <NotFoundScreen />;
   }
 
-  const selectedNearPlaces = nearPlaces?.slice(0, 3);
   const selectedNearPlacesWithCurrent = selectedNearPlaces?.concat(loadedOffer);
-
   const {bedrooms, description, goods, host, images, isFavorite, isPremium, maxAdults, price, rating, title, type, } = loadedOffer;
 
   return (

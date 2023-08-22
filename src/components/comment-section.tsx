@@ -1,27 +1,28 @@
-import { useEffect, useState } from 'react';
+// import { useEffect} from 'react';
+import { useState } from 'react';
+import { EMPTY_LINE, EMPTY_RATING } from '../const';
 import React from 'react';
 import { ratingTypes } from '../const';
 import Star from './star';
-import { CommentData } from '../types';
-import { sendComments } from '../store/api-actions';
-import { FormEvent } from 'react';
-import { useAppDispatch } from '../redux-hooks';
+// import { CommentData } from '../types';
+// import { sendComments } from '../store/api-actions';
+// import { FormEvent } from 'react';
+// import { useAppDispatch } from '../redux-hooks';
 import { useParams } from 'react-router-dom';
-import { EMPTY_LINE, EMPTY_RATING, MIN_LINE } from '../const';
+// import { EMPTY_LINE, EMPTY_RATING, MIN_LINE } from '../const';
+
+import usePostingComments from '../custom-hooks/use-posting-comments';
 
 
 function CommentSection():JSX.Element {
 
   const offerId = useParams().id;
-  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
-  const [isSending, setIsSending] = useState(false);
+  // const [isSending, setIsSending] = useState(false);
 
   const [review, setReview] = useState({
     comment: EMPTY_LINE,
     rating: EMPTY_RATING,
   });
-  const dispatch = useAppDispatch();
-  const isValid = (review.comment !== EMPTY_LINE && review.rating !== EMPTY_RATING && review.comment.length > MIN_LINE);
 
   function choseStar(event: React.MouseEvent<HTMLInputElement>) {
     const stars = parseInt((event.target as HTMLInputElement).value, 10);
@@ -48,30 +49,7 @@ function CommentSection():JSX.Element {
     event.currentTarget.reset();
   }
 
-  const onSubmit = async (commentData: CommentData) => await dispatch(sendComments(commentData));
-
-  useEffect(()=> {
-    if (isValid) {
-      setIsSubmitDisabled(false);
-    } else {
-      setIsSubmitDisabled(true);
-    }
-  }, [isValid]);
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setIsSending(true);
-    if (isValid) {
-      onSubmit({
-        offerId: offerId,
-        comment: review.comment,
-        rating: review.rating,
-      }).then(()=> {
-        setIsSending(false);
-      });
-    }
-    resetData(event);
-  };
+  const [handleSubmit, isSending, isSubmitDisabled] = usePostingComments(review, offerId, resetData);
 
   return(
     <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>

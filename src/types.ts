@@ -63,7 +63,7 @@ export type Offer = BasicOffer & Geo & {
   handleLeave?: React.SetStateAction<string | null> | undefined;
 }
 
-export type ReviewItemProps = CommentData & {
+export type ReviewItemProps = CommentDataProps & {
   id: string;
   user: {
     name: string;
@@ -72,11 +72,14 @@ export type ReviewItemProps = CommentData & {
   };
   date: string;
 }
-
-export type CommentData = {
-  offerId: string;
+export type ReviewData {
   rating: number;
   comment: string;
+}
+
+export type CommentDataProps = ReviewData & {
+  offerId: string;
+  setReview?: React.SetStateAction<ReviewData>;
 };
 
 export type StarProps = {

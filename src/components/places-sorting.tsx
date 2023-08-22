@@ -1,33 +1,12 @@
-import { useState } from 'react';
 import { sortTypes } from '../const';
 import classNames from 'classnames';
-import { useAppDispatch, useAppSelector } from '../redux-hooks';
-import { choseFilter } from '../store/actions';
-
+import { useAppSelector } from '../redux-hooks';
+import useFiltering from '../custom-hooks/use-filtering';
 function PLacesSorting(): JSX.Element {
 
-  const [filter, setFilter] = useState('Popular');
-  const [isOpened, setOpened] = useState(false);
-
-  const dispatch = useAppDispatch();
-
+  const [filter, isOpened, handleClick, toggleList] = useFiltering();
   const selectedFilter = useAppSelector((state) => state.filter);
   const sortTypesKeys = Object.keys(sortTypes);
-
-  function toggleList() {
-    setOpened(!isOpened);
-  }
-
-
-  function handleClick(event: React.MouseEvent<HTMLLIElement>){
-    const settings = 'data-filter';
-    const actualFilter = (event.target as HTMLLIElement).getAttribute(settings);
-    if (actualFilter) {
-      setFilter(actualFilter);
-      dispatch(choseFilter(actualFilter));
-      toggleList();
-    }
-  }
 
   return (
     <form className="places__sorting" action="#" method="get">
@@ -39,7 +18,8 @@ function PLacesSorting(): JSX.Element {
         </svg>
       </span>
       <ul className={`places__options places__options--custom ${isOpened ? 'places__options--opened' : ''}` }>
-        {sortTypesKeys.map((item) =>(<li key={item} className={classNames('places__option',{'places__options--active' :filter === sortTypes[item]})} data-filter={item} tabIndex={0} onClick={handleClick}>{sortTypes[item]}</li>))}
+        {sortTypesKeys.map((item) =>(
+          <li key={item} className={classNames('places__option',{'places__options--active' :filter === sortTypes[item]})} data-filter={item} tabIndex={0} onClick={handleClick}>{sortTypes[item]}</li>))}
       </ul>
     </form>
   );

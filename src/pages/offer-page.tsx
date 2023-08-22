@@ -15,30 +15,17 @@ import { fetchComments, fetchNearPlaces, fetchSpecificOffer } from '../store/api
 import { dropOffer } from '../store/actions';
 import Header from '../components/header';
 import LoadingScreen from '../components/loading-block';
+import useFetchingOffer from '../custom-hooks/use-fetching-offer';
 
 const mapWidth = '580px';
 
 function OfferPage() : JSX.Element {
-  const dispatch = useAppDispatch();
   const [chosenCard, setChosenCard] = useState(null);
 
   const offerId = useParams().id;
-  const authorizationStatus = useAppSelector((state)=> state.authorizationStatus);
-  const loadedOffer = useAppSelector((state) => state.loadedOffer);
+  const loadedOffer = useFetchingOffer(offerId);
   const nearPlaces = useAppSelector((state)=> state.nearPlaces);
-  const selectedNearPlaces = nearPlaces?.slice(0, 3);
-
-  useEffect(() => {
-    if(offerId) {
-      dispatch(fetchSpecificOffer(offerId));
-      dispatch(fetchComments(offerId));
-      dispatch(fetchNearPlaces(offerId));
-    }
-    return () => {
-      dispatch(dropOffer());
-    };
-
-  }, [offerId, dispatch]);
+  const authorizationStatus = useAppSelector((state)=> state.authorizationStatus);
 
 
   if (authorizationStatus === AuthorizationStatus.Unknown) {
@@ -49,6 +36,7 @@ function OfferPage() : JSX.Element {
     return <NotFoundScreen />;
   }
 
+  const selectedNearPlaces = nearPlaces?.slice(0, 3);
   const selectedNearPlacesWithCurrent = selectedNearPlaces?.concat(loadedOffer);
   const {bedrooms, description, goods, host, images, isFavorite, isPremium, maxAdults, price, rating, title, type, } = loadedOffer;
 

@@ -12,7 +12,6 @@ import usePostingComments from '../custom-hooks/use-posting-comments';
 function CommentSection():JSX.Element {
 
   const offerId = useParams().id;
-  // const [isSending, setIsSending] = useState(false);
 
   const [review, setReview] = useState({
     comment: EMPTY_LINE,

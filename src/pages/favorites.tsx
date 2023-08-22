@@ -23,7 +23,6 @@ function Favorites() {
               )}
             </ul>
           </section>}
-
         </div>
       </main>
       <footer className="footer container">

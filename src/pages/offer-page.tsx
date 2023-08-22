@@ -13,6 +13,7 @@ import { useAppSelector, useAppDispatch } from '../redux-hooks';
 import { fetchComments, fetchNearPlaces, fetchSpecificOffer } from '../store/api-actions';
 import { dropOffer } from '../store/actions';
 import Header from '../components/header';
+import LoadingScreen from '../components/loading-block';
 
 const mapWidth = '580px';
 
@@ -38,10 +39,12 @@ function OfferPage() : JSX.Element {
 
   }, [offerId, dispatch]);
 
-  if (loadedOffer === null) {
-    return (
-      <p>123</p>
-    );
+  if (AuthorizationStatus.Unknown) {
+    return <LoadingScreen />;
+  }
+
+  if (!loadedOffer) {
+    return <NotFoundScreen />;
   }
 
   const selectedNearPlaces = nearPlaces?.slice(0, 3);

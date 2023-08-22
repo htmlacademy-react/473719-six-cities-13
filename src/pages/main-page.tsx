@@ -4,9 +4,9 @@ import Header from '../components/header';
 import PLacesSorting from '../components/places-sorting';
 import { useState } from 'react';
 import Map from '../components/map';
-import { sortOffersByType } from '../utils';
+import { sortOffersByType, getStartPlacesFiltered } from '../utils';
 
-import type { MapCard, Offer } from '../types';
+import type { Offer } from '../types';
 import { useAppSelector, } from '../redux-hooks';
 import EmptyMainPage from './empty-main-page';
 
@@ -16,14 +16,10 @@ function MainPage(): JSX.Element {
   const chosenCity = useAppSelector((state) => state.city);
   const offers = useAppSelector((state) => state.offers);
   const filter = useAppSelector((state) => state.filter);
-
-  function getStartPlaces (places: Offer[], city: string): Offer[] {
-    return places.filter((offer) => offer.city.name === city);
-  }
+  const filteredOffers: Offer[] = getStartPlacesFiltered(offers, chosenCity);
+  const sortedOffers: Offer[] = sortOffersByType(filteredOffers, filter);
 
   const [chosenCard, setChosenCard] = useState<string | null>(null);
-  const filteredOffers: Offer[] = getStartPlaces(offers, chosenCity);
-  const sortedOffers: Offer[] = sortOffersByType(filteredOffers, filter);
 
   return(
     <div className="page page--gray page--main">

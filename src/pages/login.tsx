@@ -8,7 +8,6 @@ import { Navigate } from 'react-router-dom';
 
 function Login(): JSX.Element {
   const dispatch = useAppDispatch();
-
   const currentCity: string = useAppSelector((state)=> state.city);
   const authorizationStatus = useAppSelector((state)=> state.authorizationStatus);
 
@@ -31,7 +30,8 @@ function Login(): JSX.Element {
 
   return(
     <>
-      {authorizationStatus === AuthorizationStatus.Auth && <Navigate to={AppRoute.Root}/>}
+      {authorizationStatus === AuthorizationStatus.Auth &&
+       <Navigate to={AppRoute.Root}/>}
       {authorizationStatus !== AuthorizationStatus.Auth &&
        <div className="page page--gray page--login">
          <header className="header">

@@ -13,4 +13,8 @@ function sortOffersByType(offers: Offer[], sortType: string): Offer[] {
   }
 }
 
-export {calculateCardRating, sortOffersByType};
+function getStartPlacesFiltered (places: Offer[], city: string): Offer[] {
+  return places.filter((offer) => offer.city.name === city);
+}
+
+export {calculateCardRating, sortOffersByType, getStartPlacesFiltered};

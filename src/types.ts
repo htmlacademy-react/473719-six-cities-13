@@ -85,7 +85,7 @@ export type StarProps = {
 }
 
 export type NearPlacesProps = {
-  places: Array<BasicOffer>;
+  places: Array<Offer>;
   setChosenCard: React.SetStateAction<string>;
 }
 

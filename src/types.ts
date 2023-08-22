@@ -1,6 +1,7 @@
 import React from 'react';
 import type {BrowserHistory} from 'history';
 import { store } from './store';
+import { AuthorizationStatus } from './const';
 
 export type BasicOffer = {
   id: string;
@@ -120,4 +121,9 @@ export interface HistoryRouterProps {
 
 export type FavoriteCity = {
   cityName: string;
+}
+
+export type PrivateRouteProps = {
+  authorizationStatus: AuthorizationStatus;
+  children: JSX.Element;
 }

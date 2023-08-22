@@ -117,3 +117,7 @@ export interface HistoryRouterProps {
   basename?: string;
   children?: React.ReactNode;
 }
+
+export type FavoriteCity = {
+  cityName: string;
+}

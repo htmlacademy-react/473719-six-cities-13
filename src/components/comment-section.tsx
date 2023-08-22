@@ -1,5 +1,3 @@
-import { useState } from 'react';
-import { EMPTY_LINE, EMPTY_RATING } from '../const';
 import React from 'react';
 import { ratingTypes } from '../const';
 import Star from './star';

@@ -17,4 +17,9 @@ function getStartPlacesFiltered (places: Offer[], city: string): Offer[] {
   return places.filter((offer) => offer.city.name === city);
 }
 
-export {calculateCardRating, sortOffersByType, getStartPlacesFiltered};
+function getFavoritesWithSpecificCity (offers: Offer[], cityName: string) {
+  return offers.filter((item: Offer) => item.isFavorite && item.city.name === cityName);
+}
+
+
+export {calculateCardRating, sortOffersByType, getStartPlacesFiltered, getFavoritesWithSpecificCity};

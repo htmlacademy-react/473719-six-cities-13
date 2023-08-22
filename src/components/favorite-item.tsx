@@ -1,10 +1,11 @@
-import { Card } from '../types';
+import { Offer } from '../types';
 import { Link } from 'react-router-dom';
 import { calculateCardRating } from '../utils';
 import classNames from 'classnames';
 
-function FavoriteItem(favoriteCard: Card): JSX.Element {
+function FavoriteItem(favoriteCard: Offer): JSX.Element {
   const {price, isFavorite, images, rating, title, type, id} = favoriteCard;
+
   return(
     <article className="favorites__card place-card">
       <div className="favorites__image-wrapper place-card__image-wrapper">

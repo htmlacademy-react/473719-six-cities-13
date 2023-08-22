@@ -10,6 +10,7 @@ export type BasicOffer = {
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;
+  previewImage?: string;
 }
 
 export type City = {
@@ -46,19 +47,9 @@ export type Geo = {
   };
 }
 
-export type MapCard = BasicOffer & {
-  handleHover?: React.SetStateAction<string | null> | undefined;
-  handleLeave?: React.SetStateAction<string | null> | undefined;
-}
-
-export type Cards = {
-  cards: MapCard[];
-}
-
 export type Offer = BasicOffer & Geo & {
   description: string;
   city: City;
-  previewImage: string;
   goods: Array<string>;
   images: Array<string>;
   host: {
@@ -68,6 +59,8 @@ export type Offer = BasicOffer & Geo & {
   };
   bedrooms: number;
   maxAdults: number;
+  handleHover?: React.SetStateAction<string | null> | undefined;
+  handleLeave?: React.SetStateAction<string | null> | undefined;
 }
 
 export type ReviewItemProps = CommentData & {

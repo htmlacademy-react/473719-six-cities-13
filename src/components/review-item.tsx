@@ -1,7 +1,7 @@
 import { ReviewItemProps } from '../types';
 
-function ReviewItem(reviwItemProps: ReviewItemProps):JSX.Element {
-  const {rating, user, comment, date} = reviwItemProps;
+function ReviewItem(reviewItemProps: ReviewItemProps):JSX.Element {
+  const {rating, user, comment, date} = reviewItemProps;
   return(
     <li className="reviews__item">
       <div className="reviews__user user">

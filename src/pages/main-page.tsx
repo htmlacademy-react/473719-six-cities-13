@@ -6,7 +6,7 @@ import { useState } from 'react';
 import Map from '../components/map';
 import { sortOffersByType } from '../utils';
 
-import type { Card } from '../types';
+import type { MapCard, Offer } from '../types';
 import { useAppSelector, } from '../redux-hooks';
 import EmptyMainPage from './empty-main-page';
 
@@ -17,13 +17,13 @@ function MainPage(): JSX.Element {
   const offers = useAppSelector((state) => state.offers);
   const filter = useAppSelector((state) => state.filter);
 
-  function getStartPlaces (places: Card[], city: string): Card[] {
+  function getStartPlaces (places: Offer[], city: string): Offer[] {
     return places.filter((offer) => offer.city.name === city);
   }
 
   const [chosenCard, setChosenCard] = useState<string | null>(null);
-  const filteredOffers: Card[] = getStartPlaces(offers, chosenCity);
-  const sortedOffers: Card[] = sortOffersByType(filteredOffers, filter);
+  const filteredOffers: Offer[] = getStartPlaces(offers, chosenCity);
+  const sortedOffers: Offer[] = sortOffersByType(filteredOffers, filter);
 
   return(
     <div className="page page--gray page--main">
@@ -41,7 +41,7 @@ function MainPage(): JSX.Element {
               <b className="places__found">{filteredOffers.length} places to stay in {chosenCity}</b>
               <PLacesSorting />
               <div className="cities__places-list places__list tabs__content">
-                {sortedOffers.map((card: Card) =>
+                {sortedOffers.map((card: Offer) =>
                   (<PlaceCard key= {card.id} {...card}
                     handleHover= {()=> setChosenCard(card.id)}
                     handleLeave= {()=> setChosenCard(null)}
@@ -51,7 +51,7 @@ function MainPage(): JSX.Element {
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map city={chosenCity} activeId={chosenCard} widthParam={mapWidth} />
+                <Map activeId={chosenCard} widthParam={mapWidth} />
               </section>
             </div>
           </div>

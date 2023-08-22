@@ -1,10 +1,10 @@
-import { Card } from './types';
+import { Offer } from './types';
 
 function calculateCardRating (rating: number) {
   return (Math.round((Math.ceil(rating) / 5) * 100)).toString();
 }
 
-function sortOffersByType(offers: Card[], sortType: string): Card[] {
+function sortOffersByType(offers: Offer[], sortType: string): Offer[] {
   switch(sortType) {
     case ('toHigh') : return offers.sort((a,b) => a.price - b.price);
     case ('toLow') : return offers.sort((a,b) => b.price - a.price);

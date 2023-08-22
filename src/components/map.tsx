@@ -54,7 +54,7 @@ function Map({activeId, offerId, widthParam, places}: MapProps) {
         });
       }
     }
-  }, [map, filteredOffers, activeId, currentCity]);
+  }, [map, filteredOffers, activeId, currentCity, currentCustomIcon, defaultCustomIcon, offerId]);
 
 
   return (

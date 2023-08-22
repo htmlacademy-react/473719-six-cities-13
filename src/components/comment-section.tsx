@@ -13,7 +13,7 @@ import { EMPTY_LINE, EMPTY_RATING, MIN_LINE } from '../const';
 function CommentSection():JSX.Element {
 
   const offerId = useParams().id;
-  const [isSubmintDisabled, setIsSubmitDisabled] = useState(true);
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
   const [isSending, setIsSending] = useState(false);
 
   const [review, setReview] = useState({
@@ -89,7 +89,7 @@ function CommentSection():JSX.Element {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={isSubmintDisabled}
+          disabled={isSubmitDisabled}
         >Submit
         </button>
       </div>

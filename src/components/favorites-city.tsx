@@ -1,5 +1,5 @@
 import FavoriteItem from './favorite-item';
-import { Card } from '../types';
+import { Offer } from '../types';
 import { useAppSelector } from '../redux-hooks';
 
 type City = {
@@ -9,7 +9,7 @@ type City = {
 function FavoritesCity(city: City): JSX.Element {
   const offers = useAppSelector((state) => state.offers);
 
-  const favoriteItemsInChosenCity: Array<Card> = offers.filter((item: Card) => item.isFavorite && item.city.name === city.cityName);
+  const favoriteItemsInChosenCity: Array<Card> = offers.filter((item: Offer) => item.isFavorite && item.city.name === city.cityName);
   return(
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
@@ -20,7 +20,7 @@ function FavoritesCity(city: City): JSX.Element {
         </div>
       </div>
       <div className="favorites__places">
-        {favoriteItemsInChosenCity.map((item: Card) =>
+        {favoriteItemsInChosenCity.map((item: Offer) =>
           (<FavoriteItem key={item.id} {...item}/>))}
       </div>
     </li>

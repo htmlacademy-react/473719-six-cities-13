@@ -1,9 +1,9 @@
-import { MapCard } from '../types';
+import { Offer } from '../types';
 import { Link } from 'react-router-dom';
 import { calculateCardRating } from '../utils';
 import classNames from 'classnames';
 
-function PlaceCard(cardProps: MapCard): JSX.Element {
+function PlaceCard(cardProps: Offer): JSX.Element {
   const {isPremium, price, isFavorite, rating, id, title, type, handleHover, handleLeave, previewImage} = cardProps;
 
   return (

@@ -1,13 +1,13 @@
 import FavoritesCity from '../components/favorites-city';
 import Header from '../components/header';
 import { useAppSelector } from '../redux-hooks';
-import { Card } from '../types';
+import { Offer } from '../types';
 import EmptyFavorite from './empty-favorites';
 
 function Favorites() {
   const offers = useAppSelector((state) => state.offers);
-  const favoriteItems: Array<Card> = offers.filter((item: Card) => item.isFavorite);
-  const favoriteCities: Array<string> = [...new Set(favoriteItems.map((item: Card) => item.city.name))];
+  const favoriteItems: Array<Offer> = offers.filter((item: Offer) => item.isFavorite);
+  const favoriteCities = [...new Set(favoriteItems.map((item: Offer) => item.city.name))];
   return(
     <div className="page">
       <Header />

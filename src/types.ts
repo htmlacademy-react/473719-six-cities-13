@@ -1,7 +1,8 @@
 import React from 'react';
+import type {BrowserHistory} from 'history';
 import { store } from './store';
 
-type BasicOffer = {
+export type BasicOffer = {
   id: string;
   title: string;
   type: string;
@@ -11,7 +12,7 @@ type BasicOffer = {
   rating: number;
 }
 
-type City = {
+export type City = {
   name: string;
   location: {
     latitude: number;
@@ -20,7 +21,7 @@ type City = {
     };
 }
 
-type CityPoint = {
+export type CityPoint = {
   id: string;
   location: {
     latitude: number;
@@ -29,7 +30,7 @@ type CityPoint = {
   };
 }
 
-type MapProps = {
+export type MapProps = {
   places?: Offer[];
   activeId: string | null;
   offerId?: string | null;
@@ -37,7 +38,7 @@ type MapProps = {
 }
 
 
-type Geo = {
+export type Geo = {
     location: {
     latitude: number;
     longitude: number;
@@ -45,16 +46,16 @@ type Geo = {
   };
 }
 
-type MapCard = BasicOffer & {
+export type MapCard = BasicOffer & {
   handleHover?: React.SetStateAction<string | null> | undefined;
   handleLeave?: React.SetStateAction<string | null> | undefined;
 }
 
-type Cards = {
+export type Cards = {
   cards: MapCard[];
 }
 
-type Offer = BasicOffer & Geo & {
+export type Offer = BasicOffer & Geo & {
   description: string;
   city: City;
   previewImage: string;
@@ -69,7 +70,7 @@ type Offer = BasicOffer & Geo & {
   maxAdults: number;
 }
 
-type ReviewItemProps = CommentData & {
+export type ReviewItemProps = CommentData & {
   id: string;
   user: {
     name: string;
@@ -79,40 +80,44 @@ type ReviewItemProps = CommentData & {
   date: string;
 }
 
-type CommentData = {
+export type CommentData = {
   offerId: string;
   rating: number;
   comment: string;
 };
 
-type StarProps = {
+export type StarProps = {
   rate: number;
    choseStar: () => void;
 }
 
-type NearPlacesProps = {
+export type NearPlacesProps = {
   places: Array<BasicOffer>;
   setChosenCard: React.SetStateAction<string>;
 }
 
-type NearPlaceItemProps = BasicOffer & {
+export type NearPlaceItemProps = BasicOffer & {
   handleHover?: React.SetStateAction<string | null>;
   handleLeave?: React.SetStateAction<string | null>;
 }
 
-type State = ReturnType<typeof store.getState>;
+export type State = ReturnType<typeof store.getState>;
 
-type AppDispatch = typeof store.dispatch;
+export type AppDispatch = typeof store.dispatch;
 
-type UserData = {
+export type UserData = {
   id: number;
   email: string;
   token: string;
 }
 
-type AuthData = {
+export type AuthData = {
   login: string;
   password: string;
 }
 
-export type {Cards, BasicOffer, City, Geo, Offer, MapCard, StarProps, MapProps, CityPoint, ReviewItemProps, NearPlacesProps, NearPlaceItemProps, State, AppDispatch, AuthData, UserData, CommentData};
+export interface HistoryRouterProps {
+  history: BrowserHistory;
+  basename?: string;
+  children?: React.ReactNode;
+}

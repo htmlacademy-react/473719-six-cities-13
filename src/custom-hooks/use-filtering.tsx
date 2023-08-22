@@ -12,9 +12,9 @@ function useFiltering () {
     setOpened(!isOpened);
   }
 
-  function handleClick(event: React.MouseEvent<HTMLLIElement>){
+  function handleClick(event: React.MouseEvent<HTMLElement>){
     const settings = 'data-filter';
-    const actualFilter = (event.target as HTMLLIElement).getAttribute(settings);
+    const actualFilter = (event.target as HTMLElement).getAttribute(settings);
     if (actualFilter) {
       setFilter(actualFilter);
       dispatch(choseFilter(actualFilter));

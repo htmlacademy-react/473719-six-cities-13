@@ -73,7 +73,7 @@ export type ReviewItemProps = CommentDataProps & {
   };
   date: string;
 }
-export type ReviewData {
+export type ReviewData = {
   rating: number;
   comment: string;
 }

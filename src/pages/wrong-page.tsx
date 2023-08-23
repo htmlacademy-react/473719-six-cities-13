@@ -1,9 +1,9 @@
-import Header from '../components/header';
+import HeaderMemo from '../components/header';
 
 function WrongPage():JSX.Element {
   return (
     <div className="page">
-      <Header />
+      <HeaderMemo />
       <main className="page__main page__main--offer">
         <section>
           <div className="container" style={{ marginTop: 100, marginBottom: 50}}>

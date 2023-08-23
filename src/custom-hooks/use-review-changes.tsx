@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { EMPTY_LINE, EMPTY_RATING } from '../const';
 import { FormEvent } from 'react';
 
@@ -8,13 +8,14 @@ function useReviewChanges () {
     rating: EMPTY_RATING,
   });
 
-  function choseStar(event: React.MouseEvent<HTMLInputElement>) {
+  const choseStar = useCallback ((event: React.MouseEvent<HTMLInputElement>) => {
     const stars = parseInt((event.target as HTMLInputElement).value, 10);
     setReview({
       ...review,
       rating: stars,
     });
-  }
+  }, [event]);
+
 
   function changeText(event: React.ChangeEvent<HTMLTextAreaElement>){
     const text: string = event.target.value;

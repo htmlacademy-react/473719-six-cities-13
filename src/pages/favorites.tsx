@@ -1,5 +1,5 @@
 import FavoritesCity from '../components/favorites-city';
-import Header from '../components/header';
+import HeaderMemo from '../components/header';
 import { useAppSelector } from '../redux-hooks';
 import { Offer } from '../types';
 import EmptyFavorite from './empty-favorites';
@@ -10,7 +10,7 @@ function Favorites() {
   const favoriteCities = [...new Set(favoriteItems.map((item: Offer) => item.city.name))];
   return(
     <div className="page">
-      <Header />
+      <HeaderMemo />
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           {favoriteItems.length === 0 && <EmptyFavorite />}

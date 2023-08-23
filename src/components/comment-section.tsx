@@ -1,16 +1,23 @@
-import React from 'react';
 import { ratingTypes } from '../const';
+import { ChangeEvent, FormEvent, MouseEvent } from 'react';
 import Star from './star';
 import { useParams } from 'react-router-dom';
 import useReviewChanges from '../custom-hooks/use-review-changes';
 
 import usePostingComments from '../custom-hooks/use-posting-comments';
+import { ReviewData } from '../types';
 
+type ReviewChangesHookData = [
+  (event: ChangeEvent<HTMLTextAreaElement>) => void,
+  (event: FormEvent<HTMLFormElement>) => void,
+  (event: MouseEvent<HTMLInputElement, MouseEvent>) => void,
+  ReviewData];
 
 function CommentSection():JSX.Element {
 
   const offerId = useParams().id;
-  const [changeText, resetData, choseStar, review] = useReviewChanges();
+  const [changeText, resetData, choseStar, review] : ReviewChangesHookData = useReviewChanges();
+
   const [handleSubmit, isSending, isSubmitDisabled] = usePostingComments(review, offerId, resetData);
 
   return(

@@ -3,6 +3,7 @@ import UserInfo from './user-info';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../redux-hooks';
 import { logoutAction } from '../store/api-actions';
+import React from 'react';
 
 function Header (): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
@@ -48,4 +49,6 @@ function Header (): JSX.Element {
   );
 }
 
-export default Header;
+const HeaderMemo = React.memo(Header);
+
+export default HeaderMemo;

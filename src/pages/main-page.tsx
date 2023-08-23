@@ -1,7 +1,5 @@
 import PlaceCard from '../components/place-card';
-import Tabs from '../components/tabs';
-import Header from '../components/header';
-import PLacesSorting from '../components/places-sorting';
+import PLacesSortingMemo from '../components/places-sorting';
 import { useState } from 'react';
 import Map from '../components/map';
 import { sortOffersByType, getStartPlacesFiltered } from '../utils';
@@ -9,6 +7,8 @@ import { sortOffersByType, getStartPlacesFiltered } from '../utils';
 import type { Offer } from '../types';
 import { useAppSelector, } from '../redux-hooks';
 import EmptyMainPage from './empty-main-page';
+import TabsMemo from '../components/tabs';
+import HeaderMemo from '../components/header';
 
 const mapWidth = '714px';
 
@@ -23,10 +23,10 @@ function MainPage(): JSX.Element {
 
   return(
     <div className="page page--gray page--main">
-      <Header />
+      <HeaderMemo />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <Tabs chosenCity={chosenCity}/>
+        <TabsMemo chosenCity={chosenCity}/>
 
         {filteredOffers.length === 0 && <EmptyMainPage/ >}
         {filteredOffers.length !== 0 &&
@@ -35,7 +35,7 @@ function MainPage(): JSX.Element {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{filteredOffers.length} places to stay in {chosenCity}</b>
-              <PLacesSorting />
+              <PLacesSortingMemo />
               <div className="cities__places-list places__list tabs__content">
                 {sortedOffers.map((card: Offer) =>
                   (<PlaceCard key= {card.id} {...card}

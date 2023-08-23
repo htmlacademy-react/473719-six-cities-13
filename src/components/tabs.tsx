@@ -1,4 +1,5 @@
 import { CITIES } from '../const';
+import React from 'react';
 import classNames from 'classnames';
 import { changeCity } from '../store/actions';
 
@@ -30,11 +31,12 @@ function Tabs(props: TabsProps): JSX.Element {
                 <span>{CITIES[city]}</span>
               </Link>
             </li>))}
-
         </ul>
       </section>
     </div>
   );
 }
 
-export default Tabs;
+const TabsMemo = React.memo(Tabs, (previousProps, nextProps) => previousProps === nextProps);
+
+export default TabsMemo;

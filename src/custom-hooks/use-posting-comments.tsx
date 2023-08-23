@@ -1,17 +1,17 @@
 import { useAppDispatch } from '../redux-hooks';
-import React, {useState} from 'react';
+import {useMemo, useState} from 'react';
 import { CommentDataProps, ReviewData } from '../types';
 import { sendComments } from '../store/api-actions';
 import { FormEvent } from 'react';
 import { useEffect } from 'react';
 import { EMPTY_LINE, EMPTY_RATING, MIN_LINE } from '../const';
 
-function usePostingComments(review : ReviewData, offerId: string, resetData: ()=> void) {
+function usePostingComments(review : ReviewData, offerId: string, resetData: (event: FormEvent<HTMLFormElement>)=> void) {
   const dispatch = useAppDispatch();
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
   const [isSending, setIsSending] = useState(false);
 
-  const isValid = (review.comment !== EMPTY_LINE && review.rating !== EMPTY_RATING && review.comment.length > MIN_LINE);
+  const isValid = useMemo(() => review.comment !== EMPTY_LINE && review.rating !== EMPTY_RATING && review.comment.length > MIN_LINE, [review.comment, review.rating]);
 
   const onSubmit = async (commentData: CommentDataProps) => await dispatch(sendComments(commentData));
 

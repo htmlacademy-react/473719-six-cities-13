@@ -11,9 +11,9 @@ import classNames from 'classnames';
 import NearPlaces from '../components/near-places';
 import Map from '../components/map';
 import { useAppSelector} from '../redux-hooks';
-import Header from '../components/header';
 import LoadingScreen from '../components/loading-block';
 import useFetchingOffer from '../custom-hooks/use-fetching-offer';
+import HeaderMemo from '../components/header';
 
 const mapWidth = '580px';
 
@@ -40,7 +40,7 @@ function OfferPage() : JSX.Element {
 
   return (
     <div className="page">
-      <Header />
+      <HeaderMemo />
       <main className="page__main page__main--offer">
         <section className="offer">
           <div className="offer__gallery-container container">

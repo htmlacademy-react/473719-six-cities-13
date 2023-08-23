@@ -1,6 +1,7 @@
 import { sortTypes } from '../const';
 import classNames from 'classnames';
 import { useAppSelector } from '../redux-hooks';
+import React from 'react';
 import useFiltering from '../custom-hooks/use-filtering';
 function PLacesSorting(): JSX.Element {
 
@@ -25,4 +26,6 @@ function PLacesSorting(): JSX.Element {
   );
 }
 
-export default PLacesSorting;
+const PlacesSortingMemo = React.memo(PLacesSorting);
+
+export default PlacesSortingMemo;

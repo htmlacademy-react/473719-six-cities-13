@@ -8,13 +8,13 @@ function useReviewChanges () {
     rating: EMPTY_RATING,
   });
 
-  const choseStar = useCallback ((event: React.MouseEvent<HTMLInputElement>) => {
+  const chooseStar = useCallback ((event: React.MouseEvent<HTMLInputElement>) => {
     const stars = parseInt((event.target as HTMLInputElement).value, 10);
     setReview({
       ...review,
       rating: stars,
     });
-  }, [event]);
+  }, [review]);
 
 
   function changeText(event: React.ChangeEvent<HTMLTextAreaElement>){
@@ -34,7 +34,7 @@ function useReviewChanges () {
     event.currentTarget.reset();
   }
 
-  return [changeText, resetData, choseStar, review];
+  return [changeText, resetData, chooseStar, review];
 }
 
 

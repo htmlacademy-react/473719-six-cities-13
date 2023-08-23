@@ -85,7 +85,7 @@ export type CommentDataProps = ReviewData & {
 
 export type StarProps = {
   rate: number;
-   choseStar: () => void;
+   chooseStar: () => void;
 }
 
 export type NearPlacesProps = {

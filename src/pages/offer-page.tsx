@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { AuthorizationStatus } from '../const';
-import NotFoundScreen from './not-found-screen';
 
 import CommentSection from '../components/comment-section';
 import ReviewsList from '../components/reviews-list';
@@ -14,11 +13,12 @@ import { useAppSelector} from '../redux-hooks';
 import LoadingScreen from '../components/loading-block';
 import useFetchingOffer from '../custom-hooks/use-fetching-offer';
 import HeaderMemo from '../components/header';
+import { ChoseCardState } from '../types';
 
 const mapWidth = '580px';
 
 function OfferPage() : JSX.Element {
-  const [chosenCard, setChosenCard] = useState(null);
+  const [chosenCard, setChosenCard] = useState(null) as ChoseCardState;
 
   const offerId = useParams().id;
   const loadedOffer = useFetchingOffer(offerId as string);

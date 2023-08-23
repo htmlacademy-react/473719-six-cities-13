@@ -2,6 +2,9 @@ import React from 'react';
 import type {BrowserHistory} from 'history';
 import { store } from './store';
 import { AuthorizationStatus } from './const';
+import { MouseEventHandler } from 'react';
+import { Dispatch } from 'react';
+import { SetStateAction } from 'react';
 
 export type BasicOffer = {
   id: string;
@@ -88,14 +91,21 @@ export type StarProps = {
    chooseStar: () => void;
 }
 
+export type ChoseCardName = string | null;
+
+export type ChoseCardState = [
+  chosenCard: ChoseCardName,
+  setChosenCard: Dispatch<SetStateAction<ChoseCardName>>
+]
+
 export type NearPlacesProps = {
   places: Array<Offer>;
-  setChosenCard: React.SetStateAction<string>;
+  setChosenCard: Dispatch<SetStateAction<ChoseCardName>>;
 }
 
 export type NearPlaceItemProps = BasicOffer & {
-  handleHover?: React.SetStateAction<string | null>;
-  handleLeave?: React.SetStateAction<string | null>;
+  handleHover?: () => void;
+  handleLeave?: () => void;
 }
 
 export type State = ReturnType<typeof store.getState>;

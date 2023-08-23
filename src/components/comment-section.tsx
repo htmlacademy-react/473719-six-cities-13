@@ -16,7 +16,7 @@ type ReviewChangesHookData = [
 
 function CommentSection():JSX.Element {
 
-  const offerId = useParams().id;
+  const offerId = useParams().id as string;
   const [changeText, resetData, chooseStar, review] = useReviewChanges() as ReviewChangesHookData;
 
   const [handleSubmit, isSending, isSubmitDisabled] = usePostingComments(review, offerId, resetData);

@@ -21,17 +21,13 @@ function OfferPage() : JSX.Element {
   const [chosenCard, setChosenCard] = useState(null);
 
   const offerId = useParams().id;
-  const loadedOffer = useFetchingOffer(offerId);
+  const loadedOffer = useFetchingOffer(offerId as string);
   const nearPlaces = useAppSelector((state)=> state.nearPlaces);
   const authorizationStatus = useAppSelector((state)=> state.authorizationStatus);
+  const offerIsLoading = useAppSelector((state)=> state.isOffersDataLoading);
 
-
-  if (authorizationStatus === AuthorizationStatus.Unknown) {
+  if (authorizationStatus === AuthorizationStatus.Unknown || !loadedOffer || offerIsLoading) {
     return <LoadingScreen />;
-  }
-
-  if (!loadedOffer) {
-    return <NotFoundScreen />;
   }
 
   const selectedNearPlaces = nearPlaces?.slice(0, 3);

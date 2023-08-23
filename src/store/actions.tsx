@@ -20,11 +20,11 @@ export const loadSpecificOffer = createAction<Offer>('data/loadSpecificOffer');
 export const getSpecificOffer = createAction('offer/fetch',
   (offer: Offer) => ({payload: offer}));
 
-export const loadComments = createAction('data/loadComments');
+export const loadComments = createAction<ReviewItemProps[]>('data/loadComments');
 export const getComments = createAction('comments/fetch',
   (comments: ReviewItemProps[]| null) => ({payload: comments}));
 
-export const loadNearPlaces = createAction('data/loadNearPlaces');
+export const loadNearPlaces = createAction<NearPlacesProps[]>('data/loadNearPlaces');
 export const getNearPlaces = createAction('nearPlaces/fetch',
   (nearPlaces: NearPlacesProps | null) => ({payload: nearPlaces}));
 export const redirectToRoute = createAction<AppRoute>('app/redirectToRoute');

@@ -1,7 +1,7 @@
 import {AxiosInstance} from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AppDispatch, CommentData, CommentDataProps, ReviewItemProps, State } from '../types';
-import { Cards, Offer } from '../types';
+import { AppDispatch, CommentDataProps, NearPlacesProps, ReviewItemProps, State } from '../types';
+import { Offer } from '../types';
 import { loadOffers, requireAuthorization, setError, setOffersDataLoadingStatus, loadSpecificOffer, loadComments, loadNearPlaces} from './actions';
 import { store } from '.';
 import { setUserInfo } from './actions';
@@ -31,7 +31,7 @@ export const fetchOffers = createAsyncThunk<void, undefined, {
   'data/getOffers',
   async(_arg, {dispatch, extra: api}) => {
     dispatch(setOffersDataLoadingStatus(true));
-    const {data} = await api.get<Cards>(APIroute.Offers);
+    const {data} = await api.get<Offer[]>(APIroute.Offers);
     dispatch(setOffersDataLoadingStatus(false));
     dispatch(loadOffers(data));
   }
@@ -51,6 +51,7 @@ export const fetchSpecificOffer = createAsyncThunk<void, string, {
       dispatch(loadSpecificOffer(data));
     } catch {
       dispatch(setOffersDataLoadingStatus(true));
+      dispatch(redirectToRoute(AppRoute.EverythingElse));
       dispatch(setOffersDataLoadingStatus(false));
     }
   }
@@ -65,7 +66,7 @@ export const fetchComments = createAsyncThunk<void, string, {
   async(id, {dispatch, extra: api}) => {
     try {
       dispatch(setOffersDataLoadingStatus(true));
-      const {data} = await api.get<ReviewItemProps>(`${APIroute.Comments}/${id}`);
+      const {data} = await api.get<ReviewItemProps[]>(`${APIroute.Comments}/${id}`);
       dispatch(setOffersDataLoadingStatus(false));
       dispatch(loadComments(data));
     } catch {
@@ -85,7 +86,7 @@ export const fetchNearPlaces = createAsyncThunk<void, string, {
   async(id, {dispatch, extra: api}) => {
     try {
       dispatch(setOffersDataLoadingStatus(true));
-      const {data} = await api.get<Offer>(`${APIroute.Offers}/${id}/nearby`);
+      const {data} = await api.get<NearPlacesProps[]>(`${APIroute.Offers}/${id}/nearby`);
       dispatch(setOffersDataLoadingStatus(false));
       dispatch(loadNearPlaces(data));
     } catch {

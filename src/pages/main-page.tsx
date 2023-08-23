@@ -38,10 +38,7 @@ function MainPage(): JSX.Element {
               <PLacesSortingMemo />
               <div className="cities__places-list places__list tabs__content">
                 {sortedOffers.map((card: Offer) =>
-                  (<PlaceCard key= {card.id} {...card}
-                    handleHover= {()=> setChosenCard(card.id)}
-                    handleLeave= {()=> setChosenCard(null)}
-                  />)
+                  (<PlaceCard key= {card.id} {...card} handleHover= {()=> setChosenCard(card.id)} handleLeave= {()=> setChosenCard(null)} />)
                 )}
               </div>
             </section>

@@ -1,15 +1,11 @@
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError} from 'axios';
 import { getToken } from './tokens';
-import { StatusCodes } from 'http-status-codes';
 import { processErrorHandle } from './processes-error-handle';
 import { AppRoute, } from '../components/app';
 import browserHistory from '../browser-history';
+import { StatusCodeMapping } from '../const';
+import { StatusCodes } from 'http-status-codes';
 
-const StatusCodeMapping: Record<number, boolean> = {
-  [StatusCodes.BAD_REQUEST]: true,
-  [StatusCodes.UNAUTHORIZED]: true,
-  [StatusCodes.NOT_FOUND]: true,
-};
 
 type DetailMessageType = {
   type: string;

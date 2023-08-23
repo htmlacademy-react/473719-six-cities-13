@@ -2,7 +2,6 @@ import React from 'react';
 import type {BrowserHistory} from 'history';
 import { store } from './store';
 import { AuthorizationStatus } from './const';
-import { MouseEventHandler } from 'react';
 import { Dispatch } from 'react';
 import { SetStateAction } from 'react';
 
@@ -63,8 +62,8 @@ export type Offer = BasicOffer & Geo & {
   };
   bedrooms: number;
   maxAdults: number;
-  handleHover?: React.SetStateAction<string | null> | undefined;
-  handleLeave?: React.SetStateAction<string | null> | undefined;
+  handleHover?: ()=> void;
+  handleLeave?: ()=> void;
 }
 
 export type ReviewItemProps = CommentDataProps & {

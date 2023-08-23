@@ -1,4 +1,5 @@
 import { City } from './types';
+import { StatusCodes } from 'http-status-codes';
 
 export const EMPTY_LINE = '';
 export const EMPTY_RATING = 0;
@@ -100,3 +101,8 @@ export const enum APIroute {
 }
 
 
+export const StatusCodeMapping: Record<number, boolean> = {
+  [StatusCodes.BAD_REQUEST]: true,
+  [StatusCodes.UNAUTHORIZED]: true,
+  [StatusCodes.NOT_FOUND]: true,
+};

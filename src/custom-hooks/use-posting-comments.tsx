@@ -15,7 +15,7 @@ function usePostingComments(review : ReviewData, offerId: string, resetData: (ev
 
   const onSubmit = async (commentData: CommentDataProps) => await dispatch(sendComments(commentData));
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  function handleSubmit (event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setIsSending(true);
     if (isValid) {
@@ -28,7 +28,7 @@ function usePostingComments(review : ReviewData, offerId: string, resetData: (ev
       });
     }
     resetData(event);
-  };
+  }
 
   useEffect(()=> {
     if (isValid) {

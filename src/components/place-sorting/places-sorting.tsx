@@ -20,7 +20,13 @@ function PLacesSorting(): JSX.Element {
       </span>
       <ul className={`places__options places__options--custom ${isOpened ? 'places__options--opened' : ''}` }>
         {sortTypesKeys.map((item) =>(
-          <li key={item} className={classNames('places__option',{'places__options--active' :filter === sortTypes[item]})} data-filter={item} tabIndex={0} onClick={handleClick}>{sortTypes[item]}</li>))}
+          <li key={item}
+            className={classNames('places__option',{'places__options--active' :filter === sortTypes[item]})}
+            data-filter={item}
+            tabIndex={0}
+            onClick={handleClick}
+          >{sortTypes[item]}
+          </li>))}
       </ul>
     </form>
   );

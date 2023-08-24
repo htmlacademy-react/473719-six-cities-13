@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
-import { NearPlacesProps, Offer, ReviewItemProps, CommentDataProps } from '../types';
+import { Offer, ReviewItemProps, CommentDataProps } from '../types';
 import { AuthorizationStatus } from '../const';
 import { UserData } from '../types';
 import { AppRoute } from '../const';
@@ -24,9 +24,9 @@ export const loadComments = createAction<ReviewItemProps[]>('data/loadComments')
 export const getComments = createAction('comments/fetch',
   (comments: ReviewItemProps[]| null) => ({payload: comments}));
 
-export const loadNearPlaces = createAction<NearPlacesProps[]>('data/loadNearPlaces');
+export const loadNearPlaces = createAction<Offer[]>('data/loadNearPlaces');
 export const getNearPlaces = createAction('nearPlaces/fetch',
-  (nearPlaces: NearPlacesProps | null) => ({payload: nearPlaces}));
+  (nearPlaces: Offer[] | null) => ({payload: nearPlaces}));
 export const redirectToRoute = createAction<AppRoute>('app/redirectToRoute');
 export const setError = createAction<string | null>('app/setError');
 export const setOffersDataLoadingStatus = createAction<boolean>('data/setOffersDataLoadingStatus');

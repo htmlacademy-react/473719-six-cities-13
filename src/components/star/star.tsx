@@ -2,7 +2,7 @@ import React from 'react';
 import { StarProps } from '../../types';
 import { ratingTypesMap } from '../../const';
 
-function Star({rate, chooseStar}: StarProps): JSX.Element {
+function Star({rate, chooseStar, isSending}: StarProps): JSX.Element {
   return(
     <React.Fragment>
       <input
@@ -12,6 +12,7 @@ function Star({rate, chooseStar}: StarProps): JSX.Element {
         id={`${rate}-stars`}
         type="radio"
         onChange={chooseStar}
+        disabled={isSending}
       />
       <label htmlFor={`${rate}-stars`} className="reviews__rating-label form__rating-label" title={ratingTypesMap[rate]}>
         <svg className="form__star-image" width="37" height="33">

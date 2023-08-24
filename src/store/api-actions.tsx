@@ -1,6 +1,6 @@
 import {AxiosInstance} from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AppDispatch, CommentDataProps, NearPlacesProps, ReviewItemProps, State } from '../types';
+import { AppDispatch, CommentDataProps, ReviewItemProps, State } from '../types';
 import { Offer } from '../types';
 import { loadOffers, requireAuthorization, setError, setOffersDataLoadingStatus, loadSpecificOffer, loadComments, loadNearPlaces} from './actions';
 import { store } from '.';
@@ -86,7 +86,7 @@ export const fetchNearPlaces = createAsyncThunk<void, string, {
   async(id, {dispatch, extra: api}) => {
     try {
       dispatch(setOffersDataLoadingStatus(true));
-      const {data} = await api.get<NearPlacesProps[]>(`${APIroute.Offers}/${id}/nearby`);
+      const {data} = await api.get<Offer[]>(`${APIroute.Offers}/${id}/nearby`);
       dispatch(setOffersDataLoadingStatus(false));
       dispatch(loadNearPlaces(data));
     } catch {

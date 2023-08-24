@@ -26,7 +26,7 @@ function CommentSection():JSX.Element {
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {ratingTypes.map((rate)=>
-          <StarMemo key={rate} rate={rate} chooseStar ={chooseStar} disabled={isSending}></StarMemo>
+          <StarMemo key={rate} rate={rate} chooseStar ={chooseStar} isSending={isSending}></StarMemo>
         )}
       </div>
       <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" value={review.comment} onChange={changeText} disabled={isSending}></textarea>

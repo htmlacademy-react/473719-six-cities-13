@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { choseFilter, changeCity, loadOffers, setError, getOffers, setOffersDataLoadingStatus, loadSpecificOffer, dropOffer, loadComments, loadNearPlaces, setComment} from './actions';
 import { AuthorizationStatus, CITIES } from '../const';
 import { requireAuthorization } from './actions';
-import { NearPlacesProps, Offer, ReviewItemProps, CommentDataProps } from '../types';
+import { Offer, ReviewItemProps, CommentDataProps } from '../types';
 
 
 type InitialState = {
@@ -14,7 +14,7 @@ type InitialState = {
   isOffersDataLoading: boolean;
   loadedOffer: Offer | null;
   loadedComments: ReviewItemProps[];
-  nearPlaces: NearPlacesProps[] | undefined;
+  nearPlaces: Offer[] | undefined;
   review: CommentDataProps | null;
 }
 

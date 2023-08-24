@@ -13,7 +13,7 @@ import { useAppSelector} from '../redux-hooks';
 import LoadingScreen from '../components/loading-block/loading-block';
 import useFetchingOffer from '../custom-hooks/use-fetching-offer';
 import HeaderMemo from '../components/header/header';
-import { ChoseCardState } from '../types';
+import { ChoseCardState} from '../types';
 
 const mapWidth = '580px';
 
@@ -32,6 +32,7 @@ function OfferPage() : JSX.Element {
 
   const selectedNearPlaces = nearPlaces?.slice(0, 3);
   const selectedNearPlacesWithCurrent = selectedNearPlaces?.concat(loadedOffer);
+
   const {bedrooms, description, goods, host, images, isFavorite, isPremium, maxAdults, price, rating, title, type, } = loadedOffer;
 
   return (
@@ -116,7 +117,7 @@ function OfferPage() : JSX.Element {
           </section>
         </section>
         <div className="container">
-          <NearPlaces places={selectedNearPlaces} setChosenCard={setChosenCard}/>
+          {selectedNearPlaces && <NearPlaces places={selectedNearPlaces} setChosenCard={setChosenCard}/>}
         </div>
       </main>
     </div>

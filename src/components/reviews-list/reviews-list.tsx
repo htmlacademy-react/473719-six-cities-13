@@ -1,7 +1,7 @@
 import React from 'react';
-import ReviewItem from './review-item';
-import { useAppSelector } from '../redux-hooks';
-import { ReviewItemProps } from '../types';
+import ReviewItem from '../review-item/review-item';
+import { useAppSelector } from '../../redux-hooks';
+import { ReviewItemProps } from '../../types';
 
 
 function ReviewsList(): JSX.Element {

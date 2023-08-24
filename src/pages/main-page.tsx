@@ -1,14 +1,14 @@
-import PlaceCard from '../components/place-card';
-import PLacesSortingMemo from '../components/places-sorting';
+import PlaceCard from '../components/place-card/place-card';
+import PLacesSortingMemo from '../components/place-sorting/places-sorting';
 import { useState } from 'react';
-import Map from '../components/map';
+import Map from '../components/map/map';
 import { sortOffersByType, getStartPlacesFiltered } from '../utils';
 
 import type { Offer } from '../types';
 import { useAppSelector, } from '../redux-hooks';
 import EmptyMainPage from './empty-main-page';
-import TabsMemo from '../components/tabs';
-import HeaderMemo from '../components/header';
+import TabsMemo from '../components/tabs/tabs';
+import HeaderMemo from '../components/header/header';
 
 const mapWidth = '714px';
 

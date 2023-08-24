@@ -1,7 +1,7 @@
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError} from 'axios';
 import { getToken } from './tokens';
 import { processErrorHandle } from './processes-error-handle';
-import { AppRoute, } from '../components/app';
+import { AppRoute, } from '../components/app/app';
 import browserHistory from '../browser-history';
 import { StatusCodeMapping } from '../const';
 import { StatusCodes } from 'http-status-codes';

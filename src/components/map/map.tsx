@@ -1,10 +1,10 @@
 import { useRef, useEffect } from 'react';
-import useMap from '../custom-hooks/use-map';
+import useMap from '../../custom-hooks/use-map';
 import 'leaflet/dist/leaflet.css';
 import leaflet from 'leaflet';
-import { MapProps } from '../types';
-import { AllCities, URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../const';
-import { useAppSelector } from '../redux-hooks';
+import { MapProps } from '../../types';
+import { AllCities, URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
+import { useAppSelector } from '../../redux-hooks';
 
 function Map({activeId, offerId, widthParam, places}: MapProps) {
   const offers = useAppSelector((state) => state.offers);

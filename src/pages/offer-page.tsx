@@ -2,17 +2,17 @@ import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { AuthorizationStatus } from '../const';
 
-import CommentSection from '../components/comment-section';
-import ReviewsList from '../components/reviews-list';
+import CommentSection from '../components/comment-section/comment-section';
+import ReviewsList from '../components/reviews-list/reviews-list';
 import { calculateCardRating } from '../utils';
 
 import classNames from 'classnames';
-import NearPlaces from '../components/near-places';
-import Map from '../components/map';
+import NearPlaces from '../components/near-places/near-places';
+import Map from '../components/map/map';
 import { useAppSelector} from '../redux-hooks';
-import LoadingScreen from '../components/loading-block';
+import LoadingScreen from '../components/loading-block/loading-block';
 import useFetchingOffer from '../custom-hooks/use-fetching-offer';
-import HeaderMemo from '../components/header';
+import HeaderMemo from '../components/header/header';
 import { ChoseCardState } from '../types';
 
 const mapWidth = '580px';

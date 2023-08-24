@@ -1,4 +1,4 @@
-import Logo from '../components/logo';
+import Logo from '../components/logo/logo';
 import { useAppDispatch, useAppSelector } from '../redux-hooks';
 import { useRef, FormEvent } from 'react';
 import { loginAction } from '../store/api-actions';

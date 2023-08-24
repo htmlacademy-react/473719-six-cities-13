@@ -1,8 +1,8 @@
-import Logo from './logo';
-import UserInfo from './user-info';
+import Logo from '../logo/logo';
+import UserInfo from '../user-info/user-info';
 import { Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../redux-hooks';
-import { logoutAction } from '../store/api-actions';
+import { useAppDispatch, useAppSelector } from '../../redux-hooks';
+import { logoutAction } from '../../store/api-actions';
 import React from 'react';
 
 function Header (): JSX.Element {

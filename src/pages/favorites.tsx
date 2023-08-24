@@ -1,5 +1,5 @@
-import FavoritesCity from '../components/favorites-city';
-import HeaderMemo from '../components/header';
+import FavoritesCity from '../components/faborite-city/favorites-city';
+import HeaderMemo from '../components/header/header';
 import { useAppSelector } from '../redux-hooks';
 import { Offer } from '../types';
 import EmptyFavorite from './empty-favorites';

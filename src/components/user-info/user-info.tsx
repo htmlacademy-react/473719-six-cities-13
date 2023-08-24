@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../const';
-import { useAppSelector } from '../redux-hooks';
+import { AppRoute } from '../../const';
+import { useAppSelector } from '../../redux-hooks';
 
 function UserInfo():JSX.Element {
   const offers = useAppSelector((state)=> state.offers);

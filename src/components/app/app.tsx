@@ -1,14 +1,14 @@
-import MainPage from '../pages/main-page';
-import Login from '../pages/login';
-import WrongPage from '../pages/wrong-page';
-import Favorites from '../pages/favorites';
-import OfferPage from '../pages/offer-page';
-import { AuthorizationStatus, AppRoute } from '../const';
+import MainPage from '../../pages/main-page';
+import Login from '../../pages/login';
+import WrongPage from '../../pages/wrong-page';
+import Favorites from '../../pages/favorites';
+import OfferPage from '../../pages/offer-page';
+import { AuthorizationStatus, AppRoute } from '../../const';
 
 import {Route, Routes } from 'react-router-dom';
-import PrivateRoute from './private-route';
-import HistoryRouter from './browser-history';
-import browserHistory from '../browser-history';
+import PrivateRoute from '../private-route/private-route';
+import HistoryRouter from '../browser-history/browser-history';
+import browserHistory from '../../browser-history';
 
 function App() : JSX.Element {
   return(

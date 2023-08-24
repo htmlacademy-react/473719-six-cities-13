@@ -1,4 +1,4 @@
-import { ReviewItemProps } from '../types';
+import { ReviewItemProps } from '../../types';
 
 function ReviewItem(reviewItemProps: ReviewItemProps):JSX.Element {
   const {rating, user, comment, date} = reviewItemProps;

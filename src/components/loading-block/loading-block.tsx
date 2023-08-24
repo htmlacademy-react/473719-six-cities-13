@@ -1,4 +1,4 @@
-import lcs from '../styles/loading-block.module.css';
+import lcs from './loading-block.module.css';
 
 function LoadingScreen(): JSX.Element {
   return (

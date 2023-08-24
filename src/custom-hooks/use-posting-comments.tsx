@@ -6,7 +6,8 @@ import { FormEvent } from 'react';
 import { useEffect } from 'react';
 import { EMPTY_LINE, EMPTY_RATING, MIN_LINE } from '../const';
 
-function usePostingComments(review : ReviewData, offerId: string, resetData: (event: FormEvent<HTMLFormElement>)=> void) {
+
+function usePostingComments(review : ReviewData, offerId: string, resetData: (event: FormEvent<HTMLFormElement>) => void): [((event: FormEvent<HTMLFormElement>) => void), boolean, boolean] {
   const dispatch = useAppDispatch();
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
   const [isSending, setIsSending] = useState(false);

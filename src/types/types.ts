@@ -1,7 +1,7 @@
 import React from 'react';
 import type {BrowserHistory} from 'history';
-import { store } from './store';
-import { AuthorizationStatus } from './const';
+import { store } from '../store';
+import { AuthorizationStatus } from '../const';
 import { Dispatch } from 'react';
 import { SetStateAction } from 'react';
 
@@ -108,9 +108,6 @@ export type NearPlaceItemProps = BasicOffer & {
   handleLeave?: () => void;
 }
 
-export type State = ReturnType<typeof store.getState>;
-
-export type AppDispatch = typeof store.dispatch;
 
 export type UserData = {
   id: number;
@@ -141,3 +138,10 @@ export type PrivateRouteProps = {
 export type TabsProps = {
   chosenCity : string;
 }
+
+export type FavoriteStatus = {
+  offerId: string;
+  status: number;
+};
+
+

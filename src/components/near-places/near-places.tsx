@@ -1,4 +1,4 @@
-import { NearPlacesProps } from '../../types';
+import { NearPlacesProps } from '../../types/types';
 import NearPlaceItem from '../near-place-item/near-place-item';
 
 function NearPlaces(nearPlacesProps: NearPlacesProps): JSX.Element {

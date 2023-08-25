@@ -13,7 +13,9 @@ import { useAppSelector} from '../redux-hooks';
 import LoadingScreen from '../components/loading-block/loading-block';
 import useFetchingOffer from '../custom-hooks/use-fetching-offer';
 import HeaderMemo from '../components/header/header';
-import { ChoseCardState} from '../types';
+import { ChoseCardState} from '../types/types';
+import { getNearPlaces, getOfferDataLoadingStatus } from '../store/app-data/selectors';
+import { getAuthorizationStatus } from '../store/user-process/selectors';
 
 const mapWidth = '580px';
 
@@ -22,9 +24,9 @@ function OfferPage() : JSX.Element {
 
   const offerId = useParams().id;
   const loadedOffer = useFetchingOffer(offerId as string);
-  const nearPlaces = useAppSelector((state)=> state.nearPlaces);
-  const authorizationStatus = useAppSelector((state)=> state.authorizationStatus);
-  const offerIsLoading = useAppSelector((state)=> state.isOffersDataLoading);
+  const nearPlaces = useAppSelector(getNearPlaces);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const offerIsLoading = useAppSelector(getOfferDataLoadingStatus);
 
   if (authorizationStatus === AuthorizationStatus.Unknown || !loadedOffer || offerIsLoading) {
     return <LoadingScreen />;

@@ -2,14 +2,16 @@ import Logo from '../components/logo/logo';
 import { useAppDispatch, useAppSelector } from '../redux-hooks';
 import { useRef, FormEvent } from 'react';
 import { loginAction } from '../store/api-actions';
-import { AuthData } from '../types';
+import { AuthData } from '../types/types';
 import { AppRoute, AuthorizationStatus } from '../const';
 import { Navigate } from 'react-router-dom';
+import { getCity } from '../store/app-process/selectors';
+import { getAuthorizationStatus } from '../store/user-process/selectors';
 
 function Login(): JSX.Element {
   const dispatch = useAppDispatch();
-  const currentCity: string = useAppSelector((state)=> state.city);
-  const authorizationStatus = useAppSelector((state)=> state.authorizationStatus);
+  const currentCity: string = useAppSelector(getCity);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);

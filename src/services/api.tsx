@@ -1,6 +1,6 @@
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError} from 'axios';
 import { getToken } from './tokens';
-import { processErrorHandle } from './processes-error-handle';
+// import { processErrorHandle } from './processes-error-handle';
 import { AppRoute, } from '../components/app/app';
 import browserHistory from '../browser-history';
 import { StatusCodeMapping } from '../const';
@@ -42,8 +42,8 @@ export const createAPI = (): AxiosInstance => {
         browserHistory.push(AppRoute.EverythingElse);
       }
       if (error.response && shouldDisplayError(error.response)) {
-        const detailMessage = (error.response.data);
-        processErrorHandle(detailMessage.message);
+        // const detailMessage = (error.response.data);
+        // processErrorHandle(detailMessage.message);
       }
 
       throw error;

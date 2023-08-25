@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useAppSelector } from '../../redux-hooks';
+import { getOffers } from '../../store/app-data/selectors';
 
 function UserInfo():JSX.Element {
-  const offers = useAppSelector((state)=> state.offers);
+  const offers = useAppSelector(getOffers);
   const favoriteOffers = offers.filter((item) => item.isFavorite);
 
   return (

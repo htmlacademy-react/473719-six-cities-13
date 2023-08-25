@@ -1,4 +1,4 @@
-import { NearPlaceItemProps} from '../../types';
+import { NearPlaceItemProps} from '../../types/types';
 
 function NearPlaceItem(nearPlaceItemProps: NearPlaceItemProps):JSX.Element {
   const { price, title, previewImage, type, handleHover, handleLeave} = nearPlaceItemProps;

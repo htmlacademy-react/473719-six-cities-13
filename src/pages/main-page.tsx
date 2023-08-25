@@ -4,20 +4,22 @@ import { useState } from 'react';
 import Map from '../components/map/map';
 import { sortOffersByType, getStartPlacesFiltered } from '../utils';
 
-import type { Offer } from '../types';
+import type { Offer } from '../types/types';
 import { useAppSelector, } from '../redux-hooks';
 import EmptyMainPage from './empty-main-page';
 import TabsMemo from '../components/tabs/tabs';
 import HeaderMemo from '../components/header/header';
+import { getCity, getSorting } from '../store/app-process/selectors';
+import { getOffers } from '../store/app-data/selectors';
 
 const mapWidth = '714px';
 
 function MainPage(): JSX.Element {
-  const chosenCity = useAppSelector((state) => state.city);
-  const offers = useAppSelector((state) => state.offers);
-  const filter = useAppSelector((state) => state.filter);
+  const chosenCity = useAppSelector(getCity);
+  const offers = useAppSelector(getOffers);
+  const sorting = useAppSelector(getSorting);
   const filteredOffers: Offer[] = getStartPlacesFiltered(offers, chosenCity);
-  const sortedOffers: Offer[] = sortOffersByType(filteredOffers, filter);
+  const sortedOffers: Offer[] = sortOffersByType(filteredOffers, sorting);
 
   const [chosenCard, setChosenCard] = useState<string | null>(null);
 

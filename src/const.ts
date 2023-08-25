@@ -1,4 +1,4 @@
-import { City } from './types';
+import { City } from './types/types';
 import { StatusCodes } from 'http-status-codes';
 
 export const EMPTY_LINE = '';
@@ -98,6 +98,7 @@ export const enum APIroute {
   Comments = '/comments',
   Login = '/login',
   Logout = '/logout',
+  Favorite = '/favorite'
 }
 
 
@@ -106,3 +107,16 @@ export const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.UNAUTHORIZED]: true,
   [StatusCodes.NOT_FOUND]: true,
 };
+
+export enum Status {
+  Idle = 'idle',
+  Loading = 'loading',
+  Success = 'success',
+  Error = 'error'
+}
+
+export enum NameSpace {
+  Data = 'DATA',
+  App = 'APP',
+  User = 'USER',
+}

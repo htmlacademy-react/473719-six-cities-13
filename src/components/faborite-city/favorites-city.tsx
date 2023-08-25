@@ -1,11 +1,12 @@
 import FavoriteItem from '../favorite-item/favorite-item';
-import { Offer } from '../../types';
+import { Offer } from '../../types/types';
 import { useAppSelector } from '../../redux-hooks';
 import { getFavoritesWithSpecificCity } from '../../utils';
-import { FavoriteCity } from '../../types';
+import { FavoriteCity } from '../../types/types';
+import { getOffers } from '../../store/app-data/selectors';
 
 function FavoritesCity(city: FavoriteCity): JSX.Element {
-  const offers = useAppSelector((state) => state.offers);
+  const offers = useAppSelector(getOffers);
   const favoriteItemsInChosenCity: Array<Offer> = getFavoritesWithSpecificCity(offers, city.cityName);
 
   return(

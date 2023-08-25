@@ -1,11 +1,11 @@
 import { CITIES } from '../../const';
 import React from 'react';
 import classNames from 'classnames';
-import { changeCity } from '../../store/actions';
+import { changeCity } from '../../store/app-process/app-process';
 
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../redux-hooks';
-import { TabsProps } from '../../types';
+import { TabsProps } from '../../types/types';
 
 function Tabs(props: TabsProps): JSX.Element {
   const {chosenCity} = props;

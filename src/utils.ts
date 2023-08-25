@@ -1,4 +1,4 @@
-import { Offer } from './types';
+import { Offer } from './types/types';
 
 function calculateCardRating (rating: number) {
   return (Math.round((Math.ceil(rating) / 5) * 100)).toString();

@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import useReviewChanges from '../../custom-hooks/use-review-changes';
 
 import usePostingComments from '../../custom-hooks/use-posting-comments';
-import { ReviewData } from '../../types';
+import { ReviewData } from '../../types/types';
 import StarMemo from '../star/star';
 
 type ReviewChangesHookData = [

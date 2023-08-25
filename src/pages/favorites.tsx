@@ -1,11 +1,12 @@
 import FavoritesCity from '../components/faborite-city/favorites-city';
 import HeaderMemo from '../components/header/header';
 import { useAppSelector } from '../redux-hooks';
-import { Offer } from '../types';
+import { getOffers } from '../store/app-data/selectors';
+import { Offer } from '../types/types';
 import EmptyFavorite from './empty-favorites';
 
 function Favorites() {
-  const offers = useAppSelector((state) => state.offers);
+  const offers = useAppSelector(getOffers);
   const favoriteItems: Array<Offer> = offers.filter((item: Offer) => item.isFavorite);
   const favoriteCities = [...new Set(favoriteItems.map((item: Offer) => item.city.name))];
   return(

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StarProps } from '../../types';
+import { StarProps } from '../../types/types';
 import { ratingTypesMap } from '../../const';
 
 function Star({rate, chooseStar, isSending}: StarProps): JSX.Element {

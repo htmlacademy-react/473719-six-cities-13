@@ -10,9 +10,11 @@ import { APIroute, AppRoute} from '../const';
 
 import { AuthData, UserData } from '../types/types';
 import { FavoriteStatus } from '../types/favorite-status';
+import { AppDispatch } from '../types/state';
+
 
 export const fetchOffers = createAsyncThunk<Offer[], undefined, {
-  // dispatch: AppDispatch;
+  dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
@@ -24,7 +26,7 @@ export const fetchOffers = createAsyncThunk<Offer[], undefined, {
 );
 
 export const fetchSpecificOffer = createAsyncThunk<Offer, string, {
-  // dispatch: AppDispatch;
+  dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
@@ -36,7 +38,7 @@ export const fetchSpecificOffer = createAsyncThunk<Offer, string, {
 );
 
 export const fetchComments = createAsyncThunk<ReviewItemProps[], string, {
-  // dispatch: AppDispatch;
+  dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
@@ -48,7 +50,7 @@ export const fetchComments = createAsyncThunk<ReviewItemProps[], string, {
 );
 
 export const fetchNearPlaces = createAsyncThunk<Offer[], string, {
-  // dispatch: AppDispatch;
+  dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
@@ -60,7 +62,7 @@ export const fetchNearPlaces = createAsyncThunk<Offer[], string, {
 );
 
 export const fetchFavoriteOffers = createAsyncThunk<Offer[], undefined, {
-  // dispatch: AppDispatch;
+  dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
@@ -72,7 +74,7 @@ export const fetchFavoriteOffers = createAsyncThunk<Offer[], undefined, {
 );
 
 export const sendComment = createAsyncThunk<ReviewItemProps, CommentDataProps, {
-  // dispatch: AppDispatch;
+  dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
@@ -84,7 +86,7 @@ export const sendComment = createAsyncThunk<ReviewItemProps, CommentDataProps, {
 );
 
 export const changeFavoriteOfferStatus = createAsyncThunk<Offer, FavoriteStatus, {
-  // dispatch: AppDispatch;
+  dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
@@ -97,12 +99,12 @@ export const changeFavoriteOfferStatus = createAsyncThunk<Offer, FavoriteStatus,
 
 
 export const checkAuthAction = createAsyncThunk<UserData, undefined, {
-  // dispatch: AppDispatch;
+  dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'user/checkAuth',
-  async (_arg, {extra: api}) => {
+  async (_arg, {dispatch, extra: api}) => {
     const { data } = await api.get<UserData>(APIroute.Login);
     if (data) {
       dispatch(fetchFavoriteOffers());
@@ -112,7 +114,7 @@ export const checkAuthAction = createAsyncThunk<UserData, undefined, {
 );
 
 export const loginAction = createAsyncThunk<UserData, AuthData, {
-  // dispatch: AppDispatch;
+  dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(

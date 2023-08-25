@@ -16,6 +16,7 @@ const mapWidth = '714px';
 
 function MainPage(): JSX.Element {
   const chosenCity = useAppSelector(getCity);
+  console.log(chosenCity);
   const offers = useAppSelector(getOffers);
   const sorting = useAppSelector(getSorting);
   const filteredOffers: Offer[] = getStartPlacesFiltered(offers, chosenCity);

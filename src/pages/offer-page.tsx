@@ -6,7 +6,6 @@ import CommentSection from '../components/comment-section/comment-section';
 import ReviewsList from '../components/reviews-list/reviews-list';
 import { calculateCardRating } from '../utils';
 
-import classNames from 'classnames';
 import NearPlaces from '../components/near-places/near-places';
 import Map from '../components/map/map';
 import { useAppSelector} from '../redux-hooks';

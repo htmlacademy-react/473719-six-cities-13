@@ -14,7 +14,6 @@ function sortOffersByType(offers: Offer[], sortType: string): Offer[] {
 }
 
 function getStartPlacesFiltered (places: Offer[], city: string): Offer[] {
-  console.log(places);
   return places.filter((offer) => offer.city.name === city);
 }
 

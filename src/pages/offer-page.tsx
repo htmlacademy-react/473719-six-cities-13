@@ -16,14 +16,15 @@ import HeaderMemo from '../components/header/header';
 import { ChoseCardState} from '../types/types';
 import { getNearPlaces, getOfferDataLoadingStatus } from '../store/app-data/selectors';
 import { getAuthorizationStatus } from '../store/user-process/selectors';
+import BookmarkButton from '../components/bookmark-button/bookmark-button';
 
 const mapWidth = '580px';
 
 function OfferPage() : JSX.Element {
   const [chosenCard, setChosenCard] = useState(null) as ChoseCardState;
 
-  const offerId = useParams().id;
-  const loadedOffer = useFetchingOffer(offerId as string);
+  const offerId = useParams().id as string;
+  const loadedOffer = useFetchingOffer(offerId);
   const nearPlaces = useAppSelector(getNearPlaces);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const offerIsLoading = useAppSelector(getOfferDataLoadingStatus);
@@ -58,12 +59,15 @@ function OfferPage() : JSX.Element {
                 <h1 className="offer__name">
                   {title}
                 </h1>
-                <button className={classNames('offer__bookmark-button button',{'offer__bookmark-button--active': isFavorite})} type="button">
-                  <svg className="offer__bookmark-icon" width="31" height="33">
-                    <use xlinkHref="#icon-bookmark"></use>
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <BookmarkButton
+                  variant='offer'
+                  width={31}
+                  height={33}
+                  offerId={offerId}
+                  isFavorite={isFavorite}
+                  textIcon={'To bookmarks'}
+                  isCheckAuth
+                />
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">

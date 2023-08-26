@@ -8,6 +8,7 @@ import EmptyFavorite from './empty-favorites';
 function Favorites() {
   const offers = useAppSelector(getOffers);
   const favoriteItems: Array<Offer> = offers.filter((item: Offer) => item.isFavorite);
+  console.log(favoriteItems);
   const favoriteCities = [...new Set(favoriteItems.map((item: Offer) => item.city.name))];
   return(
     <div className="page">

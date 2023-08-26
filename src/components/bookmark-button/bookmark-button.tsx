@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 type BookmarkButtonProps = {
   offerId: string;
   isFavorite: boolean;
-  variant: 'place-card' | 'offer';
+  variant: 'place-card' | 'offer' | 'favorites';
   width: number;
   height: number;
   textIcon: string;

@@ -8,7 +8,7 @@ import { useAppSelector } from '../../redux-hooks';
 import { getOffers } from '../../store/app-data/selectors';
 import { getCity } from '../../store/app-process/selectors';
 
-function Map({activeId, offerId, widthParam, places}: MapProps) {
+function Map({activeId, offerId, places}: MapProps) {
   const offers = useAppSelector(getOffers);
   const city = useAppSelector(getCity);
 
@@ -61,7 +61,7 @@ function Map({activeId, offerId, widthParam, places}: MapProps) {
 
   return (
     <div
-      style={{height: widthParam}}
+      style={{height: '100%', minHeight: '579px'}}
       ref={mapRef}
     >
     </div>

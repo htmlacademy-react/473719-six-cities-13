@@ -37,7 +37,6 @@ export type MapProps = {
   places?: Offer[];
   activeId: string | null;
   offerId?: string | null;
-  widthParam: string;
 }
 
 

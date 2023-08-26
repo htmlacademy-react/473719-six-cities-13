@@ -1,9 +1,9 @@
 import React from 'react';
 import type {BrowserHistory} from 'history';
-import { store } from '../store';
 import { AuthorizationStatus } from '../const';
 import { Dispatch } from 'react';
 import { SetStateAction } from 'react';
+import { ChangeEvent } from 'react';
 
 export type BasicOffer = {
   id: string;
@@ -88,7 +88,7 @@ export type CommentDataProps = ReviewData & {
 export type StarProps = {
   isSending: boolean;
   rate: number;
-  chooseStar: (event: MouseEvent<HTMLInputElement, MouseEvent<Element, MouseEvent>>) => void;
+  chooseStar: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export type ChoseCardName = string | null;

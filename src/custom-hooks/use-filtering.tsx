@@ -6,7 +6,6 @@ function useFiltering (): [string, boolean, ((event: React.MouseEvent<HTMLElemen
   const [isOpened, setOpened] = useState(false);
   const dispatch = useAppDispatch();
 
-
   function toggleList() {
     setOpened(!isOpened);
   }

@@ -1,10 +1,17 @@
 import { Offer } from '../../types/types';
 import { Link } from 'react-router-dom';
 import { calculateCardRating } from '../../utils';
-import classNames from 'classnames';
+import BookmarkButton from '../bookmark-button/bookmark-button';
 
-function PlaceCard(cardProps: Offer): JSX.Element {
-  const {isPremium, price, isFavorite, rating, id, title, type, handleHover, handleLeave, previewImage} = cardProps;
+type PlaceCardProps = {
+  offer: Offer;
+  isCheckAuth?: boolean;
+  handleHover:()=> void;
+  handleLeave:()=> void;
+}
+
+function PlaceCard({offer, isCheckAuth, handleHover, handleLeave}: PlaceCardProps): JSX.Element {
+  const {isPremium, price, isFavorite, rating, id, title, type, previewImage} = offer;
 
   return (
     <article
@@ -24,12 +31,14 @@ function PlaceCard(cardProps: Offer): JSX.Element {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={classNames('place-card__bookmark-button', 'button', {'place-card__bookmark-button--active':isFavorite})} type="button">
-            <svg className="place-card__bookmark-icon" width="18" height="19">
-              <use xlinkHref="#icon-bookmark"></use>
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
+          <BookmarkButton variant={'place-card'}
+            width={18}
+            height={19}
+            offerId={id}
+            isFavorite={isFavorite}
+            textIcon={'In bookmarks'}
+            isCheckAuth={isCheckAuth}
+          />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">

@@ -1,10 +1,10 @@
-import { Card } from './types';
+import { Offer } from './types/types';
 
 function calculateCardRating (rating: number) {
   return (Math.round((Math.ceil(rating) / 5) * 100)).toString();
 }
 
-function sortOffersByType(offers: Card[], sortType: string): Card[] {
+function sortOffersByType(offers: Offer[], sortType: string): Offer[] {
   switch(sortType) {
     case ('toHigh') : return offers.sort((a,b) => a.price - b.price);
     case ('toLow') : return offers.sort((a,b) => b.price - a.price);
@@ -13,4 +13,13 @@ function sortOffersByType(offers: Card[], sortType: string): Card[] {
   }
 }
 
-export {calculateCardRating, sortOffersByType};
+function getStartPlacesFiltered (places: Offer[], city: string): Offer[] {
+  return places.filter((offer) => offer.city.name === city);
+}
+
+function getFavoritesWithSpecificCity (offers: Offer[], cityName: string) {
+  return offers.filter((item: Offer) => item.isFavorite && item.city.name === cityName);
+}
+
+
+export {calculateCardRating, sortOffersByType, getStartPlacesFiltered, getFavoritesWithSpecificCity};

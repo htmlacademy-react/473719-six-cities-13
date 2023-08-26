@@ -1,16 +1,17 @@
-import FavoritesCity from '../components/favorites-city';
-import Header from '../components/header';
+import FavoritesCity from '../components/faborite-city/favorites-city';
+import HeaderMemo from '../components/header/header';
 import { useAppSelector } from '../redux-hooks';
-import { Card } from '../types';
+import { getOffers } from '../store/app-data/selectors';
+import { Offer } from '../types/types';
 import EmptyFavorite from './empty-favorites';
 
 function Favorites() {
-  const offers = useAppSelector((state) => state.offers);
-  const favoriteItems: Array<Card> = offers.filter((item: Card) => item.isFavorite);
-  const favoriteCities: Array<string> = [...new Set(favoriteItems.map((item: Card) => item.city.name))];
+  const offers = useAppSelector(getOffers);
+  const favoriteItems: Array<Offer> = offers.filter((item: Offer) => item.isFavorite);
+  const favoriteCities = [...new Set(favoriteItems.map((item: Offer) => item.city.name))];
   return(
     <div className="page">
-      <Header />
+      <HeaderMemo />
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           {favoriteItems.length === 0 && <EmptyFavorite />}
@@ -23,7 +24,6 @@ function Favorites() {
               )}
             </ul>
           </section>}
-
         </div>
       </main>
       <footer className="footer container">

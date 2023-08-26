@@ -1,47 +1,35 @@
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { AuthorizationStatus } from '../const';
 
-import CommentSection from '../components/comment-section';
-import ReviewsList from '../components/reviews-list';
+import CommentSection from '../components/comment-section/comment-section';
+import ReviewsList from '../components/reviews-list/reviews-list';
 import { calculateCardRating } from '../utils';
 
-import classNames from 'classnames';
-import NearPlaces from '../components/near-places';
-import Map from '../components/map';
-import { useAppSelector } from '../redux-hooks';
-import { fetchComments, fetchNearPlaces, fetchSpecificOffer } from '../store/api-actions';
-import { useAppDispatch } from '../redux-hooks';
-import { dropOffer } from '../store/actions';
-import Header from '../components/header';
+import NearPlaces from '../components/near-places/near-places';
+import Map from '../components/map/map';
+import { useAppSelector} from '../redux-hooks';
+import LoadingScreen from '../components/loading-block/loading-block';
+import useFetchingOffer from '../custom-hooks/use-fetching-offer';
+import HeaderMemo from '../components/header/header';
+import { ChoseCardState} from '../types/types';
+import { getNearPlaces, getOfferDataLoadingStatus } from '../store/app-data/selectors';
+import { getAuthorizationStatus } from '../store/user-process/selectors';
+import BookmarkButton from '../components/bookmark-button/bookmark-button';
 
 const mapWidth = '580px';
 
 function OfferPage() : JSX.Element {
-  const dispatch = useAppDispatch();
-  const [chosenCard, setChosenCard] = useState(null);
+  const [chosenCard, setChosenCard] = useState(null) as ChoseCardState;
 
-  const offerId = useParams().id;
-  const loadedOffer = useAppSelector((state) => state.loadedOffer);
-  const loadedComments = useAppSelector((state) => state.loadedComments);
-  const nearPlaces = useAppSelector((state)=> state.nearPlaces);
+  const offerId = useParams().id as string;
+  const loadedOffer = useFetchingOffer(offerId);
+  const nearPlaces = useAppSelector(getNearPlaces);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const offerIsLoading = useAppSelector(getOfferDataLoadingStatus);
 
-  useEffect(() => {
-    if(offerId) {
-      dispatch(fetchSpecificOffer(offerId));
-      dispatch(fetchComments(offerId));
-      dispatch(fetchNearPlaces(offerId));
-    }
-
-    return () => {
-      dispatch(dropOffer());
-    };
-
-  }, [offerId, dispatch]);
-
-  if (loadedOffer === null) {
-    return (
-      <p>123</p>
-    );
+  if (authorizationStatus === AuthorizationStatus.Unknown || !loadedOffer || offerIsLoading) {
+    return <LoadingScreen />;
   }
 
   const selectedNearPlaces = nearPlaces?.slice(0, 3);
@@ -51,7 +39,7 @@ function OfferPage() : JSX.Element {
 
   return (
     <div className="page">
-      <Header />
+      <HeaderMemo />
       <main className="page__main page__main--offer">
         <section className="offer">
           <div className="offer__gallery-container container">
@@ -70,12 +58,15 @@ function OfferPage() : JSX.Element {
                 <h1 className="offer__name">
                   {title}
                 </h1>
-                <button className={classNames('offer__bookmark-button button',{'offer__bookmark-button--active': isFavorite})} type="button">
-                  <svg className="offer__bookmark-icon" width="31" height="33">
-                    <use xlinkHref="#icon-bookmark"></use>
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <BookmarkButton
+                  variant='offer'
+                  width={31}
+                  height={33}
+                  offerId={offerId}
+                  isFavorite={isFavorite}
+                  textIcon={'To bookmarks'}
+                  isCheckAuth
+                />
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
@@ -121,8 +112,8 @@ function OfferPage() : JSX.Element {
                 </div>
               </div>
               <section className="offer__reviews reviews">
-                <ReviewsList comments={loadedComments}/>
-                <CommentSection />
+                <ReviewsList />
+                {authorizationStatus === AuthorizationStatus.Auth && <CommentSection />}
               </section>
             </div>
           </div>
@@ -131,7 +122,7 @@ function OfferPage() : JSX.Element {
           </section>
         </section>
         <div className="container">
-          <NearPlaces places={selectedNearPlaces} setChosenCard={setChosenCard}/>
+          {selectedNearPlaces && <NearPlaces places={selectedNearPlaces} setChosenCard={setChosenCard}/>}
         </div>
       </main>
     </div>

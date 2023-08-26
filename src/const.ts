@@ -1,14 +1,21 @@
-import { City } from './types';
+import { City } from './types/types';
+import { StatusCodes } from 'http-status-codes';
 
-enum AuthorizationStatus {
+export const EMPTY_LINE = '';
+export const EMPTY_RATING = 0;
+export const MIN_LINE = 49;
+export const URL_MARKER_DEFAULT = '../public/img/pin.svg';
+export const URL_MARKER_CURRENT = '../public/img/pin-active.svg';
+export const TIMEOUT_SHOW_ERROR = 2000;
+export const ratingTypes = [5, 4, 3, 2, 1] as const;
+
+export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
 
-const TIMEOUT_SHOW_ERROR = 2000;
-
-enum AppRoute {
+export enum AppRoute {
   Root ='/',
   LogIn = '/login',
   FavoriteItems='/favorites',
@@ -16,20 +23,19 @@ enum AppRoute {
   EverythingElse ='*',
 }
 
-interface GenericObject {
+export interface GenericObject {
   [key: string]: string;
 }
 
-const sortTypes: GenericObject = {
+export const sortTypes: GenericObject = {
   normal: 'Popular',
   toHigh: 'Price: low to high',
   toLow: 'Price: high to low',
   topRated: 'Top rated first',
 } as const;
 
-const ratingTypes = [5, 4, 3, 2, 1] as const;
 
-const ratingTypesMap: GenericObject = {
+export const ratingTypesMap: GenericObject = {
   '1': 'Terribly',
   '2': 'Badly',
   '3': 'Not bad',
@@ -37,8 +43,7 @@ const ratingTypesMap: GenericObject = {
   '5': 'Perfect'
 } as const;
 
-
-const CITIES: GenericObject = {
+export const CITIES: GenericObject = {
   paris: 'Paris',
   cologne: 'Cologne',
   brussels: 'Brussels',
@@ -47,7 +52,7 @@ const CITIES: GenericObject = {
   dusseldorf: 'Dusseldorf'
 } as const;
 
-const AllCities: Array<City> = [
+export const AllCities: Array<City> = [
   {
     'name': 'Paris',
     'location': {
@@ -88,16 +93,30 @@ const AllCities: Array<City> = [
       'zoom':13}},
 ];
 
-const enum APIroute {
+export const enum APIroute {
   Offers = '/offers',
   Comments = '/comments',
   Login = '/login',
   Logout = '/logout',
+  Favorite = '/favorite'
 }
 
 
-const URL_MARKER_DEFAULT = '../public/img/pin.svg';
+export const StatusCodeMapping: Record<number, boolean> = {
+  [StatusCodes.BAD_REQUEST]: true,
+  [StatusCodes.UNAUTHORIZED]: true,
+  [StatusCodes.NOT_FOUND]: true,
+};
 
-const URL_MARKER_CURRENT = '../public/img/pin-active.svg';
+export enum Status {
+  Idle = 'idle',
+  Loading = 'loading',
+  Success = 'success',
+  Error = 'error'
+}
 
-export {AuthorizationStatus, AppRoute, CITIES, sortTypes, ratingTypes, ratingTypesMap, URL_MARKER_DEFAULT, URL_MARKER_CURRENT, AllCities, APIroute, TIMEOUT_SHOW_ERROR};
+export enum NameSpace {
+  Data = 'DATA',
+  App = 'APP',
+  User = 'USER',
+}

@@ -1,14 +1,8 @@
-import { Offer } from '../../types/types';
 import { Link } from 'react-router-dom';
 import { calculateCardRating } from '../../utils';
 import BookmarkButton from '../bookmark-button/bookmark-button';
+import { PlaceCardProps } from '../../types/types';
 
-type PlaceCardProps = {
-  offer: Offer;
-  isCheckAuth?: boolean;
-  handleHover:()=> void;
-  handleLeave:()=> void;
-}
 
 function PlaceCard({offer, isCheckAuth, handleHover, handleLeave}: PlaceCardProps): JSX.Element {
   const {isPremium, price, isFavorite, rating, id, title, type, previewImage} = offer;

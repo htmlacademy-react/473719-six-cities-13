@@ -3,7 +3,6 @@ import type {BrowserHistory} from 'history';
 import { AuthorizationStatus } from '../const';
 import { Dispatch } from 'react';
 import { SetStateAction } from 'react';
-import { ChangeEvent } from 'react';
 
 export type BasicOffer = {
   id: string;
@@ -108,18 +107,6 @@ export type NearPlaceItemProps = BasicOffer & {
   handleLeave?: () => void;
 }
 
-
-export type UserData = {
-  id: number;
-  email: string;
-  token: string;
-}
-
-export type AuthData = {
-  login: string;
-  password: string;
-}
-
 export interface HistoryRouterProps {
   history: BrowserHistory;
   basename?: string;
@@ -139,9 +126,9 @@ export type TabsProps = {
   chosenCity : string;
 }
 
-export type FavoriteStatus = {
-  offerId: string;
-  status: number;
-};
-
-
+export type PlaceCardProps = {
+  offer: Offer;
+  isCheckAuth?: boolean;
+  handleHover:()=> void;
+  handleLeave:()=> void;
+}

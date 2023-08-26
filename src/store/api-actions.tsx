@@ -7,10 +7,11 @@ import { redirectToRoute } from './actions';
 
 import { saveToken, dropToken } from '../services/tokens';
 import { APIroute, AppRoute} from '../const';
-
-import { AuthData, UserData } from '../types/types';
+import { UserData } from '../types/auth-user-data';
+import { AuthData } from '../types/auth-user-data';
 import { FavoriteStatus } from '../types/favorite-status';
 import { AppDispatch } from '../types/state';
+import { resetFavoriteStatus } from './app-data/app-data';
 
 
 export const fetchOffers = createAsyncThunk<Offer[], undefined, {
@@ -136,7 +137,7 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   async (_arg, {dispatch, extra: api}) => {
     await api.delete(APIroute.Logout);
     dispatch(fetchOffers());
-    // dispatch(resetFavoriteStatus());
+    dispatch(resetFavoriteStatus());
     dropToken();
   },
 );

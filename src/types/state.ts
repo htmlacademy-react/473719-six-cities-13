@@ -1,6 +1,7 @@
 import { store } from '../store';
 import { AuthorizationStatus, Status } from '../const';
-import { Offer, UserData } from './types';
+import { Offer } from './types';
+import { UserData } from './auth-user-data';
 import { ReviewItemProps } from './types';
 import { CommentDataProps } from './types';
 

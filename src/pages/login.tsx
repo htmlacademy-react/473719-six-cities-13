@@ -2,7 +2,7 @@ import Logo from '../components/logo/logo';
 import { useAppDispatch, useAppSelector } from '../redux-hooks';
 import { useRef, FormEvent } from 'react';
 import { loginAction } from '../store/api-actions';
-import { AuthData } from '../types/types';
+import { AuthData } from '../types/auth-user-data';
 import { AppRoute, AuthorizationStatus } from '../const';
 import { Navigate } from 'react-router-dom';
 import { getCity } from '../store/app-process/selectors';

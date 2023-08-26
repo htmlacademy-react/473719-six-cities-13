@@ -14,9 +14,6 @@ function useFetchingOffer(offerId: string) {
       dispatch(fetchComments(offerId));
       dispatch(fetchNearPlaces(offerId));
     }
-    // return () => {
-    //   dispatch(dropOffer());
-    // };
 
   }, [offerId, dispatch]);
 

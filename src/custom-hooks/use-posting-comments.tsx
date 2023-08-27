@@ -26,9 +26,9 @@ function usePostingComments(review : ReviewData, offerId: string, resetData: (ev
         rating: review.rating,
       }).then(()=> {
         setIsSending(false);
+        resetData(event);
       });
     }
-    resetData(event);
   }
 
   useEffect(()=> {

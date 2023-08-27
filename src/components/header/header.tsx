@@ -29,7 +29,7 @@ function Header (): JSX.Element {
                   <UserInfo />
                 </li>
                 <li className="header__nav-item">
-                  <Link className="header__nav-link" to="#" onClick={logoutHandler}>
+                  <Link className="header__nav-link" to="#" onClick={handleLogout}>
                     <span className="header__signout">Sign out</span>
                   </Link>
                 </li>

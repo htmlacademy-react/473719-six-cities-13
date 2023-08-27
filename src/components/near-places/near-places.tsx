@@ -7,7 +7,7 @@ function NearPlaces(nearPlacesProps: NearPlacesProps): JSX.Element {
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighborhood</h2>
       <div className="near-places__list places__list">
-        {places.map((place)=> (<NearPlaceItem key={place.id} {...place} isCheckAuth handleHover= {() => setChosenCard(place.id)} handleLeave= {()=> setChosenCard(null)}/>))}
+        {places.map((place)=> (<NearPlaceItem key={place.id} {...place} isCheckAuth handleHover={() => setChosenCard(place.id)} handleLeave={()=> setChosenCard(null)}/>))}
       </div>
     </section>
   );

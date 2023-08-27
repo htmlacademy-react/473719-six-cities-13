@@ -11,7 +11,7 @@ function Header (): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const dispatch = useAppDispatch();
 
-  const logoutHandler = () => {
+  const handleLogout = () => {
     dispatch(logoutAction());
   };
 

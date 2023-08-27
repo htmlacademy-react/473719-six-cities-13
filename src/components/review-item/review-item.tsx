@@ -5,6 +5,7 @@ function ReviewItem(reviewItemProps: ReviewItemProps):JSX.Element {
   const commentDate = new Date(date);
   const month = commentDate.toLocaleString('en-US',{month: 'long'});
   const year = commentDate.getFullYear();
+  const dateTime = commentDate.toDateString();
 
   return(
     <li className="reviews__item">
@@ -22,7 +23,7 @@ function ReviewItem(reviewItemProps: ReviewItemProps):JSX.Element {
           </div>
         </div>
         <p className="reviews__text">{comment}</p>
-        <time className="reviews__time" dateTime={date}>{month}{' '}{year}</time>
+        <time className="reviews__time" dateTime={dateTime}>{month}{' '}{year}</time>
       </div>
     </li>
   );

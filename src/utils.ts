@@ -1,4 +1,4 @@
-import { Offer } from './types/types';
+import { Offer, ReviewItemProps } from './types/types';
 
 function calculateCardRating (rating: number) {
   return (Math.round((Math.ceil(rating) / 5) * 100)).toString();
@@ -21,5 +21,12 @@ function getFavoritesWithSpecificCity (offers: Offer[], cityName: string) {
   return offers.filter((item: Offer) => item.isFavorite && item.city.name === cityName);
 }
 
+const MAX_COUNT_LAST_REVIEWS = 10;
 
-export {calculateCardRating, sortOffersByType, getStartPlacesFiltered, getFavoritesWithSpecificCity};
+const sortReviews = (reviews: readonly ReviewItemProps[]): ReviewItemProps[] => (
+  [...reviews]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, MAX_COUNT_LAST_REVIEWS)
+);
+
+export {calculateCardRating, sortOffersByType, getStartPlacesFiltered, getFavoritesWithSpecificCity, sortReviews};

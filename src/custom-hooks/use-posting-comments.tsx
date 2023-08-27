@@ -4,7 +4,7 @@ import { CommentDataProps, ReviewData } from '../types/types';
 import { sendComment } from '../store/api-actions';
 import { FormEvent } from 'react';
 import { useEffect } from 'react';
-import { EMPTY_LINE, EMPTY_RATING, MIN_LINE } from '../const';
+import { EMPTY_LINE, EMPTY_RATING, MIN_LINE, MAX_LINE } from '../const';
 
 
 function usePostingComments(review : ReviewData, offerId: string, resetData: (event: FormEvent<HTMLFormElement>) => void): [((event: FormEvent<HTMLFormElement>) => void), boolean, boolean] {
@@ -12,7 +12,7 @@ function usePostingComments(review : ReviewData, offerId: string, resetData: (ev
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
   const [isSending, setIsSending] = useState(false);
 
-  const isValid = useMemo(() => review.comment !== EMPTY_LINE && review.rating !== EMPTY_RATING && review.comment.length > MIN_LINE, [review.comment, review.rating]);
+  const isValid = useMemo(() => review.comment !== EMPTY_LINE && review.rating !== EMPTY_RATING && review.comment.length > MIN_LINE && review.comment.length < MAX_LINE, [review.comment, review.rating]);
 
   const onSubmit = async (commentData: CommentDataProps) => await dispatch(sendComment(commentData));
 

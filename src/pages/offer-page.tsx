@@ -17,8 +17,6 @@ import { getNearPlaces, getOfferDataLoadingStatus } from '../store/app-data/sele
 import { getAuthorizationStatus } from '../store/user-process/selectors';
 import BookmarkButton from '../components/bookmark-button/bookmark-button';
 
-const mapWidth = '580px';
-
 function OfferPage() : JSX.Element {
   const [chosenCard, setChosenCard] = useState(null) as ChoseCardState;
 
@@ -118,7 +116,7 @@ function OfferPage() : JSX.Element {
             </div>
           </div>
           <section className="offer__map map">
-            <Map places={selectedNearPlacesWithCurrent} activeId={chosenCard} offerId={offerId} widthParam={mapWidth}/>
+            <Map places={selectedNearPlacesWithCurrent} activeId={chosenCard} offerId={offerId} />
           </section>
         </section>
         <div className="container">

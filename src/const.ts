@@ -4,8 +4,8 @@ import { StatusCodes } from 'http-status-codes';
 export const EMPTY_LINE = '';
 export const EMPTY_RATING = 0;
 export const MIN_LINE = 49;
-export const URL_MARKER_DEFAULT = '../public/img/pin.svg';
-export const URL_MARKER_CURRENT = '../public/img/pin-active.svg';
+export const URL_MARKER_DEFAULT = 'img/pin.svg';
+export const URL_MARKER_CURRENT = 'img/pin-active.svg';
 export const TIMEOUT_SHOW_ERROR = 2000;
 export const ratingTypes = [5, 4, 3, 2, 1] as const;
 

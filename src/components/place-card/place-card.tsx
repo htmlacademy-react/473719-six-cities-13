@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { calculateCardRating } from '../../utils';
 import BookmarkButton from '../bookmark-button/bookmark-button';
 import { PlaceCardProps } from '../../types/types';
+import { AppartVariants } from '../../const';
 
 
 function PlaceCard({offer, isCheckAuth, handleHover, handleLeave}: PlaceCardProps): JSX.Element {
@@ -43,7 +44,7 @@ function PlaceCard({offer, isCheckAuth, handleHover, handleLeave}: PlaceCardProp
         <h2 className="place-card__name">
           <Link to={`/offer/${id}`}>{title}</Link>
         </h2>
-        <p className="place-card__type">{type}</p>
+        <p className="place-card__type">{AppartVariants[type]}</p>
       </div>
     </article>
   );

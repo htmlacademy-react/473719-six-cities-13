@@ -26,7 +26,6 @@ function Tabs(props: TabsProps): JSX.Element {
               <Link className={classNames(
                 'locations__item-link', 'tabs__item',
                 {'tabs__item--active': chosenCity === CITIES[city]})}
-              to={`#${city}`}
               >
                 <span>{CITIES[city]}</span>
               </Link>

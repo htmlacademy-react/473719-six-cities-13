@@ -2,6 +2,10 @@ import { ReviewItemProps } from '../../types/types';
 
 function ReviewItem(reviewItemProps: ReviewItemProps):JSX.Element {
   const {rating, user, comment, date} = reviewItemProps;
+  const commentDate = new Date(date);
+  const month = commentDate.toLocaleString('en-US',{month: 'long'});
+  const year = commentDate.getFullYear();
+
   return(
     <li className="reviews__item">
       <div className="reviews__user user">
@@ -18,7 +22,7 @@ function ReviewItem(reviewItemProps: ReviewItemProps):JSX.Element {
           </div>
         </div>
         <p className="reviews__text">{comment}</p>
-        <time className="reviews__time" dateTime={date}>{date}</time>
+        <time className="reviews__time" dateTime={date}>{month}{' '}{year}</time>
       </div>
     </li>
   );

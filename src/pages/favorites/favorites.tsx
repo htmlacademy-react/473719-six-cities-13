@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import FavoritesCity from '../components/favorite-city/favorites-city';
-import HeaderMemo from '../components/header/header';
-import { useAppSelector } from '../redux-hooks';
-import { getOffers } from '../store/app-data/selectors';
-import { Offer } from '../types/types';
-import EmptyFavorite from './empty-favorites';
+import FavoritesCity from '../../components/favorite-city/favorites-city';
+import HeaderMemo from '../../components/header/header';
+import { useAppSelector } from '../../redux-hooks';
+import { getOffers } from '../../store/app-data/selectors';
+import { Offer } from '../../types/types';
+import EmptyFavorite from '../empty-favorites/empty-favorites';
 
 function Favorites() {
   const offers = useAppSelector(getOffers);

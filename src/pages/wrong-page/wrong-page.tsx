@@ -1,4 +1,4 @@
-import HeaderMemo from '../components/header/header';
+import HeaderMemo from '../../components/header/header';
 
 function WrongPage():JSX.Element {
   return (

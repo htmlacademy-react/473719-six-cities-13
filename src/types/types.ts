@@ -102,6 +102,7 @@ export type NearPlacesProps = {
 }
 
 export type NearPlaceItemProps = BasicOffer & {
+  isCheckAuth: boolean | undefined;
   handleHover?: () => void;
   handleLeave?: () => void;
 }

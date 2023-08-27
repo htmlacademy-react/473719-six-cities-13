@@ -1,8 +1,8 @@
-import MainPage from '../../pages/main-page';
-import Login from '../../pages/login';
-import WrongPage from '../../pages/wrong-page';
-import Favorites from '../../pages/favorites';
-import OfferPage from '../../pages/offer-page';
+import MainPage from '../../pages/main-page/main-page';
+import Login from '../../pages/login/login';
+import WrongPage from '../../pages/wrong-page/wrong-page';
+import Favorites from '../../pages/favorites/favorites';
+import OfferPage from '../../pages/offer-page/offer-page';
 import { AuthorizationStatus, AppRoute } from '../../const';
 
 import {Route, Routes } from 'react-router-dom';

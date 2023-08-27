@@ -1,5 +1,5 @@
-import { useAppSelector } from '../redux-hooks';
-import { getCity } from '../store/app-process/selectors';
+import { useAppSelector } from '../../redux-hooks';
+import { getCity } from '../../store/app-process/selectors';
 
 function EmptyMainPage(): JSX.Element {
   const chosenCity = useAppSelector(getCity);

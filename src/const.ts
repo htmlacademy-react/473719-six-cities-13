@@ -34,6 +34,13 @@ export const sortTypes: GenericObject = {
   topRated: 'Top rated first',
 } as const;
 
+export const AppartVariants: GenericObject = {
+  apartment: 'Apartment',
+  room: 'Private Room',
+  house: 'House',
+  hotel: 'Hotel',
+};
+
 
 export const ratingTypesMap: GenericObject = {
   '1': 'Terribly',

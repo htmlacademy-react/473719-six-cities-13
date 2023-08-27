@@ -12,8 +12,6 @@ import HeaderMemo from '../components/header/header';
 import { getCity, getSorting } from '../store/app-process/selectors';
 import { getOffers } from '../store/app-data/selectors';
 
-const mapWidth = '714px';
-
 function MainPage(): JSX.Element {
   const chosenCity = useAppSelector(getCity);
   const offers = useAppSelector(getOffers);
@@ -46,7 +44,7 @@ function MainPage(): JSX.Element {
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map activeId={chosenCard} widthParam={mapWidth} />
+                <Map activeId={chosenCard} />
               </section>
             </div>
           </div>

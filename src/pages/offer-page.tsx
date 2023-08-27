@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-import { AuthorizationStatus } from '../const';
+import { AuthorizationStatus, AppartVariants } from '../const';
 
 import CommentSection from '../components/comment-section/comment-section';
 import ReviewsList from '../components/reviews-list/reviews-list';
@@ -77,7 +77,7 @@ function OfferPage() : JSX.Element {
               </div>
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">
-                  {type}
+                  {AppartVariants[type]}
                 </li>
                 <li className="offer__feature offer__feature--bedrooms">
                   {`${bedrooms === 1 ? `${bedrooms } bedroom` : `${bedrooms } bedrooms`} `}

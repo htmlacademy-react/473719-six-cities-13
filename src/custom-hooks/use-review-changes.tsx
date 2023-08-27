@@ -1,14 +1,11 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { EMPTY_LINE, EMPTY_RATING, Status } from '../const';
-import { FormEvent } from 'react';
-import { useAppDispatch, useAppSelector } from '../redux-hooks';
-import { getCommentStatus } from '../store/app-data/selectors';
+import { useAppDispatch } from '../redux-hooks';
 import { setCommentStatus } from '../store/app-data/app-data';
 
 
 function useReviewChanges () {
   const dispatch = useAppDispatch();
-  const commentStatus = useAppSelector(getCommentStatus);
 
   const [review, setReview] = useState({
     comment: EMPTY_LINE,
@@ -32,20 +29,21 @@ function useReviewChanges () {
     });
   }
 
-  function resetData (event: FormEvent<HTMLFormElement>) {
-    if (commentStatus === Status.Success) {
-      dispatch(setCommentStatus(Status.Idle));
-      setReview({
-        ...review,
-        comment: EMPTY_LINE,
-        rating: EMPTY_RATING,
-      });
-      event.currentTarget.reset();
-    }
-
+  function ResetData (commentStatus: Status) {
+    useEffect(() => {
+      if (commentStatus === Status.Success) {
+        setReview({
+          ...review,
+          comment: EMPTY_LINE,
+          rating: EMPTY_RATING,
+        });
+        dispatch(setCommentStatus(Status.Idle));
+      }
+    });
   }
 
-  return [changeText, resetData, chooseStar, review];
+
+  return [changeText, ResetData, chooseStar, review];
 }
 
 

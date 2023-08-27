@@ -1,13 +1,15 @@
 import { NearPlaceItemProps} from '../../types/types';
+import { AppartVariants } from '../../const';
+import { Link } from 'react-router-dom';
 
 function NearPlaceItem(nearPlaceItemProps: NearPlaceItemProps):JSX.Element {
   const { price, title, previewImage, type, handleHover, handleLeave} = nearPlaceItemProps;
   return(
     <article className="near-places__card place-card">
       <div className="near-places__image-wrapper place-card__image-wrapper">
-        <a href="#" onMouseEnter={handleHover} onMouseLeave={handleLeave}>
+        <Link to="#" onMouseEnter={handleHover} onMouseLeave={handleLeave}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -29,9 +31,9 @@ function NearPlaceItem(nearPlaceItemProps: NearPlaceItemProps):JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#" onMouseEnter={handleHover} onMouseLeave={handleLeave}>{title}</a>
+          <Link to="#" onMouseEnter={handleHover} onMouseLeave={handleLeave}>{title}</Link>
         </h2>
-        <p className="place-card__type">{type}</p>
+        <p className="place-card__type">{AppartVariants[type]}</p>
       </div>
     </article>
   );

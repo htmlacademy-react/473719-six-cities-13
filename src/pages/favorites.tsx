@@ -1,4 +1,5 @@
-import FavoritesCity from '../components/faborite-city/favorites-city';
+import { Link } from 'react-router-dom';
+import FavoritesCity from '../components/favorite-city/favorites-city';
 import HeaderMemo from '../components/header/header';
 import { useAppSelector } from '../redux-hooks';
 import { getOffers } from '../store/app-data/selectors';
@@ -27,9 +28,9 @@ function Favorites() {
         </div>
       </main>
       <footer className="footer container">
-        <a className="footer__logo-link" href="main.html">
+        <Link className="footer__logo-link" to="main.html">
           <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33" />
-        </a>
+        </Link>
       </footer>
     </div>);
 }

@@ -31,12 +31,10 @@ function Login(): JSX.Element {
         return;
       }
 
-      if (!REGEX_PASS.test(passwordRef.current.value)) {
-        onSubmit({
-          login: emailRef.current.value,
-          password: passwordRef.current.value,
-        });
-      }
+      onSubmit({
+        login: emailRef.current.value,
+        password: passwordRef.current.value,
+      });
     }
   };
 

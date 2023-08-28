@@ -8,6 +8,8 @@ import { Navigate } from 'react-router-dom';
 import { getCity } from '../../store/app-process/selectors';
 import { Link } from 'react-router-dom';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { REGEX_EMAIL } from '../../const';
+import { toast } from 'react-toastify';
 
 function Login(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -21,9 +23,15 @@ function Login(): JSX.Element {
     dispatch(loginAction(authData));
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+
     if (emailRef.current !== null && passwordRef.current !== null) {
+      if (!REGEX_EMAIL.test(passwordRef.current.value)) {
+        toast.warn('The password must have at least one letter and one symbol and no spaces');
+        return;
+      }
+
       onSubmit({
         login: emailRef.current.value,
         password: passwordRef.current.value,

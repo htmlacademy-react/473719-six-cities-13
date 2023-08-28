@@ -11,7 +11,7 @@ function Header (): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const dispatch = useAppDispatch();
 
-  const logoutHandler = () => {
+  const handleLogout = () => {
     dispatch(logoutAction());
   };
 
@@ -29,9 +29,9 @@ function Header (): JSX.Element {
                   <UserInfo />
                 </li>
                 <li className="header__nav-item">
-                  <a className="header__nav-link" href="#" onClick={logoutHandler}>
+                  <Link className="header__nav-link" to="#" onClick={handleLogout}>
                     <span className="header__signout">Sign out</span>
-                  </a>
+                  </Link>
                 </li>
               </ul>}
             {authorizationStatus === 'NO_AUTH' &&

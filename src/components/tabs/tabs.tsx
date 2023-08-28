@@ -23,10 +23,9 @@ function Tabs(props: TabsProps): JSX.Element {
                 dispatch(changeCity(CITIES[city]));
               }}
             >
-              <Link className={classNames(
+              <Link to="#" className={classNames(
                 'locations__item-link', 'tabs__item',
                 {'tabs__item--active': chosenCity === CITIES[city]})}
-              to={`#${city}`}
               >
                 <span>{CITIES[city]}</span>
               </Link>

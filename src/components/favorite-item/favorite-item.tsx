@@ -1,4 +1,5 @@
 import { Offer } from '../../types/types';
+import { AppartVariants } from '../../const';
 import { Link } from 'react-router-dom';
 import { calculateCardRating } from '../../utils';
 import BookmarkButton from '../bookmark-button/bookmark-button';
@@ -38,7 +39,7 @@ function FavoriteItem(favoriteCard: Offer): JSX.Element {
         <h2 className="place-card__name">
           <Link to={`/offer/${id}`}>{title}</Link>
         </h2>
-        <p className="place-card__type">{type}</p>
+        <p className="place-card__type">{AppartVariants[type]}</p>
       </div>
     </article>
   );

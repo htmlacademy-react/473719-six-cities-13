@@ -1,23 +1,21 @@
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-import { AuthorizationStatus, AppartVariants } from '../const';
+import { AuthorizationStatus, AppartVariants } from '../../const';
 
-import CommentSection from '../components/comment-section/comment-section';
-import ReviewsList from '../components/reviews-list/reviews-list';
-import { calculateCardRating } from '../utils';
+import CommentSection from '../../components/comment-section/comment-section';
+import ReviewsList from '../../components/reviews-list/reviews-list';
+import { calculateCardRating } from '../../utils';
 
-import NearPlaces from '../components/near-places/near-places';
-import Map from '../components/map/map';
-import { useAppSelector} from '../redux-hooks';
-import LoadingScreen from '../components/loading-block/loading-block';
-import useFetchingOffer from '../custom-hooks/use-fetching-offer';
-import HeaderMemo from '../components/header/header';
-import { ChoseCardState} from '../types/types';
-import { getNearPlaces, getOfferDataLoadingStatus } from '../store/app-data/selectors';
-import { getAuthorizationStatus } from '../store/user-process/selectors';
-import BookmarkButton from '../components/bookmark-button/bookmark-button';
-
-const mapWidth = '580px';
+import NearPlaces from '../../components/near-places/near-places';
+import Map from '../../components/map/map';
+import { useAppSelector} from '../../redux-hooks';
+import LoadingScreen from '../../components/loading-block/loading-block';
+import useFetchingOffer from '../../custom-hooks/use-fetching-offer';
+import HeaderMemo from '../../components/header/header';
+import { ChoseCardState} from '../../types/types';
+import { getNearPlaces, getOfferDataLoadingStatus } from '../../store/app-data/selectors';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import BookmarkButton from '../../components/bookmark-button/bookmark-button';
 
 function OfferPage() : JSX.Element {
   const [chosenCard, setChosenCard] = useState(null) as ChoseCardState;
@@ -118,7 +116,7 @@ function OfferPage() : JSX.Element {
             </div>
           </div>
           <section className="offer__map map">
-            <Map places={selectedNearPlacesWithCurrent} activeId={chosenCard} offerId={offerId} widthParam={mapWidth}/>
+            <Map places={selectedNearPlacesWithCurrent} activeId={chosenCard} offerId={offerId} />
           </section>
         </section>
         <div className="container">

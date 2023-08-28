@@ -71,7 +71,7 @@ export type ReviewItemProps = CommentDataProps & {
     avatarUrl: string;
     isPro: boolean;
   };
-  date: string;
+  date: string | Date;
 }
 export type ReviewData = {
   rating: number;
@@ -86,7 +86,7 @@ export type CommentDataProps = ReviewData & {
 export type StarProps = {
   isSending: boolean;
   rate: number;
-  chooseStar: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  chooseStar: (event: React.MouseEvent<HTMLInputElement>) => void;
 }
 
 export type ChoseCardName = string | null;
@@ -102,6 +102,7 @@ export type NearPlacesProps = {
 }
 
 export type NearPlaceItemProps = BasicOffer & {
+  isCheckAuth: boolean | undefined;
   handleHover?: () => void;
   handleLeave?: () => void;
 }

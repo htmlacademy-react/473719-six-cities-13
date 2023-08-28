@@ -1,5 +1,5 @@
-import {useState, useLayoutEffect} from 'react';
-import {Router} from 'react-router-dom';
+import { useState, useLayoutEffect } from 'react';
+import { Router } from 'react-router-dom';
 import { HistoryRouterProps } from '../../types/types';
 
 function HistoryRouter({

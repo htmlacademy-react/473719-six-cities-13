@@ -1,12 +1,13 @@
-import Logo from '../components/logo/logo';
-import { useAppDispatch, useAppSelector } from '../redux-hooks';
+import Logo from '../../components/logo/logo';
+import { useAppDispatch, useAppSelector } from '../../redux-hooks';
 import { useRef, FormEvent } from 'react';
-import { loginAction } from '../store/api-actions';
-import { AuthData } from '../types/auth-user-data';
-import { AppRoute, AuthorizationStatus } from '../const';
+import { loginAction } from '../../store/api-actions';
+import { AuthData } from '../../types/auth-user-data';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import { Navigate } from 'react-router-dom';
-import { getCity } from '../store/app-process/selectors';
-import { getAuthorizationStatus } from '../store/user-process/selectors';
+import { getCity } from '../../store/app-process/selectors';
+import { Link } from 'react-router-dom';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 function Login(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -83,9 +84,9 @@ function Login(): JSX.Element {
              </section>
              <section className="locations locations--login locations--current">
                <div className="locations__item">
-                 <a className="locations__item-link" href="#">
+                 <Link className="locations__item-link" to="#">
                    <span>{currentCity}</span>
-                 </a>
+                 </Link>
                </div>
              </section>
            </div>

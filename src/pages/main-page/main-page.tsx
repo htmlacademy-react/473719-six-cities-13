@@ -1,16 +1,17 @@
-import PlaceCard from '../components/place-card/place-card';
-import PLacesSortingMemo from '../components/place-sorting/places-sorting';
+import PlaceCard from '../../components/place-card/place-card';
+import PLacesSortingMemo from '../../components/place-sorting/places-sorting';
 import { useState } from 'react';
-import Map from '../components/map/map';
-import { sortOffersByType, getStartPlacesFiltered } from '../utils';
+import Map from '../../components/map/map';
+import { sortOffersByType, getStartPlacesFiltered } from '../../utils';
 
-import type { Offer } from '../types/types';
-import { useAppSelector, } from '../redux-hooks';
-import EmptyMainPage from './empty-main-page';
-import TabsMemo from '../components/tabs/tabs';
-import HeaderMemo from '../components/header/header';
-import { getCity, getSorting } from '../store/app-process/selectors';
-import { getOffers } from '../store/app-data/selectors';
+import type { Offer } from '../../types/types';
+import { useAppSelector, } from '../../redux-hooks';
+import EmptyMainPage from '../empty-main-page/empty-main-page';
+import TabsMemo from '../../components/tabs/tabs';
+import HeaderMemo from '../../components/header/header';
+import { getCity, getSorting } from '../../store/app-process/selectors';
+import { getOffers } from '../../store/app-data/selectors';
+import classNames from 'classnames';
 
 function MainPage(): JSX.Element {
   const chosenCity = useAppSelector(getCity);
@@ -22,7 +23,9 @@ function MainPage(): JSX.Element {
   const [chosenCard, setChosenCard] = useState<string | null>(null);
 
   return(
-    <div className="page page--gray page--main">
+    <div className={classNames('page page--gray page--main',
+      filteredOffers.length === 0 && 'page__main--index-empty')}
+    >
       <HeaderMemo />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
@@ -38,7 +41,7 @@ function MainPage(): JSX.Element {
               <PLacesSortingMemo />
               <div className="cities__places-list places__list tabs__content">
                 {sortedOffers.map((card: Offer) =>
-                  (<PlaceCard key= {card.id} offer={card} handleHover= {()=> setChosenCard(card.id)} handleLeave= {()=> setChosenCard(null)} isCheckAuth/>)
+                  (<PlaceCard key={card.id} offer={card} handleHover={()=> setChosenCard(card.id)} handleLeave={()=> setChosenCard(null)} isCheckAuth/>)
                 )}
               </div>
             </section>

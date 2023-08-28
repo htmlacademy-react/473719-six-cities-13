@@ -3,7 +3,7 @@ import useMap from '../../custom-hooks/use-map';
 import 'leaflet/dist/leaflet.css';
 import leaflet from 'leaflet';
 import { MapProps } from '../../types/types';
-import { AllCities, URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
+import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
 import { useAppSelector } from '../../redux-hooks';
 import { getOffers } from '../../store/app-data/selectors';
 import { getCity } from '../../store/app-process/selectors';
@@ -13,7 +13,7 @@ function Map({activeId, offerId, places}: MapProps) {
   const city = useAppSelector(getCity);
 
   const currentOffer = offers.filter((item) => item.id === offerId);
-  const currentCity = AllCities.filter((item) => item.name === city).at(0);
+  const currentCity = offers.findLast((offer) => offer.city.name === city)?.city;
 
   function chooseOffers () {
     if (places) {

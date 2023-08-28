@@ -3,11 +3,12 @@ import { useAppDispatch, useAppSelector } from '../../redux-hooks';
 import { useRef, FormEvent } from 'react';
 import { loginAction } from '../../store/api-actions';
 import { AuthData } from '../../types/auth-user-data';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute, AuthorizationStatus, REGEX_PASS } from '../../const';
 import { Navigate } from 'react-router-dom';
 import { getCity } from '../../store/app-process/selectors';
 import { Link } from 'react-router-dom';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { toast } from 'react-toastify';
 
 function Login(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -21,9 +22,15 @@ function Login(): JSX.Element {
     dispatch(loginAction(authData));
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+
     if (emailRef.current !== null && passwordRef.current !== null) {
+      if (!REGEX_PASS.test(passwordRef.current.value)) {
+        toast.warn('The password must have at least one letter and one symbol and no spaces');
+        return;
+      }
+
       onSubmit({
         login: emailRef.current.value,
         password: passwordRef.current.value,

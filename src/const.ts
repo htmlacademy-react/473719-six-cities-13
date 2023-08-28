@@ -86,3 +86,5 @@ export enum NameSpace {
   App = 'APP',
   User = 'USER',
 }
+
+export const REGEX_PASS = /^(?=.*\d)(?=.*[a-z])\S*$/i;

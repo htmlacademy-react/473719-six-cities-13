@@ -20,7 +20,6 @@ function App() : JSX.Element {
   const isOffersDataLoading = useAppSelector(getOfferDataLoadingStatus);
   const hasError = useAppSelector(getErrorStatus);
 
-
   return(
     <>
       {!isAuthChecked || isOffersDataLoading && <LoadingScreen />}

@@ -87,4 +87,4 @@ export enum NameSpace {
   User = 'USER',
 }
 
-export const REGEX_EMAIL = /^(?=.*\d)(?=.*[a-z])\S*$/i;
+export const REGEX_PASS = /^(?=.*\d)(?=.*[a-z])\S*$/i;

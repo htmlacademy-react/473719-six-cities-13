@@ -1,6 +1,6 @@
 import { Offer, ReviewItemProps } from './types/types';
 
-const calculateCardRating = (rating: number) => (Math.round((Math.ceil(rating) / 5) * 100)).toString();
+const calculateCardRating = (rating: number) => (Math.round((Math.round(rating) / 5) * 100)).toString();
 
 const sortOffersByType = (offers: Offer[], sortType: string): Offer[] => {
   switch(sortType) {

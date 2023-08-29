@@ -31,7 +31,9 @@ function useReviewChanges () {
 
   function ResetData (commentStatus: Status) {
     useEffect(() => {
+      console.log(commentStatus);
       if (commentStatus === Status.Success) {
+        console.log('Работает');
         setReview({
           ...review,
           comment: EMPTY_LINE,

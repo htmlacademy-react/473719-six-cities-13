@@ -2,8 +2,9 @@ import { StatusCodes } from 'http-status-codes';
 
 export const EMPTY_LINE = '';
 export const EMPTY_RATING = 0;
-export const MIN_LINE = 49;
-export const MAX_LINE = 301;
+export const MIN_LINE = 50;
+export const MAX_LINE = 300;
+export const MAX_RATING = 5;
 export const URL_MARKER_DEFAULT = 'img/pin.svg';
 export const URL_MARKER_CURRENT = 'img/pin-active.svg';
 export const TIMEOUT_SHOW_ERROR = 2000;
@@ -88,3 +89,11 @@ export enum NameSpace {
 }
 
 export const REGEX_PASS = /^(?=.*\d)(?=.*[a-z])\S*$/i;
+
+export const RATING_VALUES = [
+  {value: 5, title: 'perfect'},
+  {value: 4, title: 'good'},
+  {value: 3, title: 'not bad'},
+  {value: 2, title: 'badly'},
+  {value: 1, title: 'terribly'},
+];

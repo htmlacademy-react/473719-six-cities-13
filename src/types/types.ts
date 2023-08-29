@@ -86,7 +86,7 @@ export type CommentDataProps = ReviewData & {
 export type StarProps = {
   isSending: boolean;
   rate: number;
-  chooseStar: (event: React.MouseEvent<HTMLInputElement>) => void;
+  handleInputChange: (event: React.MouseEvent<HTMLInputElement>) => void;
 }
 
 export type ChoseCardName = string | null;

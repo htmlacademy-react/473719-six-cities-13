@@ -6,22 +6,17 @@ import useReviewChanges from '../../custom-hooks/use-review-changes';
 import usePostingComments from '../../custom-hooks/use-posting-comments';
 import { ReviewData } from '../../types/types';
 import StarMemo from '../star/star';
-import { useAppSelector } from '../../redux-hooks';
-import { getCommentStatus } from '../../store/app-data/selectors';
 
 type ReviewChangesHookData = [
   (event: ChangeEvent<HTMLTextAreaElement>) => void,
   (commentStatus: Status) => void,
-  (event: React.MouseEvent<HTMLInputElement>) => void,
   ReviewData
 ];
 
 function CommentSection():JSX.Element {
-  const commentStatus = useAppSelector(getCommentStatus);
   const offerId = useParams().id as string;
-  const [changeText, ResetData, chooseStar, review] = useReviewChanges() as ReviewChangesHookData;
+  const [changeText, chooseStar, review] = useReviewChanges() as ReviewChangesHookData;
   const [handleSubmit, isSending, isSubmitDisabled] = usePostingComments(review, offerId);
-  ResetData(commentStatus);
 
   return(
     <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>

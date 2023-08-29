@@ -2,10 +2,13 @@ import { useCallback, useEffect, useState } from 'react';
 import { EMPTY_LINE, EMPTY_RATING, Status } from '../const';
 import { useAppDispatch } from '../redux-hooks';
 import { setCommentStatus } from '../store/app-data/app-data';
+import { getCommentStatus } from '../store/app-data/selectors';
+import { useAppSelector } from '../redux-hooks';
 
 
 function useReviewChanges () {
   const dispatch = useAppDispatch();
+  const commentStatus = useAppSelector(getCommentStatus);
 
   const [review, setReview] = useState({
     comment: EMPTY_LINE,
@@ -29,23 +32,14 @@ function useReviewChanges () {
     });
   }
 
-  function ResetData (commentStatus: Status) {
-    useEffect(() => {
-      console.log(commentStatus);
-      if (commentStatus === Status.Success) {
-        console.log('Работает');
-        setReview({
-          ...review,
-          comment: EMPTY_LINE,
-          rating: EMPTY_RATING,
-        });
-        dispatch(setCommentStatus(Status.Idle));
-      }
-    });
-  }
+  useEffect(() => {
+    if (commentStatus === Status.Success) {
+      setReview({...review, comment: EMPTY_LINE, rating: EMPTY_RATING});
+      dispatch(setCommentStatus(Status.Idle));
+    }
+  }, [review, setReview, dispatch, commentStatus]);
 
-
-  return [changeText, ResetData, chooseStar, review];
+  return [changeText, chooseStar, review];
 }
 
 

@@ -10,17 +10,24 @@ import EmptyMainPage from '../empty-main-page/empty-main-page';
 import TabsMemo from '../../components/tabs/tabs';
 import HeaderMemo from '../../components/header/header';
 import { getCity, getSorting } from '../../store/app-process/selectors';
-import { getOffers } from '../../store/app-data/selectors';
+import { getOffers, getOffersDataLoadingStatus } from '../../store/app-data/selectors';
 import classNames from 'classnames';
+import LoadingScreen from '../../components/loading-block/loading-block';
 
 function MainPage(): JSX.Element {
   const chosenCity = useAppSelector(getCity);
   const offers = useAppSelector(getOffers);
+  const isOffersLoading = useAppSelector(getOffersDataLoadingStatus);
   const sorting = useAppSelector(getSorting);
   const filteredOffers: Offer[] = getStartPlacesFiltered(offers, chosenCity);
   const sortedOffers: Offer[] = sortOffersByType(filteredOffers, sorting);
 
   const [chosenCard, setChosenCard] = useState<string | null>(null);
+
+
+  if (!offers || isOffersLoading) {
+    return <LoadingScreen />;
+  }
 
   return(
     <div className={classNames('page page--gray page--main',

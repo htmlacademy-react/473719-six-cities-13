@@ -9,7 +9,7 @@ import { calculateCardRating } from '../../utils';
 import NearPlaces from '../../components/near-places/near-places';
 import Map from '../../components/map/map';
 import { useAppSelector} from '../../redux-hooks';
-import LoadingScreen from '../../components/loading-block/loading-block';
+import LoadingScreen from '../../components/loading-screen/loading-screen';
 import useFetchingOffer from '../../custom-hooks/use-fetching-offer';
 import HeaderMemo from '../../components/header/header';
 import { ChoseCardState} from '../../types/types';

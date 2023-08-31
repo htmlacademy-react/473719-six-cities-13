@@ -1,7 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
-import { NearPlacesProps, Offer, ReviewItemProps, CommentDataProps } from '../types';
+import { NearPlacesProps, Offer, ReviewItemProps, CommentDataProps } from '../types/types';
 import { AuthorizationStatus } from '../const';
-import { UserData } from '../types';
+import { UserData } from '../types/auth-user-data';
 import { AppRoute } from '../const';
 
 export const changeCity = createAction('app/changeCity',

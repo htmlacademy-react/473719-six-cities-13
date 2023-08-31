@@ -12,7 +12,7 @@ import HeaderMemo from '../../components/header/header';
 import { getCity, getSorting } from '../../store/app-process/selectors';
 import { getOffers, getOffersDataLoadingStatus } from '../../store/app-data/selectors';
 import classNames from 'classnames';
-import LoadingScreen from '../../components/loading-block/loading-block';
+import LoadingScreen from '../../components/loading-screen/loading-screen';
 
 function MainPage(): JSX.Element {
   const chosenCity = useAppSelector(getCity);

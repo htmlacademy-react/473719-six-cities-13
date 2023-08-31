@@ -7,8 +7,6 @@ export const MAX_LINE = 300;
 export const MAX_RATING = 5;
 export const URL_MARKER_DEFAULT = 'img/pin.svg';
 export const URL_MARKER_CURRENT = 'img/pin-active.svg';
-export const TIMEOUT_SHOW_ERROR = 2000;
-export const ratingTypes = [5, 4, 3, 2, 1] as const;
 
 export enum AuthorizationStatus {
   Auth = 'AUTH',
@@ -41,15 +39,6 @@ export const AppartVariants: GenericObject = {
   house: 'House',
   hotel: 'Hotel',
 };
-
-
-export const ratingTypesMap: GenericObject = {
-  '1': 'Terribly',
-  '2': 'Badly',
-  '3': 'Not bad',
-  '4': 'Good',
-  '5': 'Perfect'
-} as const;
 
 export const CITIES: GenericObject = {
   paris: 'Paris',

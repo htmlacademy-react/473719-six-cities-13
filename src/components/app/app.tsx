@@ -5,7 +5,7 @@ import Favorites from '../../pages/favorites/favorites';
 import OfferPage from '../../pages/offer-page/offer-page';
 import { AuthorizationStatus, AppRoute } from '../../const';
 import { useAppSelector } from '../../redux-hooks';
-import LoadingScreen from '../loading-block/loading-block';
+import LoadingScreen from '../loading-screen/loading-screen';
 
 import { Route, Routes } from 'react-router-dom';
 import PrivateRoute from '../private-route/private-route';
